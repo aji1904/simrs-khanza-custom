@@ -8017,8 +8017,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());
        
-//            param.put("kode_diagnosa",Sequel.cariIsi("SELECT k_penyakit.kd_penyakit FROM (SELECT GROUP_CONCAT(kd_penyakit) as kd_penyakit, no_rawat FROM diagnosa_pasien GROUP BY no_rawat) k_penyakit JOIN reg_periksa on k_penyakit.no_rawat=reg_periksa.no_rawat WHERE reg_periksa.status_lanjut='Ralan' "));
-//            param.put("diagnosa_cari",Sequel.cariIsi("SELECT k_penyakit.kd_penyakit FROM (SELECT GROUP_CONCAT(kd_penyakit) as kd_penyakit, no_rawat FROM diagnosa_pasien GROUP BY no_rawat) k_penyakit JOIN reg_periksa on k_penyakit.no_rawat=reg_periksa.no_rawat WHERE reg_periksa.status_lanjut='Ralan' "));
+            param.put("diagnosa_cari",Sequel.cariIsi("SELECT k_penyakit.kd_penyakit FROM (SELECT GROUP_CONCAT(kd_penyakit) as kd_penyakit, no_rawat FROM diagnosa_pasien GROUP BY no_rawat) k_penyakit JOIN reg_periksa on k_penyakit.no_rawat=reg_periksa.no_rawat WHERE reg_periksa.status_lanjut='Ralan' and reg_periksa.tgl_registrasi between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' "));
 
             param.put("logo",Sequel.cariGambar("select logo from setting"));
             semua=caripenjab.equals("")&&CrPoli.getText().trim().equals("")&&CrPtg.getText().trim().equals("")&&cmbStatus.getSelectedItem().toString().equals("Semua")&&cmbStatusBayar.getSelectedItem().toString().equals("Semua")&&TCari.getText().trim().equals("");
@@ -8026,7 +8025,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     "select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"+
                     "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,"+
                     "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts,penjab.png_jawab,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur, "+
-                    "reg_periksa.status_bayar,reg_periksa.status_poli,reg_periksa.kd_pj,reg_periksa.kd_poli,pasien.no_tlp "+
+                    "reg_periksa.status_bayar,reg_periksa.status_poli,reg_periksa.kd_pj,reg_periksa.kd_poli,pasien.no_tlp "+ //yang ditambah
                     "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                     "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where  "+
                     "reg_periksa.status_lanjut='Ralan' and reg_periksa.tgl_registrasi between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' "+

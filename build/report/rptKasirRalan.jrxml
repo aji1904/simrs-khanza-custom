@@ -15,6 +15,7 @@
 	<parameter name="kontakrs" class="java.lang.String"/>
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="diagnosa_cari" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,
                 reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,
@@ -301,14 +302,6 @@
 				<textFieldExpression><![CDATA[$F{nm_pasien}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="388" y="0" width="93" height="10" uuid="8bc05128-56fb-4608-b7a7-ba4baf89bef9"/>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nm_poli}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="754" y="0" width="64" height="10" uuid="fdcb57a9-d78c-48a8-a719-302d1e7102ab"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -355,6 +348,22 @@
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{no_tlp}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="309" y="0" width="79" height="10" uuid="addce70c-9def-4b67-89f4-c5815021fc5e"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{diagnosa_cari}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="388" y="0" width="93" height="10" uuid="8bc05128-56fb-4608-b7a7-ba4baf89bef9"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_poli}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
