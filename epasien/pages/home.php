@@ -52,13 +52,13 @@
                      <div class="about-info">
                           <h2 class="wow fadeInUp" data-wow-delay="0.6s">Selamat datang di Pusat Kesehatan Anda</h2>
                           <div class="wow fadeInUp" data-wow-delay="0.8s">
-                              <p><?=$_SESSION["nama_instansi"]." merupakan salah satu rumah sakit umum di wilayah ".$_SESSION["kabupaten"]." yang berkedudukan di ".$_SESSION["alamat_instansi"].". ".$_SESSION["nama_instansi"]." merupakan perkembangan dari balai pengobatan, klinik dan berada dibawah YASKI. ".$_SESSION["nama_instansi"]." mendapat izin operasional dengan Kode PPK ".$_SESSION["kode_ppkkemenkes"]." sejak bulan November 2009 dan diresmikan tanggal 21 februari 2010. ".$_SESSION["nama_instansi"]." dalam memberikan pelayanannya mengambil filosofi  dasar bahwa pelayanan kesehatan yang baik itu tidak harus mahal dan kalau bisa, harus tidak mahal. Filosofi dasar yang kedua adalah bersama yang tidak mampu kita harus maju. Hal ini memiliki arti bahwa ".$_SESSION["nama_instansi"]." harus mampu memajukan dirinya dan pihak-pihak yang berhubungan dengan dirinya menuju arah yang lebih baik."?></p>
+                              <p><?=$_SESSION["nama_instansi"]." merupakan salah satu rumah sakit umum di wilayah ".$_SESSION["kabupaten"]." yang berkedudukan di ".$_SESSION["alamat_instansi"].". ".$_SESSION["nama_instansi"]." merupakan perkembangan dari balai pengobatan, klinik dan berada dibawah YASKI. ".$_SESSION["nama_instansi"]." mendapat izin operasional dengan Kode PPK ".$_SESSION["kode_ppkkemenkes"]." sejak bulan Februari 2020 dan diresmikan tanggal 20 Februari 2020. ".$_SESSION["nama_instansi"]." dalam memberikan pelayanannya mengambil filosofi  dasar bahwa pelayanan kesehatan yang baik itu tidak harus mahal dan memberikan pelayanan yang baik. Filosofi dasar yang kedua adalah bersama yang tidak mampu kita harus maju. Hal ini memiliki arti bahwa ".$_SESSION["nama_instansi"]." harus mampu memajukan dirinya dan pihak-pihak yang berhubungan dengan dirinya menuju arah yang lebih baik."?></p>
                           </div>
                           <figure class="profile wow fadeInUp" data-wow-delay="1s">
                                <img src="images/author-image.jpg" class="img-responsive" alt=""/>
                                <figcaption>
-                                    <h3>dr. Saiful Umam</h3>
-                                    <p>Direktur Utama</p>
+                                    <h3>dr. Lenawaty HS, M.Kes</h3>
+                                    <p>Direktur RS Bunda Medika Jakabaring</p>
                                </figcaption>
                           </figure>
                      </div>
@@ -81,14 +81,14 @@
                     if(!isset($_SESSION["dokter"])){
                         $delay          = 0.2;
                         $datadokter     = "";
-                        $querydokter=bukaquery("select dokter.kd_dokter,left(dokter.nm_dokter,20) as dokter,spesialis.nm_sps,dokter.no_ijn_praktek,pegawai.photo,dokter.no_telp from dokter inner join spesialis on dokter.kd_sps=spesialis.kd_sps inner join pegawai on dokter.kd_dokter=pegawai.nik where dokter.status='1' and dokter.kd_dokter<>'-' group by spesialis.nm_sps limit 5");
+                        $querydokter=bukaquery("select dokter.kd_dokter,left(dokter.nm_dokter,40) as dokter,spesialis.nm_sps,dokter.no_ijn_praktek,pegawai.photo,dokter.no_telp, pegawai.stts_aktif from dokter inner join spesialis on dokter.kd_sps=spesialis.kd_sps inner join pegawai on dokter.kd_dokter=pegawai.nik where dokter.status='1' and dokter.kd_dokter<>'-' AND pegawai.stts_aktif='AKTIF' order by spesialis.nm_sps limit 5");
                         while($rsquerydokter = mysqli_fetch_array($querydokter)) {
                             $datadokter=$datadokter.
                                "<div class='col-md-4 col-sm-6'>
                                     <div class='team-thumb wow fadeInUp' data-wow-delay='".$delay."s'>
                                          <img alt='Photo' src='http://".host()."/webapps/penggajian/$rsquerydokter[4]' class='img-responsive' />
                                           <div class='team-info'>
-                                               <h3>$rsquerydokter[1]</h3>
+                                               <h3><marquee>$rsquerydokter[1]</marquee></h3>
                                                <p>$rsquerydokter[2]</p>
                                                <div class='team-contact-info'>
                                                     <p><i class='fa fa-phone'></i> HP/Telp. $rsquerydokter[5] </p>
@@ -241,7 +241,7 @@
  </section>
 
  <section id="google-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.449032219332!2d110.30504256997102!3d-7.860565684814225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x88ca51d8f3d715e5!2sWarung%20RERE!5e0!3m2!1sid!2sid!4v1588857905294!5m2!1sid!2sid" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen="true"></iframe>
+ <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.1655359067945!2d104.80094131428473!3d-3.0503071409532145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b9cf45d5e67b7%3A0x20514200519d9cb7!2sRS.Bunda%20Medika!5e0!3m2!1sen!2sid!4v1619056987160!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
  </section>     
 
  

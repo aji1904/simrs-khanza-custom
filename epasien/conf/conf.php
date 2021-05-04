@@ -569,7 +569,7 @@
     
     function encrypt_decrypt($string,$action){
         $secret_key     = 'Bar12345Bar12345'; 
-        $secret_iv      = 'sayangsamakhanza';
+        $secret_iv      = 'sayangsamakhanzaBar12345Bar12345';
         $output         = FALSE;
         $encrypt_method = "AES-256-CBC";
         $key            = hash('sha256', $secret_key);

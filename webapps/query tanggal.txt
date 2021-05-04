@@ -1,0 +1,37 @@
+##run di query sql
+
+CREATE FUNCTION sf_formatTanggal(tanggal DATE)
+  RETURNS VARCHAR(255) DETERMINISTIC
+BEGIN
+  DECLARE varhasil varchar(255);
+
+  SELECT CONCAT(
+    CASE DAYOFWEEK(tanggal)
+      WHEN 1 THEN 'Minggu'
+      WHEN 2 THEN 'Senin'
+      WHEN 3 THEN 'Selasa'
+      WHEN 4 THEN 'Rabu'
+      WHEN 5 THEN 'Kamis'
+      WHEN 6 THEN 'Jumat'
+      WHEN 7 THEN 'Sabtu'
+    END,', ',
+    DAY(tanggal),' ',
+    CASE MONTH(tanggal) 
+      WHEN 1 THEN 'Januari' 
+      WHEN 2 THEN 'Februari' 
+      WHEN 3 THEN 'Maret' 
+      WHEN 4 THEN 'April' 
+      WHEN 5 THEN 'Mei' 
+      WHEN 6 THEN 'Juni' 
+      WHEN 7 THEN 'Juli' 
+      WHEN 8 THEN 'Agustus' 
+      WHEN 9 THEN 'September'
+      WHEN 10 THEN 'Oktober' 
+      WHEN 11 THEN 'November' 
+      WHEN 12 THEN 'Desember' 
+    END,' ',
+    YEAR(tanggal)
+  ) INTO varhasil;
+
+  RETURN varhasil;
+END

@@ -19,6 +19,7 @@ require_once('config.php');
 if(PRODUCTION == 'YES') {
   ini_set('display_errors', 0);
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  error_reporting(0);
 }
 
 $data=fetch_array(query("SELECT AES_DECRYPT(a.id_user,'nur') as id_user, AES_DECRYPT(a.password,'windi') as password,  b.kd_poli as kd_poli from user a, jadwal b where a.id_user = AES_ENCRYPT('{$_COOKIE['username']}','nur') and b.kd_dokter = '$_COOKIE[username]' and a.password = AES_ENCRYPT('{$_COOKIE['password']}','windi')"));

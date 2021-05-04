@@ -316,12 +316,20 @@ if(isset($_GET['no_rawat'])) {
                                             <?php
                                             if($status_lanjut_kunj == 'Ralan') {
                                               $sql_riksaralan = fetch_assoc(query("SELECT keluhan, pemeriksaan FROM pemeriksaan_ralan WHERE no_rawat = '$no_rawat_kunj'"));
-                                              echo "<td>".$sql_riksaralan['keluhan']."</td>";
-                                              echo "<td>".$sql_riksaralan['pemeriksaan']."</td>";
+                                              if($sql_riksaralan == !null){
+                                                  echo "<td>".$sql_riksaralan['keluhan']."</td>";
+                                                  echo "<td>".$sql_riksaralan['pemeriksaan']."</td>";
+                                              }else{
+                                                echo "<td></td><td></td>";
+                                                }
                                             } else {
                                               $sql_riksaranap = fetch_assoc(query("SELECT keluhan, pemeriksaan FROM pemeriksaan_ranap WHERE no_rawat = '$no_rawat_kunj'"));
-                                              echo "<td>".$sql_riksaranap['keluhan']."</td>";
-                                              echo "<td>".$sql_riksaranap['pemeriksaan']."</td>";
+                                              if($sql_riksaranap == !null) {
+                                                  echo "<td>".$sql_riksaranap['keluhan']."</td>";
+                                                  echo "<td>".$sql_riksaranap['pemeriksaan']."</td>";
+                                              }else{
+                                                  echo "<td></td><td></td>";
+                                              }
                                             }
                                             ?>
                                           <td>
