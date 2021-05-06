@@ -3990,7 +3990,7 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             String jkel,String umur,Date tgllhir,Date daftar){
         NoRm.setText(norm);
         NmBayi.setText(nama);
-        ayah_ktp.setText(ibubayi);
+        Nmibu.setText(ibubayi);
         AlamatIbu.setText(alamatibu);
         JKel.setSelectedItem(jkel);
         UmurBayi.setText(umur);
