@@ -4759,7 +4759,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     "(sum(detail_pemberian_obat.total)-sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah)) as total "+
                     "from detail_pemberian_obat inner join databarang inner join jenis "+
                     "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
-                    "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? group by databarang.kode_brng,detail_pemberian_obat.biaya_obat order by jenis.nama");
+                    "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? group by databarang.kode_brng,detail_pemberian_obat.biaya_obat order by databarang.nama_brng ASC");
             try {
                 pscariobat.setString(1,norawat);
                 if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==true)){

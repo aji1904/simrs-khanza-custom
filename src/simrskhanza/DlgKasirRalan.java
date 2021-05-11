@@ -9014,6 +9014,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         ppCatatanPasien.setEnabled(akses.getcatatan_pasien());
         MnBilling1.setEnabled(akses.getbilling_ralan());
         
+        MnKamarInap.setEnabled(akses.getkamar_inap());
+        MnKamarInap1.setEnabled(akses.getkamar_inap());
+        
         if(akses.getkode().equals("Admin Utama")){
             MnHapusData.setEnabled(true);
         }else{
@@ -9023,14 +9026,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         if(akses.getkode().equals("Admin Utama")){
             MnKamarInap.setEnabled(true);
             MnKamarInap1.setEnabled(true); 
-        }else{
-            if(kamar_inap_kasir_ralan.equals("Yes")){
-                MnKamarInap.setEnabled(akses.getkamar_inap());
-                MnKamarInap1.setEnabled(akses.getkamar_inap());
-            }else{
-                MnKamarInap.setEnabled(false);
-                MnKamarInap1.setEnabled(false);
-            }
+        }
+        
+        if(akses.getkamar() == true){
+            MnKamarInap.setEnabled(true);
+            MnKamarInap1.setEnabled(true);
+        } else {
+            MnKamarInap.setEnabled(false);
+            MnKamarInap1.setEnabled(false);
         }
         
         if(!namadokter.equals("")){

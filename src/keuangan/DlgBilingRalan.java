@@ -1,3 +1,4 @@
+
 package keuangan;
 
 import fungsi.WarnaTable;
@@ -118,19 +119,19 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                     "sum(periksa_lab.tarif_tindakan_petugas) as totalpetugas,sum(periksa_lab.kso) as totalkso,sum(periksa_lab.bhp) as totalbhp "+
                     " from periksa_lab inner join jns_perawatan_lab on jns_perawatan_lab.kd_jenis_prw=periksa_lab.kd_jenis_prw where "+
                     " periksa_lab.no_rawat=? group by periksa_lab.kd_jenis_prw  ",
+            //obat dan BHP
             sqlpscariobat="select databarang.nama_brng,jenis.nama,detail_pemberian_obat.biaya_obat,"+
                           "sum(detail_pemberian_obat.jml) as jml,sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah) as tambahan,"+
                           "(sum(detail_pemberian_obat.total)-sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah)) as total, "+
                           "sum((detail_pemberian_obat.h_beli*detail_pemberian_obat.jml)) as totalbeli "+
                           "from detail_pemberian_obat inner join databarang inner join jenis "+
                           "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
-                          "detail_pemberian_obat.no_rawat=? group by detail_pemberian_obat.kode_brng order by jenis.nama",
+                          "detail_pemberian_obat.no_rawat=? group by detail_pemberian_obat.kode_brng order by databarang.nama_brng ASC",
             sqlpsdetaillab="select sum(detail_periksa_lab.biaya_item) as total,sum(detail_periksa_lab.bagian_perujuk+detail_periksa_lab.bagian_dokter) as totaldokter, "+
                            "sum(detail_periksa_lab.bagian_laborat) as totalpetugas,sum(detail_periksa_lab.kso) as totalkso,sum(detail_periksa_lab.bhp) as totalbhp "+
                            "from detail_periksa_lab where detail_periksa_lab.no_rawat=? "+
                            "and detail_periksa_lab.kd_jenis_prw=?",
-            sqlpsobatlangsung="select besar_tagihan from tagihan_obat_langsung where "+
-                    "no_rawat=? ",
+            sqlpsobatlangsung="select besar_tagihan from tagihan_obat_langsung where no_rawat=? ",
             sqlpstambahan="select nama_biaya, besar_biaya from tambahan_biaya where no_rawat=?  ",
             sqlpsbiling="insert into billing values(?,?,?,?,?,?,?,?,?,?,?)",
             sqlpstemporary="insert into temporary_bayar_ralan values('0',?,?,?,?,?,?,?,?,?,'','','','','','','','')",
