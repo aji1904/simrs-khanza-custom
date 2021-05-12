@@ -102,6 +102,7 @@ on pasien.no_rkm_medis=pasien_bayi.no_rkm_medis and pasien_bayi.penolong=pegawai
 	<field name="ktp_ibu" class="java.lang.String"/>
 	<field name="tgl_lahir" class="java.lang.String"/>
 	<field name="tgl_now" class="java.lang.String"/>
+	<field name="nama_bayi" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -505,7 +506,7 @@ Direktur]]></text>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nama_bayi}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="168" y="234" width="105" height="19" uuid="618123d1-f0f2-472d-9f73-f01c25b0c22e"/>
