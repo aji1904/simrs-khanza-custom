@@ -10406,14 +10406,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             norawatpindah.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString());
             TNoRMpindah.setText(TNoRM.getText());
             TPasienpindah.setText(TPasien.getText());            
-            kdkamar.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),19).toString());
-            diagnosaawal.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),9).toString());
-            diagnosaakhir.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),10).toString());
-            TIn.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),11).toString());            
-            JamMasuk.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),12).toString());
-            TOut.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),13).toString());
-            ttlbiaya.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),15).toString());
-            cmbStatus.setSelectedItem(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),16).toString());
+            kdkamar.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),20).toString());
+            diagnosaawal.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),10).toString());
+            diagnosaakhir.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),11).toString());
+            TIn.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),12).toString());            
+            JamMasuk.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),13).toString());
+            TOut.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),14).toString());
+            ttlbiaya.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),16).toString());
+            cmbStatus.setSelectedItem(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),17).toString());
         }
     }
 
