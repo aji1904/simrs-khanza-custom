@@ -4464,7 +4464,9 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);
         }     
-        
+
+//        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //obat dan alkes
         if(subttl>0){ 
             if(tampilkan_ppnobat_ralan.equals("Yes")){
                 ppnobat=Valid.roundUp(subttl*0.1,100);
@@ -4474,9 +4476,10 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }else{
                     tabModeRwJlDr.addRow(new Object[]{false,"","PPN Obat",":",ppnobat,1,0,ppnobat,"Obat"});
                 }
-                tabModeRwJlDr.addRow(new Object[]{true,"",""+Valid.SetAngka3(subttl+ppnobat),"",null,null,null,null,"TtlObat"});            
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal Obat : "+Valid.SetAngka3(subttl+ppnobat),"",null,null,null,null,"TtlObat"});               
+
             }else{
-                tabModeRwJlDr.addRow(new Object[]{true,"",""+Valid.SetAngka3(subttl),"",null,null,null,null,"TtlObat"});            
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal Obat : "+Valid.SetAngka3(subttl+ppnobat),"",null,null,null,null,"TtlObat"});               
             }                
         }
     }
