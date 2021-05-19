@@ -131,10 +131,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA["E-mail : "+$P{emailrs}]]></textFieldExpression>
 			</textField>
-			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="0" y="2" width="48" height="45" uuid="f0e1a7f3-d9bd-4fee-8916-a8992395adab"/>
-				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
-			</image>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="1" y="64" width="329" height="11" uuid="a472723b-033b-4f06-b178-ed981802da5f"/>
 				<textElement verticalAlignment="Middle">

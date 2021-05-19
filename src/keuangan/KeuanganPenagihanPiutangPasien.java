@@ -46,6 +46,7 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
     private boolean sukses=true;
     private double[] piutang;
     private String[] norawat,tglpiutang,norm,pasien,statusrawat,carabayar,nokartu,asalperusahaan,nip,nonota;
+    private String pilihan="";
     private boolean[] pilih;
     private DlgCariPegawai petugas=new DlgCariPegawai(null,false);
 
@@ -779,7 +780,6 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         panelisi1.add(BtnPrint);
         BtnPrint.setBounds(110, 42, 100, 30);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(50, 50, 50));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Belum Dibayar :");
@@ -788,7 +788,6 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         panelisi1.add(jLabel10);
         jLabel10.setBounds(108, 10, 87, 23);
 
-        LCountDipilih2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         LCountDipilih2.setForeground(new java.awt.Color(50, 50, 50));
         LCountDipilih2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LCountDipilih2.setText("0");
@@ -797,7 +796,6 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         panelisi1.add(LCountDipilih2);
         LCountDipilih2.setBounds(602, 10, 170, 23);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(50, 50, 50));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("Piutang Dipilih :");
@@ -806,7 +804,6 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         panelisi1.add(jLabel12);
         jLabel12.setBounds(507, 10, 90, 23);
 
-        LCountBelumDibayar2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         LCountBelumDibayar2.setForeground(new java.awt.Color(50, 50, 50));
         LCountBelumDibayar2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LCountBelumDibayar2.setText("0");
@@ -1117,11 +1114,29 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
             param.put("tagihan",LCountDipilih2.getText()); 
             param.put("terbilang",Valid.terbilang(total)); 
             param.put("bagianpenagihan",nmptg.getText()); 
-            param.put("menyetujui",nmmenyetujui.getText()); 
+            param.put("menyetujui",nmmenyetujui.getText());
+            param.put("catatan", Catatan.getText());            
+            param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
             param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
             param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
-            param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+            param.put("logo",Sequel.cariGambar("select logo from setting"));
+            
+            pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih hasil pemeriksaan..!","Hasil Pemeriksaan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Kwitansi","Surat Pengantar","Invoice"},"Invoice");
+            if (JOptionPane.CANCEL_OPTION > 0){
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+            switch (pilihan) {
+                case "Kwitansi":
+                      Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                      break;
+                case "Surat Pengantar":
+                      Valid.MyReport("rptSuratPenagihanPiutang2.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                      break;
+                case "Invoice":
+                      Valid.MyReport("rptSuratPenagihanPiutang3.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                      break;
+            }
+            
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed

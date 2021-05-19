@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d4fb926-1e5d-488a-8a60-91667ccae5ca">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="alamatrs" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="propinsirs" class="java.lang.String"/>
+	<parameter name="kontakrs" class="java.lang.String"/>
+	<parameter name="emailrs" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="tagihan" class="java.lang.String"/>
+	<parameter name="tanggal" class="java.lang.String"/>
+	<parameter name="perusahaanasuransi" class="java.lang.String"/>
+	<parameter name="alamatasuransi" class="java.lang.String"/>
+	<parameter name="telpasuransi" class="java.lang.String"/>
+	<parameter name="penanggungjawabasuransi" class="java.lang.String"/>
+	<parameter name="noinvoice" class="java.lang.String"/>
+	<parameter name="namabank" class="java.lang.String"/>
+	<parameter name="atasnama" class="java.lang.String"/>
+	<parameter name="norek" class="java.lang.String"/>
+	<parameter name="terbilang" class="java.lang.String"/>
+	<parameter name="bagianpenagihan" class="java.lang.String"/>
+	<parameter name="menyetujui" class="java.lang.String"/>
+	<parameter name="finger" class="java.lang.String"/>
+	<parameter name="finger2" class="java.lang.String"/>
+	<parameter name="tanggaltempo" class="java.lang.String"/>
+	<parameter name="tempo" class="java.lang.String"/>
+	<parameter name="catatan" class="java.lang.String"/>
+	<parameter name="tgl_now" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select no, temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, temp11, temp12, temp13, temp14 from temporary order by no asc]]>
+	</queryString>
+	<field name="no" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp6" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp7" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp8" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp9" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp10" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp11" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp12" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp13" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp14" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="no" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{temp1}]]></variableExpression>
+	</variable>
+	<variable name="Variable_1" class="java.lang.String"/>
+	<variable name="Variable_2" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="802" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="35" y="1" width="62" height="62" uuid="8ecf1d99-0176-4a2c-ae18-00ab855a55dd">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="104" y="2" width="442" height="19" uuid="5f33f09e-78f5-485c-a92f-fb3a899c7b80"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RS BUNDA MEDIKA JAKABARING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="20" width="439" height="46" uuid="46525869-5ba5-4f7d-8a32-b9d31fbf90c4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Jl. Gubenur H.A Bastari, Desa Sei Kedukan, Kec. Rambutan
+Kab. Banyuasin, rs.bundamedika.jkbaring@gmail.com
+Telp : 0711 3037000 / 0821 81096318]]></text>
+			</staticText>
+			<line>
+				<reportElement x="33" y="66" width="522" height="2" uuid="c004e2b8-cc2d-4e26-a134-545f8bb703f1"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="31" y="84" width="45" height="19" uuid="fd4a105a-69ce-4a7a-9388-8028d603e8b2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="104" width="45" height="19" uuid="c19713ef-b6e1-4141-b6b9-89e49b9f447d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Lampiran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="123" width="45" height="19" uuid="2f81e611-189a-4226-8ccf-67fe0dd40012"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Perihal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="75" y="85" width="130" height="19" uuid="b30bea07-2c3f-4fa8-a36a-a191759d7cb1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$P{noinvoice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="123" width="270" height="39" uuid="69160936-4b4c-484e-94db-18eba08897c8"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Permohonan Pembayaran Biaya Perawatan "+$P{catatan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="79" width="214" height="19" uuid="0a47e697-c3ba-4e69-87a9-7c370d370d2d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kotars}+", "+$P{tgl_now}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="76" y="104" width="129" height="19" uuid="728f6841-2ffa-4d1b-b903-103ec47da67d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[: 1 (satu) Berkas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="165" width="82" height="19" uuid="86565abd-80ca-4517-a5c0-5de102413dd7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Kepada Yth :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="31" y="185" width="303" height="19" uuid="fc7d9f2d-5cdd-42da-aa26-c07a41523910"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{penanggungjawabasuransi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="31" y="205" width="303" height="30" uuid="e78f83c9-dd0b-4085-ac91-9c5fb27290c2"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{alamatasuransi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="32" y="242" width="82" height="19" uuid="680ee68d-ff31-4eb2-8e30-ad256888de4f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Dengan Hormat,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="32" y="264" width="493" height="75" uuid="1160f345-e84f-4313-9656-f9f2b390b97c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Bersama ini kami sampaikan biaya kesehatan peserta jaminan kesehatan "+$P{penanggungjawabasuransi}+" di Rumah Sakit Bunda Medika Jakabaring dengan total biaya sebesar    Rp "+$P{tagihan}+",-  ("+$P{terbilang}.toUpperCase()+"), kwitansi dan perincian sebagaimana terlampir. "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="32" y="333" width="493" height="64" uuid="4bafc67c-ebf7-4542-b73d-88cc9d937ce0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Untuk pembayaran biaya tersebut mohon ditransfer ke rekening "+$P{namabank}.toUpperCase()+" No Rek. "+$P{norek}+" atas nama "+$P{atasnama}+" dan konfirmasi pembayaran melalui sms/WA ke no 0821-8134-5038, dengan mencantumkan Nomor Invoice yang tertera diatas."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="34" y="423" width="82" height="19" uuid="ce86df75-c5e4-45dd-9ae0-4fd2e3eec998"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Hormat Kami,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="34" y="505" width="183" height="19" uuid="2edf746f-3530-4040-9e05-db1959c7acc2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bagianpenagihan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="-755" width="503" height="19" uuid="163b9f43-27ae-4a4f-98b1-99421ad31c33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Demikianlah atas perhatian dan kerjasama yang baik kami ucapkan terima kasih.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="394" width="503" height="19" uuid="04d1cb90-6d2c-4427-840f-f94a05a84a65"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Demikianlah atas perhatian dan kerjasama yang baik kami ucapkan terima kasih.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="34" y="525" width="175" height="1" uuid="863f868a-3e55-4a18-8771-2dfe1968b037"/>
+			</line>
+			<staticText>
+				<reportElement x="76" y="123" width="20" height="19" uuid="f6390a78-d640-4a4e-8e4c-bbe812043c07"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>
