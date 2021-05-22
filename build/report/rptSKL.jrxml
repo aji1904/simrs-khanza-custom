@@ -112,15 +112,15 @@ on pasien.no_rkm_medis=pasien_bayi.no_rkm_medis and pasien_bayi.penolong=pegawai
 				<reportElement x="21" y="20" width="660" height="801" uuid="a57888eb-d76b-42cc-9835-4c7011a58999">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA["http://localhost/webapps/gambarSKL2.png"]]></imageExpression>
+				<imageExpression><![CDATA["http://rsbundamedika.com/webapps_update/gambarSKL2.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="237" y="338" width="165" height="166" uuid="92fad51c-ae46-40cd-8d2e-3b88952a9ff4"/>
-				<imageExpression><![CDATA["http://localhost/webapps/logobmj.png"]]></imageExpression>
+				<imageExpression><![CDATA["http://rsbundamedika.com/webapps_update/logobmj.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="335" y="595" width="146" height="188" uuid="985ac0c4-2719-403e-b980-0a5b7b2041b4"/>
-				<imageExpression><![CDATA["http://localhost/webapps/ttd.png"]]></imageExpression>
+				<imageExpression><![CDATA["http://rsbundamedika.com/webapps_update/ttd.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="8" y="58" width="595" height="30" uuid="ebc4e026-3d93-4e77-95db-727c3309cfe2"/>

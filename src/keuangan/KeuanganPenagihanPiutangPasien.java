@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPegawai;
 import simrskhanza.DlgPenanggungJawab;
-
 /**
  *
  * @author perpustakaan
@@ -115,7 +114,7 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         }
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
 
-        NoPenagihan.setDocument(new batasInput((byte)17).getKata(NoPenagihan));
+        NoPenagihan.setDocument(new batasInput((byte)20).getKata(NoPenagihan));
         Catatan.setDocument(new batasInput((int)100).getKata(Catatan));
         Ditujukan.setDocument(new batasInput((int)150).getKata(Ditujukan));
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
@@ -507,6 +506,11 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
 
         NoPenagihan.setName("NoPenagihan"); // NOI18N
         NoPenagihan.setPreferredSize(new java.awt.Dimension(207, 23));
+        NoPenagihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NoPenagihanActionPerformed(evt);
+            }
+        });
         NoPenagihan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 NoPenagihanKeyPressed(evt);
@@ -1122,21 +1126,20 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
             param.put("logo",Sequel.cariGambar("select logo from setting"));
             
             pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih hasil pemeriksaan..!","Hasil Pemeriksaan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Kwitansi","Surat Pengantar","Invoice"},"Invoice");
-            if (JOptionPane.CANCEL_OPTION > 0){
-                this.setCursor(Cursor.getDefaultCursor());
+            if (pilihan != null){
+                switch (pilihan) {
+                    case "Kwitansi":
+                          Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                    case "Surat Pengantar":
+                          Valid.MyReport("rptSuratPenagihanPiutang2.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                    case "Invoice":
+                          Valid.MyReport("rptSuratPenagihanPiutang3.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                }
             }
-            switch (pilihan) {
-                case "Kwitansi":
-                      Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
-                      break;
-                case "Surat Pengantar":
-                      Valid.MyReport("rptSuratPenagihanPiutang2.jasper","report","::[ Surat Penagihan Piutang ]::",param);
-                      break;
-                case "Invoice":
-                      Valid.MyReport("rptSuratPenagihanPiutang3.jasper","report","::[ Surat Penagihan Piutang ]::",param);
-                      break;
-            }
-            
+                       
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -1238,6 +1241,10 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
     private void TanggalTempoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TanggalTempoItemStateChanged
         Sequel.cariIsi("select to_days('"+Valid.SetTgl(TanggalTempo.getSelectedItem()+"")+"')-to_days('"+Valid.SetTgl(Tanggal.getSelectedItem()+"")+"')",Tempo);   
     }//GEN-LAST:event_TanggalTempoItemStateChanged
+
+    private void NoPenagihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoPenagihanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoPenagihanActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1592,6 +1599,8 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
     
     private void autoNomor() {
         Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_tagihan,3),signed)),0) from penagihan_piutang where tanggal='"+Valid.SetTgl(Tanggal.getSelectedItem()+"")+"' ",
-                "PP"+Tanggal.getSelectedItem().toString().substring(6,10)+Tanggal.getSelectedItem().toString().substring(3,5)+Tanggal.getSelectedItem().toString().substring(0,2),3,NoPenagihan); 
+                Tanggal.getSelectedItem().toString().substring(6,10)+"/"+Sequel.cariIsi("SELECT toRoman (MONTH(NOW())) as tgl")+"/BMJ/Keu/",3,NoPenagihan); 
     }
+       
 }
+

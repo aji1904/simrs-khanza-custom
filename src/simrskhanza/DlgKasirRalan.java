@@ -572,6 +572,8 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnBuktiPelayananRalan = new javax.swing.JMenuItem();
         MnLembarRalan = new javax.swing.JMenuItem();
         MnBlangkoResep = new javax.swing.JMenuItem();
+        MnRapidAntigen = new javax.swing.JMenuItem();
+        MnRapidTest = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         MnRujukan = new javax.swing.JMenu();
         MnRujuk = new javax.swing.JMenuItem();
@@ -1910,6 +1912,42 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         jMenu4.add(MnBlangkoResep);
+
+        MnRapidAntigen.setBackground(new java.awt.Color(255, 255, 254));
+        MnRapidAntigen.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRapidAntigen.setForeground(new java.awt.Color(50, 50, 50));
+        MnRapidAntigen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRapidAntigen.setMnemonic('w');
+        MnRapidAntigen.setText("Surat Keterangan Rapid Antigen");
+        MnRapidAntigen.setToolTipText("Surat Keterangan Rapid Antigen");
+        MnRapidAntigen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRapidAntigen.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRapidAntigen.setName("MnRapidAntigen"); // NOI18N
+        MnRapidAntigen.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnRapidAntigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRapidAntigenActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MnRapidAntigen);
+
+        MnRapidTest.setBackground(new java.awt.Color(255, 255, 254));
+        MnRapidTest.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRapidTest.setForeground(new java.awt.Color(50, 50, 50));
+        MnRapidTest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRapidTest.setMnemonic('w');
+        MnRapidTest.setText("Surat Keterangan Rapid Test");
+        MnRapidTest.setToolTipText("Surat Keterangan Rapid Test");
+        MnRapidTest.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRapidTest.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRapidTest.setName("MnRapidTest"); // NOI18N
+        MnRapidTest.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnRapidTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRapidTestActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MnRapidTest);
 
         jPopupMenu1.add(jMenu4);
 
@@ -3283,7 +3321,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setLayout(null);
 
-        TotalObat.setHighlighter(null);
         TotalObat.setName("TotalObat"); // NOI18N
         TotalObat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3404,7 +3441,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         internalFrame3.add(jLabel13);
         jLabel13.setBounds(0, 32, 77, 23);
 
-        kddokter.setHighlighter(null);
         kddokter.setName("kddokter"); // NOI18N
         kddokter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3489,7 +3525,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         internalFrame5.add(jLabel18);
         jLabel18.setBounds(0, 32, 77, 23);
 
-        kdpoli.setHighlighter(null);
         kdpoli.setName("kdpoli"); // NOI18N
         kdpoli.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3558,7 +3593,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         internalFrame6.add(jLabel19);
         jLabel19.setBounds(0, 32, 77, 23);
 
-        kdpenjab.setHighlighter(null);
         kdpenjab.setName("kdpenjab"); // NOI18N
         kdpenjab.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4241,7 +4275,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         panelBiasa2.setLayout(null);
 
         TglSakit1.setForeground(new java.awt.Color(50, 70, 50));
-        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2021" }));
+        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2021" }));
         TglSakit1.setDisplayFormat("dd-MM-yyyy");
         TglSakit1.setName("TglSakit1"); // NOI18N
         TglSakit1.setOpaque(false);
@@ -4288,7 +4322,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel32.setBounds(176, 10, 20, 23);
 
         TglSakit2.setForeground(new java.awt.Color(50, 70, 50));
-        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2021" }));
+        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2021" }));
         TglSakit2.setDisplayFormat("dd-MM-yyyy");
         TglSakit2.setName("TglSakit2"); // NOI18N
         TglSakit2.setOpaque(false);
@@ -4300,7 +4334,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         panelBiasa2.add(jLabel33);
         jLabel33.setBounds(0, 10, 66, 23);
 
-        lmsakit.setHighlighter(null);
         lmsakit.setName("lmsakit"); // NOI18N
         panelBiasa2.add(lmsakit);
         lmsakit.setBounds(410, 10, 110, 23);
@@ -4354,7 +4387,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         panelBiasa4.add(BtnKeluar4);
         BtnKeluar4.setBounds(430, 80, 100, 30);
 
-        NomorSurat.setHighlighter(null);
         NomorSurat.setName("NomorSurat"); // NOI18N
         panelBiasa4.add(NomorSurat);
         NomorSurat.setBounds(150, 10, 370, 23);
@@ -4565,7 +4597,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2021" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4578,7 +4610,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2021" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4677,7 +4709,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel4);
 
         TNoRw1.setEditable(false);
-        TNoRw1.setHighlighter(null);
         TNoRw1.setName("TNoRw1"); // NOI18N
         TNoRw1.setPreferredSize(new java.awt.Dimension(140, 23));
         panelGlass9.add(TNoRw1);
@@ -4688,7 +4719,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel5);
 
         TNoReg.setEditable(false);
-        TNoReg.setHighlighter(null);
         TNoReg.setName("TNoReg"); // NOI18N
         TNoReg.setPreferredSize(new java.awt.Dimension(50, 23));
         TNoReg.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -4704,7 +4734,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel7);
 
         TNoRM.setEditable(false);
-        TNoRM.setHighlighter(null);
         TNoRM.setName("TNoRM"); // NOI18N
         TNoRM.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(TNoRM);
@@ -4715,7 +4744,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel8);
 
         TPasien.setEditable(false);
-        TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
         TPasien.setPreferredSize(new java.awt.Dimension(250, 23));
         panelGlass9.add(TPasien);
@@ -8466,6 +8494,51 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         // TODO add your handling code here:
     }//GEN-LAST:event_TCariActionPerformed
 
+    
+    
+    
+    private void MnRapidAntigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRapidAntigenActionPerformed
+        if(TPasien.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());
+            param.put("romawi",Sequel.cariIsi("SELECT toRoman(MONTH(NOW())) as tgl"));
+            param.put("tahun",Sequel.cariIsi("SELECT YEAR(NOW()) as tahun"));
+            param.put("logo",Sequel.cariGambar("select logo from setting"));
+            Valid.MyReportqry("rptSuketRapidAntigen.jasper","report","::[ Surat Keterangan Rapid ANTIGEN ]::",
+                "select pasien.no_ktp,pasien.tgl_lahir,dokter.nm_dokter, dokter.no_ijn_praktek, pasien.alamat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.umur as umur, poliklinik.nm_poli, sf_formatTanggal(NOW()) as tgl_now from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",param);
+            this.setCursor(Cursor.getDefaultCursor());
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_MnRapidAntigenActionPerformed
+
+    private void MnRapidTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRapidTestActionPerformed
+       if(TPasien.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());
+            param.put("romawi",Sequel.cariIsi("SELECT toRoman(MONTH(NOW())) as tgl"));
+            param.put("tahun",Sequel.cariIsi("SELECT YEAR(NOW()) as tahun"));
+            param.put("logo",Sequel.cariGambar("select logo from setting"));
+            Valid.MyReportqry("rptSuketRapidTest.jasper","report","::[ Surat Keterangan Rapid TEST ]::",
+                "select pasien.no_ktp,pasien.tgl_lahir,dokter.nm_dokter, dokter.no_ijn_praktek, pasien.alamat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.umur as umur, poliklinik.nm_poli, sf_formatTanggal(NOW()) as tgl_now from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",param);
+            this.setCursor(Cursor.getDefaultCursor());
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_MnRapidTestActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -8640,6 +8713,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnPulangPaksa;
     private javax.swing.JMenu MnRMIGD;
     private javax.swing.JMenu MnRMRawatJalan;
+    private javax.swing.JMenuItem MnRapidAntigen;
+    private javax.swing.JMenuItem MnRapidTest;
     private javax.swing.JMenuItem MnRawatJalan1;
     private javax.swing.JMenu MnRekap;
     private javax.swing.JMenuItem MnRekapBulananDokter;
@@ -9612,5 +9687,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } 
     }
+    
+  
     
 }

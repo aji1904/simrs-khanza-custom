@@ -180,22 +180,15 @@ Telp : 0711 3037000 / 0821 81096318]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{penanggungjawabasuransi}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="31" y="205" width="303" height="30" uuid="e78f83c9-dd0b-4085-ac91-9c5fb27290c2"/>
-				<textElement verticalAlignment="Top">
-					<font fontName="Times New Roman" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{alamatasuransi}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="32" y="242" width="82" height="19" uuid="680ee68d-ff31-4eb2-8e30-ad256888de4f"/>
+				<reportElement x="32" y="229" width="82" height="19" uuid="680ee68d-ff31-4eb2-8e30-ad256888de4f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Dengan Hormat,]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="32" y="264" width="493" height="75" uuid="1160f345-e84f-4313-9656-f9f2b390b97c">
+				<reportElement x="32" y="251" width="493" height="75" uuid="1160f345-e84f-4313-9656-f9f2b390b97c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified" verticalAlignment="Top">

@@ -3865,7 +3865,6 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
          }
          isKembali();
     }
-    
     public void isRawat2() {
         prosesCariReg();    
         if((chkLaborat.isSelected()==true)||(chkTarifDokter.isSelected()==true)||(chkTarifPrm.isSelected()==true)||(chkRadiologi.isSelected()==true)){
@@ -4275,7 +4274,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             System.out.println("Notifikasi : "+e);
         }
     }
-    
+//  ++++++++++++++++++++++++++++++++++++++++++++
     private void prosesCariPeriksaLab() {
         try{
             pscarilab=koneksi.prepareStatement(sqlpscarilab);
@@ -4482,6 +4481,9 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal Obat : "+Valid.SetAngka3(subttl+ppnobat),"",null,null,null,null,"TtlObat"});               
             }                
         }
+        
+//        buat subtotal alkes, lab, rad, BMHP
+            
     }
 
 
