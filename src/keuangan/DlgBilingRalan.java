@@ -52,12 +52,12 @@ public class DlgBilingRalan extends javax.swing.JDialog {
     public DlgCariDokter dokter=new DlgCariDokter(null,false);
     public DlgCariPoli poli=new DlgCariPoli(null,false);   
     public DlgPenanggungJawab penjab=new DlgPenanggungJawab(null,false);
-    private double ttl=0,y=0,subttl=0,ralanparamedis=0,piutang=0,itembayar=0,itempiutang=0, 
+    private double ttl=0,y=0,subttl=0,subttl1=0,subttl2=0,subttl3=0,ralanparamedis=0,piutang=0,itembayar=0,itempiutang=0, 
                    bayar=0,total=0,tamkur=0,detailjs=0,detailbhp=0,ppn=0,besarppn=0,tagihanppn=0,
-                   ttlLaborat=0,ttlRadiologi=0,ttlObat=0,ttlRalan_Dokter=0,ttlRalan_Paramedis=0,
+                   ttlLaborat=0,ttlRadiologi=0,ttlObat=0,ttlObat1=0,ttlObat2=0,ttlObat3=0,ttlRalan_Dokter=0,ttlRalan_Paramedis=0,
                    ttlTambahan=0,ttlPotongan=0,ttlRegistrasi=0,ttlRalan_Dokter_Param=0,ppnobat=0,ttlOperasi=0,
                    kekurangan=0,obatlangsung;
-    private int i,r,cek,row2,countbayar=0,z=0,jml=0;
+    private int i,r,cek,row2,countbayar=0,z=0,jml=0 ;
     private String nota_jalan="",dokterrujukan="",polirujukan="",status="",biaya="",tambahan="",totals="",kdptg="",nmptg="",kd_pj="",notaralan="",centangdokterralan="",
             rinciandokterralan="",Tindakan_Ralan="",Laborat_Ralan="",Radiologi_Ralan="",
             Obat_Ralan="",Registrasi_Ralan="",Tambahan_Ralan="",Potongan_Ralan="",Obat_Langsung_Ralan="",
@@ -120,13 +120,25 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                     " from periksa_lab inner join jns_perawatan_lab on jns_perawatan_lab.kd_jenis_prw=periksa_lab.kd_jenis_prw where "+
                     " periksa_lab.no_rawat=? group by periksa_lab.kd_jenis_prw  ",
             //obat dan BHP
-            sqlpscariobat="select databarang.nama_brng,jenis.nama,detail_pemberian_obat.biaya_obat,"+
+            sqlpscariobat="select databarang.nama_brng,databarang.letak_barang as nama,detail_pemberian_obat.biaya_obat,"+
                           "sum(detail_pemberian_obat.jml) as jml,sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah) as tambahan,"+
                           "(sum(detail_pemberian_obat.total)-sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah)) as total, "+
                           "sum((detail_pemberian_obat.h_beli*detail_pemberian_obat.jml)) as totalbeli "+
                           "from detail_pemberian_obat inner join databarang inner join jenis "+
                           "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
                           "detail_pemberian_obat.no_rawat=? group by detail_pemberian_obat.kode_brng order by databarang.nama_brng ASC",
+            sqlpscari_alkes="select sum(total) as subtotal_alkes "+
+                          "from detail_pemberian_obat inner join databarang inner join jenis "+
+                          "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
+                          "detail_pemberian_obat.no_rawat=? and databarang.letak_barang ='ALKES' ",
+            sqlpscari_bmhp="select sum(total) as subtotal_bmhp "+
+                          "from detail_pemberian_obat inner join databarang inner join jenis "+
+                          "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
+                          "detail_pemberian_obat.no_rawat=? and databarang.letak_barang = 'BMHP' ",
+            sqlpscari_obat="select sum(total) as subtotal_obat "+
+                          "from detail_pemberian_obat inner join databarang inner join jenis "+
+                          "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
+                          "detail_pemberian_obat.no_rawat=? and databarang.letak_barang != 'ALKES' and databarang.letak_barang != 'BMHP' ",
             sqlpsdetaillab="select sum(detail_periksa_lab.biaya_item) as total,sum(detail_periksa_lab.bagian_perujuk+detail_periksa_lab.bagian_dokter) as totaldokter, "+
                            "sum(detail_periksa_lab.bagian_laborat) as totalpetugas,sum(detail_periksa_lab.kso) as totalkso,sum(detail_periksa_lab.bhp) as totalbhp "+
                            "from detail_periksa_lab where detail_periksa_lab.no_rawat=? "+
@@ -174,9 +186,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
     private PreparedStatement pscaripoli2,pscekbilling,pscarirm,pscaripasien,psreg,pscaripoli,pscarialamat,psrekening,
             psdokterralan,psdokterralan2,pscariralandokter,pscariralanperawat,pscariralandrpr,pscarilab,pscariobat,psdetaillab,
             psobatlangsung,psreturobat,pstambahan,psbiling,pstemporary,pspotongan,psbilling,pscariradiologi,
-            pstamkur,psnota,psoperasi,psobatoperasi,psakunbayar,psakunpiutang;
+            pstamkur,psnota,psoperasi,psobatoperasi,psakunbayar,psakunpiutang,sub_obat,sub_alkes,sub_bmhp;
     private ResultSet rscekbilling,rscarirm,rscaripasien,rsreg,rscaripoli,rscarialamat,rsrekening,rsobatoperasi,
-            rsdokterralan,rsdokterralan2,rscariralandokter,rscariralanperawat,rscariralandrpr,rscarilab,rscariobat,rsdetaillab,
+            rsdokterralan,rsdokterralan2,rscariralandokter,rscariralanperawat,rscariralandrpr,rscarilab,rscariobat,rscariobat1,rscariobat2,rscariobat3,rsdetaillab,
             rsobatlangsung,rsreturobat,rstambahan,rspotongan,rsbilling,rscariradiologi,rstamkur,rsoperasi,
             rsakunbayar,rsakunpiutang,rscaripoli2;
     private WarnaTable2 warna=new WarnaTable2();
@@ -4306,7 +4318,13 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     tabModeRwJlDr.addRow(new Object[]{true,"",rscarilab.getString("nm_perawatan"),":",
                                    rscarilab.getDouble("biaya"),rscarilab.getDouble("jml"),ralanparamedis,(rscarilab.getDouble("total")+ralanparamedis),"Laborat"});
                     subttl=subttl+rscarilab.getDouble("total")+ralanparamedis;
+                    
                 }
+//                lab
+                if(subttl > 0){
+                    tabModeRwJlDr.addRow(new Object[]{true,"Subtotal Lab",Valid.SetAngka3(subttl),"",null,null,null,null,"Laborat"}); 
+                }
+
             } catch (Exception e) {
                 System.out.println("Notifikasi : "+e); 
             } finally{
@@ -4355,6 +4373,11 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                    rscariradiologi.getDouble("biaya"),rscariradiologi.getDouble("jml"),tamkur,(rscariradiologi.getDouble("total")+tamkur),"Radiologi"});
                     subttl=subttl+rscariradiologi.getDouble("total")+tamkur;
                 }
+//                radiologi
+                if(subttl > 0){
+                    tabModeRwJlDr.addRow(new Object[]{true,"Subtotal Radiologi",Valid.SetAngka3(subttl),"",null,null,null,null,"Radiologi"}); 
+                }
+                
             } catch (Exception e) {
                 System.out.println("Notifikasi : "+e); 
             } finally{
@@ -4373,6 +4396,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void prosesCariObat() { 
         subttl=0;
         obatlangsung=0;
+        
         try{     
             psobatlangsung=koneksi.prepareStatement(sqlpsobatlangsung);
             try {
@@ -4431,9 +4455,22 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         
         try{      
             pscariobat=koneksi.prepareStatement(sqlpscariobat);
+            sub_alkes=koneksi.prepareStatement(sqlpscari_alkes);
+            sub_bmhp=koneksi.prepareStatement(sqlpscari_bmhp);
+            sub_obat=koneksi.prepareStatement(sqlpscari_obat);
+
             try {
                 pscariobat.setString(1,TNoRw.getText());
+                sub_alkes.setString(1,TNoRw.getText());
+                sub_bmhp.setString(1,TNoRw.getText());
+                sub_obat.setString(1,TNoRw.getText());
+
                 rscariobat=pscariobat.executeQuery();
+                rscariobat1=sub_obat.executeQuery();
+                rscariobat2=sub_bmhp.executeQuery();
+                rscariobat3=sub_alkes.executeQuery();
+
+
                 //embalase=0;
                 if(centangobatralan.equals("Yes")){
                     while(rscariobat.next()){
@@ -4442,12 +4479,30 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                        (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
                         subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
                     }
+                    while(rscariobat1.next()){
+                        subttl1 = rscariobat1.getDouble("subtotal_obat");
+                    }
+                    while(rscariobat2.next()){
+                        subttl2 = rscariobat2.getDouble("subtotal_bmhp");
+                    }
+                    while(rscariobat3.next()){
+                        subttl3 = rscariobat3.getDouble("subtotal_alkes");
+                    }
                 }else{
                     while(rscariobat.next()){
                         tabModeRwJlDr.addRow(new Object[]{false,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
                                        rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
                                        (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
                         subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                    }
+                    while(rscariobat1.next()){
+                        subttl1 = rscariobat1.getDouble("subtotal_obat");
+                    }
+                    while(rscariobat2.next()){
+                        subttl2 = rscariobat2.getDouble("subtotal_bmhp");
+                    }
+                    while(rscariobat3.next()){
+                        subttl3 = rscariobat3.getDouble("subtotal_alkes");
                     }
                 }                    
             } catch (Exception e) {
@@ -4466,7 +4521,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 //        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
         //obat dan alkes
-        if(subttl>0){ 
+        if(subttl>0 || subttl1>0 || subttl2>0 || subttl3>0){ 
             if(tampilkan_ppnobat_ralan.equals("Yes")){
                 ppnobat=Valid.roundUp(subttl*0.1,100);
                 obatlangsung=obatlangsung+ppnobat;
@@ -4475,10 +4530,15 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }else{
                     tabModeRwJlDr.addRow(new Object[]{false,"","PPN Obat",":",ppnobat,1,0,ppnobat,"Obat"});
                 }
-                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal Obat : "+Valid.SetAngka3(subttl+ppnobat),"",null,null,null,null,"TtlObat"});               
-
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal BMHP : "+Valid.SetAngka3(subttl2),"",null,null,null,null,"CARI_BMHP"});
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal ALKES : "+Valid.SetAngka3(subttl3),"",null,null,null,null,"CARI_ALKES"});              
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal OBAT : "+Valid.SetAngka3(subttl1),"",null,null,null,null,"CARI_OBAT"});
+                tabModeRwJlDr.addRow(new Object[]{true,"TOTAL OBAT,ALKES,BHP",Valid.SetAngka3(subttl),"",null,null,null,null,"TtlObat"}); 
             }else{
-                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal Obat : "+Valid.SetAngka3(subttl+ppnobat),"",null,null,null,null,"TtlObat"});               
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal BMHP : "+Valid.SetAngka3(subttl2),"",null,null,null,null,"CARI_BMHP"});
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal ALKES : "+Valid.SetAngka3(subttl3),"",null,null,null,null,"CARI_ALKES"});              
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal OBAT : "+Valid.SetAngka3(subttl1),"",null,null,null,null,"CARI_OBAT"});
+                tabModeRwJlDr.addRow(new Object[]{true,"TOTAL OBAT,ALKES,BHP",Valid.SetAngka3(subttl),"",null,null,null,null,"TtlObat"});               
             }                
         }
         
