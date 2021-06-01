@@ -66,13 +66,13 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             psreturobat,psdetaillab,pstamkur,psrekening,psakunbayar,psakunpiutang,
             pskamarin,psbiayasekali,psbiayaharian,psreseppulang,pstambahanbiaya,pspotonganbiaya,pstemporary,
             psralandokter,psralandrpr,psranapdrpr,psranapdokter,
-            psoperasi,psralanperawat,psranapperawat,
+            psoperasi,psralanperawat,psranapperawat, pscari_obat, pscari_alkes, pscari_bmhp,
             psperiksalab,pssudahmasuk,pskategori,psubahpenjab,psperiksarad,psanak,psnota,psservice;
     private ResultSet rscekbilling,rscarirm,rscaripasien,rsreg,rskamar,rscarialamat,rsdetaillab,
             rsdokterranap,rsranapdrpr,rsdokterralan,rscariobat,rsobatlangsung,rsobatoperasi,rsreturobat,rsubahpenjab,
             rskamarin,rsbiayasekali,rsbiayaharian,rsreseppulang,rstambahanbiaya,rspotonganbiaya,
             rsralandokter,rsralandrpr,rsranapdokter,rsoperasi,rsralanperawat,rsranapperawat,rsperiksalab,rskategori,
-            rsperiksarad,rsanak,rstamkur,rsrekening,rsservice,rsakunbayar,rsakunpiutang;
+            rsperiksarad,rsanak,rstamkur,rsrekening,rsservice,rsakunbayar,rsakunpiutang, rscari_obat, rscari_alkes, rscari_bmhp;
     private String biaya="",tambahan="",totals="",norawatbayi="",centangdokterranap="",kd_pj="",
             rinciandokterranap="",rincianoperasi="",hariawal="",notaranap="",tampilkan_administrasi_di_billingranap="",
             Tindakan_Ranap="",Laborat_Ranap="",Radiologi_Ranap="",Obat_Ranap="",Registrasi_Ranap="",Persediaan_Obat_Rawat_Inap="",
@@ -114,6 +114,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
                     "from resep_pulang inner join databarang "+
                     "on resep_pulang.kode_brng=databarang.kode_brng where "+
                     "resep_pulang.no_rawat=? order by databarang.nama_brng",
+            sql_reseppulang = "select sum(total) as total_rp from resep_pulang inner join databarang on resep_pulang.kode_brng=databarang.kode_brng where resep_pulang.no_rawat=?",
             sqlpstambahanbiaya="select nama_biaya, besar_biaya from tambahan_biaya where no_rawat=?  ",
             sqlpspotonganbiaya="select nama_pengurangan, besar_pengurangan from pengurangan_biaya where no_rawat=?  ",
             sqlpsralandokter="select jns_perawatan.nm_perawatan,rawat_jl_dr.biaya_rawat as total_byrdr,count(rawat_jl_dr.kd_jenis_prw) as jml, "+
@@ -193,19 +194,25 @@ public class DlgBilingRanap extends javax.swing.JDialog {
                                            "if(tambahan<>0,tambahan,null) as tiga, if(totalbiaya<>0,totalbiaya,null) as empat,pemisah,status "+
                                            "from billing where no_rawat=?  order by noindex",
             sqlpskategori="SELECT kd_kategori, nm_kategori FROM kategori_perawatan",
+            pscari_obat1="select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
+                        "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? and databarang.letak_barang='ALKES' and databarang.letak_barang!='BMHP' ", 
+            pscari_alkes1="select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
+                        "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? and databarang.letak_barang='ALKES' ", 
+            pscari_bmhp1="select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
+                        "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? and databarang.letak_barang='BMHP' ",
             sqlpstamkur="select biaya from temporary_tambahan_potongan where no_rawat=? and nama_tambahan=? and status=?",
             sqlpsanak="select pasien.no_rkm_medis,pasien.nm_pasien,ranap_gabung.no_rawat2 from reg_periksa inner join pasien inner join ranap_gabung on "+
                     "pasien.no_rkm_medis=reg_periksa.no_rkm_medis and ranap_gabung.no_rawat2=reg_periksa.no_rawat where ranap_gabung.no_rawat=?",
             sqlpstemporary="insert into temporary_bayar_ranap values('0',?,?,?,?,?,?,?,?,'','','','','','','','','')",
             sqlpsubahpenjab="select tgl_ubah,kd_pj1,kd_pj2 from ubah_penjab where no_rawat=?";    
-    private double ttl=0,y=0,subttl=0,lab,ttl1,ttl2,ttlobat,ttlretur,ppnobat,piutang=0,kekurangan=0,itembayar=0,itempiutang=0, 
+    private double subttl_obat, subttl_alkes, subttl_bmhp ,ttl=0,y=0,subttl=0,lab,ttl1,ttl2,ttlobat,ttlretur,ppnobat,piutang=0,kekurangan=0,itembayar=0,itempiutang=0, 
             tamkur=0,detailjs=0,detailbhp=0,ppn=0,besarppn=0,tagihanppn=0,bayar=0,total=0,uangdeposit=0,
             ttlLaborat=0,ttlRadiologi=0,ttlOperasi=0,ttlObat=0,ttlRanap_Dokter=0,ttlRanap_Paramedis=0,ttlRalan_Dokter=0,
             ttlRalan_Paramedis=0,ttlTambahan=0,ttlPotongan=0,ttlKamar=0,ttlRegistrasi=0,ttlHarian=0,ttlRetur_Obat=0,ttlResep_Pulang=0,
             laboratserv=0,radiologiserv=0,operasiserv=0,obatserv=0,obatlangsung=0,
             ranap_dokterserv=0,ranap_paramedisserv=0,ralan_dokterserv=0,
             ralan_paramedisserv=0,tambahanserv=0,potonganserv=0,
-            kamarserv=0,registrasiserv=0,harianserv=0,retur_Obatserv=0,resep_Pulangserv=0,ttlService=0,
+            kamarserv=0,registrasiserv=0,harianserv=0,retur_Obatserv=0,resep_Pulangserv=0,ttlService=0,total_obat=0,
             persenbayi=Sequel.cariInteger("select bayi from set_jam_minimal");
     private int x=0,z=0,i=0,countbayar=0,jml=0,r=0,row2=0;
     private WarnaTable2 warna=new WarnaTable2();
@@ -4749,7 +4756,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);
         }
-        
+//        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         tabModeRwJlDr.addRow(new Object[]{true,x+". Obat & BHP",":","",null,null,null,null,"Obat"});
         
         try{
@@ -5087,6 +5095,102 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
              tabModeRwJlDr.addRow(new Object[]{true,"","Total Resep Pulang : "+Valid.SetAngka(subttl),"",null,null,null,null,"TtlResep Pulang"});
         }
     }
+    
+//    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ALKES
+//            pscari_alkes=koneksi.prepareStatement(pscari_alkes1);
+//            try {
+//                pscari_alkes.setString(1,norawat);
+//                if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==true)){
+//                    pscari_alkes.setString(2,"%%");
+//                }else if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==false)){
+//                    pscari_alkes.setString(2,"%Ralan%");
+//                }else if((chkRalan.isSelected()==false)&&(chkRanap.isSelected()==true)){
+//                    pscari_alkes.setString(2,"%Ranap%");
+//                }else if((chkRalan.isSelected()==false)&&(chkRanap.isSelected()==false)){
+//                    pscari_alkes.setString(2,"%Kosong%");
+//                }
+//                rscari_alkes=pscari_alkes.executeQuery();
+//                
+//                while(rscari_alkes.next()){
+//                    subttl_alkes=rscari_alkes.getDouble("total");
+//                }
+//                    
+//            } catch (Exception e) {
+//                System.out.println("Notifikasi : "+e);
+//            } finally{
+//                if(rscari_alkes!=null){
+//                    rscari_alkes.close();
+//                }               
+//            }
+//            
+////            ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ BHP
+//            pscari_bmhp=koneksi.prepareStatement(
+//                    "select sum(total) as total "+
+//                    "from detail_pemberian_obat inner join databarang inner join jenis "+
+//                    "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
+//                    "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? and databarang.letak_barang='BMHP' ");
+//            try {
+//                pscari_bmhp.setString(1,norawat);
+//                if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==true)){
+//                    pscari_bmhp.setString(2,"%%");
+//                }else if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==false)){
+//                    pscari_bmhp.setString(2,"%Ralan%");
+//                }else if((chkRalan.isSelected()==false)&&(chkRanap.isSelected()==true)){
+//                    pscari_bmhp.setString(2,"%Ranap%");
+//                }else if((chkRalan.isSelected()==false)&&(chkRanap.isSelected()==false)){
+//                    pscari_bmhp.setString(2,"%Kosong%");
+//                }
+//                rscari_bmhp=pscari_bmhp.executeQuery();
+//                
+//                while(rscari_bmhp.next()){
+//                    subttl_bmhp=rscari_bmhp.getDouble("total");
+//                }
+//                    
+//            } catch (Exception e) {
+//                System.out.println("Notifikasi : "+e);
+//            } finally{
+//                if(rscari_bmhp!=null){
+//                    rscari_bmhp.close();
+//                }               
+//            }
+//            
+////            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ OBAT
+//            pscari_obat=koneksi.prepareStatement(
+//                    "select sum(total) as total "+
+//                    "from detail_pemberian_obat inner join databarang inner join jenis "+
+//                    "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
+//                    "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? and databarang.letak_barang!='BMHP' and databarang.letak_barang!='ALKES' ");
+//            try {
+//                pscari_obat.setString(1,norawat);
+//                if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==true)){
+//                    pscari_obat.setString(2,"%%");
+//                }else if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==false)){
+//                    pscari_obat.setString(2,"%Ralan%");
+//                }else if((chkRalan.isSelected()==false)&&(chkRanap.isSelected()==true)){
+//                    pscari_obat.setString(2,"%Ranap%");
+//                }else if((chkRalan.isSelected()==false)&&(chkRanap.isSelected()==false)){
+//                    pscari_obat.setString(2,"%Kosong%");
+//                }
+//                rscari_obat=pscari_obat.executeQuery();
+//                
+//                while(rscari_obat.next()){
+//                    subttl_obat=rscari_obat.getDouble("total");
+//                }
+//                    
+//            } catch (Exception e) {
+//                System.out.println("Notifikasi : "+e);
+//            } finally{
+//                if(rscari_obat!=null){
+//                    rscari_obat.close();
+//                }               
+//            }
+//            
+//    if(subttl_obat > 0 || subttl_alkes || subttl_bmhp > 0){
+//            tabModeRwJlDr.addRow(new Object[]{true,"Total Semua OBAT",Valid.SetAngka(subttl_obat+ttlResep_Pulang),"",null,null,null,null,"TtlResep Pulang"});
+//            tabModeRwJlDr.addRow(new Object[]{true,"Total Semua ALKES",Valid.SetAngka(subttl_alkes),"",null,null,null,null,"TtlResep Pulang"});
+//            tabModeRwJlDr.addRow(new Object[]{true,"Total Semua BMHP",Valid.SetAngka(subttl_bmhp),"",null,null,null,null,"TtlResep Pulang"});
+//    }
+//
 
 
     private void isHitung() {              
