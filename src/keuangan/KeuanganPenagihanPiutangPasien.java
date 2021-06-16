@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPegawai;
 import simrskhanza.DlgPenanggungJawab;
-
 /**
  *
  * @author perpustakaan
@@ -46,6 +45,7 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
     private boolean sukses=true;
     private double[] piutang;
     private String[] norawat,tglpiutang,norm,pasien,statusrawat,carabayar,nokartu,asalperusahaan,nip,nonota;
+    private String pilihan="";
     private boolean[] pilih;
     private DlgCariPegawai petugas=new DlgCariPegawai(null,false);
 
@@ -114,7 +114,7 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         }
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
 
-        NoPenagihan.setDocument(new batasInput((byte)17).getKata(NoPenagihan));
+        NoPenagihan.setDocument(new batasInput((byte)20).getKata(NoPenagihan));
         Catatan.setDocument(new batasInput((int)100).getKata(Catatan));
         Ditujukan.setDocument(new batasInput((int)150).getKata(Ditujukan));
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
@@ -506,6 +506,11 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
 
         NoPenagihan.setName("NoPenagihan"); // NOI18N
         NoPenagihan.setPreferredSize(new java.awt.Dimension(207, 23));
+        NoPenagihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NoPenagihanActionPerformed(evt);
+            }
+        });
         NoPenagihan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 NoPenagihanKeyPressed(evt);
@@ -779,7 +784,6 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         panelisi1.add(BtnPrint);
         BtnPrint.setBounds(110, 42, 100, 30);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(50, 50, 50));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Belum Dibayar :");
@@ -788,7 +792,6 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         panelisi1.add(jLabel10);
         jLabel10.setBounds(108, 10, 87, 23);
 
-        LCountDipilih2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         LCountDipilih2.setForeground(new java.awt.Color(50, 50, 50));
         LCountDipilih2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LCountDipilih2.setText("0");
@@ -797,7 +800,6 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         panelisi1.add(LCountDipilih2);
         LCountDipilih2.setBounds(602, 10, 170, 23);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(50, 50, 50));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("Piutang Dipilih :");
@@ -806,7 +808,6 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         panelisi1.add(jLabel12);
         jLabel12.setBounds(507, 10, 90, 23);
 
-        LCountBelumDibayar2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         LCountBelumDibayar2.setForeground(new java.awt.Color(50, 50, 50));
         LCountBelumDibayar2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LCountBelumDibayar2.setText("0");
@@ -1117,11 +1118,28 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
             param.put("tagihan",LCountDipilih2.getText()); 
             param.put("terbilang",Valid.terbilang(total)); 
             param.put("bagianpenagihan",nmptg.getText()); 
-            param.put("menyetujui",nmmenyetujui.getText()); 
+            param.put("menyetujui",nmmenyetujui.getText());
+            param.put("catatan", Catatan.getText());            
+            param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
             param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
             param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
-            param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+            param.put("logo",Sequel.cariGambar("select logo from setting"));
+            
+            pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih hasil pemeriksaan..!","Hasil Pemeriksaan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Kwitansi","Surat Pengantar","Invoice"},"Invoice");
+            if (pilihan != null){
+                switch (pilihan) {
+                    case "Kwitansi":
+                          Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                    case "Surat Pengantar":
+                          Valid.MyReport("rptSuratPenagihanPiutang2.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                    case "Invoice":
+                          Valid.MyReport("rptSuratPenagihanPiutang3.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                }
+            }
+                       
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -1223,6 +1241,10 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
     private void TanggalTempoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TanggalTempoItemStateChanged
         Sequel.cariIsi("select to_days('"+Valid.SetTgl(TanggalTempo.getSelectedItem()+"")+"')-to_days('"+Valid.SetTgl(Tanggal.getSelectedItem()+"")+"')",Tempo);   
     }//GEN-LAST:event_TanggalTempoItemStateChanged
+
+    private void NoPenagihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoPenagihanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoPenagihanActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1575,8 +1597,11 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
         }        
     }
     
+//    auto nomor berubah ke awal jika bulan berubah
     private void autoNomor() {
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_tagihan,3),signed)),0) from penagihan_piutang where tanggal='"+Valid.SetTgl(Tanggal.getSelectedItem()+"")+"' ",
-                "PP"+Tanggal.getSelectedItem().toString().substring(6,10)+Tanggal.getSelectedItem().toString().substring(3,5)+Tanggal.getSelectedItem().toString().substring(0,2),3,NoPenagihan); 
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_tagihan,3),signed)),0) from penagihan_piutang where tanggal like '"+Tanggal.getSelectedItem().toString().substring(6,10)+Tanggal.getSelectedItem().toString().substring(2,5)+"%' ",
+                Tanggal.getSelectedItem().toString().substring(6,10)+"/"+Sequel.cariIsi("SELECT toRoman (MONTH(NOW())) as tgl")+"/BMJ/Keu/",3,NoPenagihan); 
     }
+       
 }
+

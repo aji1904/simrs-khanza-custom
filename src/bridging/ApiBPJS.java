@@ -52,9 +52,11 @@ public class ApiBPJS {
 	generateHmacSHA256Signature = null;
 	try {
 	    generateHmacSHA256Signature = generateHmacSHA256Signature(salt,Key);
+//            System.out.println("sha256 "+generateHmacSHA256Signature);
+//            System.out.println("timestamp "+GetUTCdatetimeAsString);
 	} catch (GeneralSecurityException e) {
 	    // TODO Auto-generated catch block
-            System.out.println("Error Signature : "+e);
+              System.out.println("Error Signature : "+e);
 	    e.printStackTrace();
 	}
 	return generateHmacSHA256Signature;
