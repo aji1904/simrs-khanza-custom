@@ -34,7 +34,7 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
     private DlgAkunPenagihanPiutang akuntagih=new DlgAkunPenagihanPiutang(null,false);
     private PreparedStatement ps,ps2;
     private ResultSet rs,rs2;
-    private String nopenagihan="",tanggal="",status="",penjamin="",bagianpenagihan="",transfer="";
+    private String nopenagihan="",tanggal="",status="",penjamin="",bagianpenagihan="",transfer="",pilihan;
     private double nilaitagihan=0,totaltagihan=0;
 
     /** Creates new form DlgProgramStudi
@@ -224,6 +224,9 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
         ppHapus = new javax.swing.JMenuItem();
         ppDisetujui = new javax.swing.JMenuItem();
         ppTidakDisetujui = new javax.swing.JMenuItem();
+        ppSuratPengantar = new javax.swing.JMenuItem();
+        ppInvoice = new javax.swing.JMenuItem();
+        ppKwitansi = new javax.swing.JMenuItem();
         Perusahaan = new widget.TextBox();
         AlamatAsuransi = new widget.TextBox();
         NoTelp = new widget.TextBox();
@@ -314,6 +317,54 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(ppTidakDisetujui);
+
+        ppSuratPengantar.setBackground(new java.awt.Color(255, 255, 254));
+        ppSuratPengantar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppSuratPengantar.setForeground(new java.awt.Color(50, 50, 50));
+        ppSuratPengantar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppSuratPengantar.setText("Cetak Surat Pengantar");
+        ppSuratPengantar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppSuratPengantar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppSuratPengantar.setName("ppSuratPengantar"); // NOI18N
+        ppSuratPengantar.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppSuratPengantar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppSuratPengantarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppSuratPengantar);
+
+        ppInvoice.setBackground(new java.awt.Color(255, 255, 254));
+        ppInvoice.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppInvoice.setForeground(new java.awt.Color(50, 50, 50));
+        ppInvoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppInvoice.setText("Cetak Invoice");
+        ppInvoice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppInvoice.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppInvoice.setName("ppInvoice"); // NOI18N
+        ppInvoice.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppInvoiceActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppInvoice);
+
+        ppKwitansi.setBackground(new java.awt.Color(255, 255, 254));
+        ppKwitansi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppKwitansi.setForeground(new java.awt.Color(50, 50, 50));
+        ppKwitansi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppKwitansi.setText("Cetak Kwitansi");
+        ppKwitansi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppKwitansi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppKwitansi.setName("ppKwitansi"); // NOI18N
+        ppKwitansi.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppKwitansi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppKwitansiActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppKwitansi);
 
         Perusahaan.setHighlighter(null);
         Perusahaan.setName("Perusahaan"); // NOI18N
@@ -790,6 +841,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                                 tabMode.getValueAt(i,8).toString()+"','"+
                                 tabMode.getValueAt(i,9).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Penagihan Piutang Pasien"); 
             }
+            
             Sequel.menyimpan("temporary","'0','Total Tagihan :','','','','','','','"+Valid.SetAngka(totaltagihan)+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Penagihan Piutang Pasien"); 
             Map<String, Object> param = new HashMap<>();    
             param.put("namars",akses.getnamars());
@@ -799,7 +851,45 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());   
             param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReport("rptPenagihanPiutangPasien.jasper","report","::[ Data Penagihan Piutang Pasien ]::",param);
+            
+            param.put("perusahaanasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));  
+            param.put("alamatasuransi",AlamatAsuransi.getText());  
+            param.put("telpasuransi",NoTelp.getText()); 
+            param.put("tanggal",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+            param.put("tanggaltempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+            param.put("tempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+            param.put("noinvoice",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+            param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+            param.put("namabank",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+            param.put("atasnama",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+            param.put("norek",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+            param.put("tagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("terbilang",Valid.terbilang(total)); 
+            param.put("bagianpenagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+            param.put("menyetujui",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
+            param.put("catatan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));            
+            param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
+//            param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
+//            param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
+            
+            pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih hasil pemeriksaan..!","Hasil Pemeriksaan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Kwitansi","Surat Pengantar","Invoice","Cetak Semua"},"Invoice");
+            if (pilihan != null){
+                switch (pilihan) {
+                    case "Kwitansi":
+                          Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                    case "Surat Pengantar":
+                          Valid.MyReport("rptSuratPenagihanPiutang2.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                    case "Invoice":
+                          Valid.MyReport("rptSuratPenagihanPiutang3.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                    case "Cetak Semua":
+                          Valid.MyReport("rptPenagihanPiutangPasien.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                          break;
+                }
+            }
+                       
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -866,6 +956,18 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         // TODO add your handling code here:
     }//GEN-LAST:event_KdAkunKeyPressed
 
+    private void ppSuratPengantarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppSuratPengantarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ppSuratPengantarActionPerformed
+
+    private void ppInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppInvoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ppInvoiceActionPerformed
+
+    private void ppKwitansiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppKwitansiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ppKwitansiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -924,6 +1026,9 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.panelisi panelisi1;
     private javax.swing.JMenuItem ppDisetujui;
     private javax.swing.JMenuItem ppHapus;
+    private javax.swing.JMenuItem ppInvoice;
+    private javax.swing.JMenuItem ppKwitansi;
+    private javax.swing.JMenuItem ppSuratPengantar;
     private javax.swing.JMenuItem ppTidakDisetujui;
     private widget.ScrollPane scrollPane1;
     private widget.Table tbDokter;

@@ -62,14 +62,14 @@ public class DlgBilingRanap extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private Jurnal jur=new Jurnal();
     private PreparedStatement pscekbilling,pscarirm,pscaripasien,psreg,pskamar,pscarialamat,psbiling,
-            psdokterranap,psdokterralan,pscariobat,psobatlangsung,psobatoperasi,
+            psdokterranap,psdokterralan,pscariobat,psobatlangsung,psobatoperasi, pscari_obat1,pscari_alkes1, pscari_bmhp1,
             psreturobat,psdetaillab,pstamkur,psrekening,psakunbayar,psakunpiutang,
             pskamarin,psbiayasekali,psbiayaharian,psreseppulang,pstambahanbiaya,pspotonganbiaya,pstemporary,
             psralandokter,psralandrpr,psranapdrpr,psranapdokter,
             psoperasi,psralanperawat,psranapperawat, pscari_obat, pscari_alkes, pscari_bmhp,
             psperiksalab,pssudahmasuk,pskategori,psubahpenjab,psperiksarad,psanak,psnota,psservice;
     private ResultSet rscekbilling,rscarirm,rscaripasien,rsreg,rskamar,rscarialamat,rsdetaillab,
-            rsdokterranap,rsranapdrpr,rsdokterralan,rscariobat,rsobatlangsung,rsobatoperasi,rsreturobat,rsubahpenjab,
+            rsdokterranap,rsranapdrpr,rsdokterralan,rscariobat, rscari_obat1, rscari_alkes1, rscari_bmhp1,rsobatlangsung,rsobatoperasi,rsreturobat,rsubahpenjab,
             rskamarin,rsbiayasekali,rsbiayaharian,rsreseppulang,rstambahanbiaya,rspotonganbiaya,
             rsralandokter,rsralandrpr,rsranapdokter,rsoperasi,rsralanperawat,rsranapperawat,rsperiksalab,rskategori,
             rsperiksarad,rsanak,rstamkur,rsrekening,rsservice,rsakunbayar,rsakunpiutang, rscari_obat, rscari_alkes, rscari_bmhp;
@@ -194,12 +194,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
                                            "if(tambahan<>0,tambahan,null) as tiga, if(totalbiaya<>0,totalbiaya,null) as empat,pemisah,status "+
                                            "from billing where no_rawat=?  order by noindex",
             sqlpskategori="SELECT kd_kategori, nm_kategori FROM kategori_perawatan",
-            pscari_obat1="select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
-                        "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? and databarang.letak_barang='ALKES' and databarang.letak_barang!='BMHP' ", 
-            pscari_alkes1="select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
-                        "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? and databarang.letak_barang='ALKES' ", 
-            pscari_bmhp1="select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
-                        "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? and databarang.letak_barang='BMHP' ",
+            
             sqlpstamkur="select biaya from temporary_tambahan_potongan where no_rawat=? and nama_tambahan=? and status=?",
             sqlpsanak="select pasien.no_rkm_medis,pasien.nm_pasien,ranap_gabung.no_rawat2 from reg_periksa inner join pasien inner join ranap_gabung on "+
                     "pasien.no_rkm_medis=reg_periksa.no_rkm_medis and ranap_gabung.no_rawat2=reg_periksa.no_rawat where ranap_gabung.no_rawat=?",
@@ -4756,7 +4751,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);
         }
-//        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Obat
 
         tabModeRwJlDr.addRow(new Object[]{true,x+". Obat & BHP",":","",null,null,null,null,"Obat"});
         
@@ -4768,8 +4763,24 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     "from detail_pemberian_obat inner join databarang inner join jenis "+
                     "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
                     "detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? group by databarang.kode_brng,detail_pemberian_obat.biaya_obat order by databarang.nama_brng ASC");
+            
+//          ---------------------------------- obat ---------------------
+            pscari_obat1=koneksi.prepareStatement("select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
+                        "detail_pemberian_obat.no_rawat=? and databarang.letak_barang!='ALKES' "); 
+            
+//          ---------------------------------- alkes ---------------------
+
+            pscari_alkes1=koneksi.prepareStatement("select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
+                        "detail_pemberian_obat.no_rawat=? and databarang.letak_barang='ALKES' "); 
+           
+            //          ---------------------------------- bmhp -----------------------
+
+
             try {
                 pscariobat.setString(1,norawat);
+
+                pscari_obat1.setString(1,norawat);
+                pscari_alkes1.setString(1,norawat);
                 if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==true)){
                     pscariobat.setString(2,"%%");
                 }else if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==false)){
@@ -4780,6 +4791,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     pscariobat.setString(2,"%Kosong%");
                 }
                 rscariobat=pscariobat.executeQuery();
+                rscari_obat1=pscari_obat1.executeQuery();
+                rscari_alkes1=pscari_alkes1.executeQuery();
+                
                 if(centangobatranap.equals("Yes")){
                     while(rscariobat.next()){
                         tabModeRwJlDr.addRow(new Object[]{true,"                           ",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
@@ -4787,12 +4801,29 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                        (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
                         subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
                     }
+                    
+                    while(rscari_obat1.next()){
+                        tabModeRwJlDr.addRow(new Object[]{true,"Total OBAT",": "+Valid.SetAngka(rscari_obat1.getDouble("total")),"",null,null,null,null,"TtlObat"});
+                    }
+                    
+                    while(rscari_alkes1.next()){
+                        tabModeRwJlDr.addRow(new Object[]{true,"Total ALKES",": "+Valid.SetAngka(rscari_alkes1.getDouble("total")),"",null,null,null,null,"TtlObat"});
+                    }
                 }else{
                     while(rscariobat.next()){
                         tabModeRwJlDr.addRow(new Object[]{false,"                           ",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
                                        rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
                                        (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
                         subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                        
+                    }
+                    
+                    while(rscari_obat1.next()){
+                        tabModeRwJlDr.addRow(new Object[]{true,"Total OBAT",": "+Valid.SetAngka(rscari_obat1.getDouble("total")),"",null,null,null,null,"TtlObat"});
+                    }
+                    
+                    while(rscari_alkes1.next()){
+                        tabModeRwJlDr.addRow(new Object[]{true,"Total ALKES",": "+Valid.SetAngka(rscari_alkes1.getDouble("total")),"",null,null,null,null,"TtlObat"});
                     }
                 }
                     
