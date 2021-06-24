@@ -131,14 +131,10 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                           "from detail_pemberian_obat inner join databarang inner join jenis "+
                           "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
                           "detail_pemberian_obat.no_rawat=? and databarang.letak_barang ='ALKES' ",
-            sqlpscari_bmhp="select sum(total) as subtotal_bmhp "+
-                          "from detail_pemberian_obat inner join databarang inner join jenis "+
-                          "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
-                          "detail_pemberian_obat.no_rawat=? and databarang.letak_barang = 'BMHP' ",
             sqlpscari_obat="select sum(total) as subtotal_obat "+
                           "from detail_pemberian_obat inner join databarang inner join jenis "+
                           "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
-                          "detail_pemberian_obat.no_rawat=? and databarang.letak_barang != 'ALKES' and databarang.letak_barang != 'BMHP' ",
+                          "detail_pemberian_obat.no_rawat=? and databarang.letak_barang != 'ALKES' ",
             sqlpsdetaillab="select sum(detail_periksa_lab.biaya_item) as total,sum(detail_periksa_lab.bagian_perujuk+detail_periksa_lab.bagian_dokter) as totaldokter, "+
                            "sum(detail_periksa_lab.bagian_laborat) as totalpetugas,sum(detail_periksa_lab.kso) as totalkso,sum(detail_periksa_lab.bhp) as totalbhp "+
                            "from detail_periksa_lab where detail_periksa_lab.no_rawat=? "+
@@ -3520,6 +3516,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             rscariobat.getString("no_resep"),rscariobat.getString("tgl_peresepan"),rscariobat.getString("jam_peresepan"),rscariobat.getString("nm_dokter"),rscariobat.getString("status")
                         });
                     }
+                    
                 } catch (Exception e) {
                     System.out.println("Notif : "+e);
                 } finally{
@@ -3747,12 +3744,18 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if(i<=0){
              prosesCariReg();    
              if((chkLaborat.isSelected()==true)||(chkTarifDokter.isSelected()==true)||(chkTarifPrm.isSelected()==true)||(chkRadiologi.isSelected()==true)){
-                 tabModeRwJlDr.addRow(new Object[]{true,"Tindakan",":","",null,null,null,null,"Ralan Dokter"});
+                tabModeRwJlDr.addRow(new Object[]{true,"Tindakan",":","",null,null,null,null,"Ralan Dokter"});
              }             
              if(chkTarifDokter.isSelected()==true){prosesCariRwJlDr();prosesCariRwJlDrPr();}
              if(chkTarifPrm.isSelected()==true){prosesCariRwJlPr();}
-             if(chkLaborat.isSelected()==true){prosesCariPeriksaLab();}
-             if(chkRadiologi.isSelected()==true){prosesCariRadiologi();}    
+             if(chkLaborat.isSelected()==true){
+                 tabModeRwJlDr.addRow(new Object[]{true,"Laboratorium",":","",null,null,null,null,"Laborat"});
+                 prosesCariPeriksaLab();
+             }
+             if(chkRadiologi.isSelected()==true){
+                 tabModeRwJlDr.addRow(new Object[]{true,"Radiologi",":","",null,null,null,null,"Radiologi"});
+                 prosesCariRadiologi();
+             }    
              prosesCariOperasi();
              if(chkSarpras.isSelected()==true){
                 if(detailjs>0){
@@ -4315,6 +4318,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             psdetaillab.close();
                         }
                     }
+                   
                     tabModeRwJlDr.addRow(new Object[]{true,"",rscarilab.getString("nm_perawatan"),":",
                                    rscarilab.getDouble("biaya"),rscarilab.getDouble("jml"),ralanparamedis,(rscarilab.getDouble("total")+ralanparamedis),"Laborat"});
                     subttl=subttl+rscarilab.getDouble("total")+ralanparamedis;
@@ -4368,9 +4372,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             pstamkur.close();
                         } 
                     }
-                        
-                    tabModeRwJlDr.addRow(new Object[]{true,"",rscariradiologi.getString("nm_perawatan"),":",
-                                   rscariradiologi.getDouble("biaya"),rscariradiologi.getDouble("jml"),tamkur,(rscariradiologi.getDouble("total")+tamkur),"Radiologi"});
+                    tabModeRwJlDr.addRow(new Object[]{true,"",rscariradiologi.getString("nm_perawatan"),":",rscariradiologi.getDouble("biaya"),rscariradiologi.getDouble("jml"),tamkur,(rscariradiologi.getDouble("total")+tamkur),"Radiologi"});
                     subttl=subttl+rscariradiologi.getDouble("total")+tamkur;
                 }
 //                radiologi
@@ -4456,18 +4458,15 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         try{      
             pscariobat=koneksi.prepareStatement(sqlpscariobat);
             sub_alkes=koneksi.prepareStatement(sqlpscari_alkes);
-            sub_bmhp=koneksi.prepareStatement(sqlpscari_bmhp);
             sub_obat=koneksi.prepareStatement(sqlpscari_obat);
 
             try {
                 pscariobat.setString(1,TNoRw.getText());
                 sub_alkes.setString(1,TNoRw.getText());
-                sub_bmhp.setString(1,TNoRw.getText());
                 sub_obat.setString(1,TNoRw.getText());
 
                 rscariobat=pscariobat.executeQuery();
                 rscariobat1=sub_obat.executeQuery();
-                rscariobat2=sub_bmhp.executeQuery();
                 rscariobat3=sub_alkes.executeQuery();
 
 
@@ -4482,9 +4481,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     while(rscariobat1.next()){
                         subttl1 = rscariobat1.getDouble("subtotal_obat");
                     }
-                    while(rscariobat2.next()){
-                        subttl2 = rscariobat2.getDouble("subtotal_bmhp");
-                    }
+                    
                     while(rscariobat3.next()){
                         subttl3 = rscariobat3.getDouble("subtotal_alkes");
                     }
@@ -4498,9 +4495,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     while(rscariobat1.next()){
                         subttl1 = rscariobat1.getDouble("subtotal_obat");
                     }
-                    while(rscariobat2.next()){
-                        subttl2 = rscariobat2.getDouble("subtotal_bmhp");
-                    }
+                    
                     while(rscariobat3.next()){
                         subttl3 = rscariobat3.getDouble("subtotal_alkes");
                     }
@@ -4530,15 +4525,13 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }else{
                     tabModeRwJlDr.addRow(new Object[]{false,"","PPN Obat",":",ppnobat,1,0,ppnobat,"Obat"});
                 }
-                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal BMHP : "+Valid.SetAngka3(subttl2),"",null,null,null,null,"CARI_BMHP"});
-                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal ALKES : "+Valid.SetAngka3(subttl3),"",null,null,null,null,"CARI_ALKES"});              
-                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal OBAT : "+Valid.SetAngka3(subttl1),"",null,null,null,null,"CARI_OBAT"});
-                tabModeRwJlDr.addRow(new Object[]{true,"TOTAL OBAT,ALKES,BHP",Valid.SetAngka3(subttl),"",null,null,null,null,"TtlObat"}); 
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal ALKES : "+Valid.SetAngka3(subttl3),"",null,null,null,null,"Obat"});              
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal OBAT : "+Valid.SetAngka3(subttl1),"",null,null,null,null,"Obat"});
+                tabModeRwJlDr.addRow(new Object[]{true,"TOTAL OBAT,ALKES :",Valid.SetAngka3(subttl),"",null,null,null,null,"TtlObat"}); 
             }else{
-                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal BMHP : "+Valid.SetAngka3(subttl2),"",null,null,null,null,"CARI_BMHP"});
-                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal ALKES : "+Valid.SetAngka3(subttl3),"",null,null,null,null,"CARI_ALKES"});              
-                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal OBAT : "+Valid.SetAngka3(subttl1),"",null,null,null,null,"CARI_OBAT"});
-                tabModeRwJlDr.addRow(new Object[]{true,"TOTAL OBAT,ALKES,BHP",Valid.SetAngka3(subttl),"",null,null,null,null,"TtlObat"});               
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal ALKES : "+Valid.SetAngka3(subttl3),"",null,null,null,null,"Obat"});              
+                tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal OBAT : "+Valid.SetAngka3(subttl1),"",null,null,null,null,"Obat"});
+                tabModeRwJlDr.addRow(new Object[]{true,"TOTAL OBAT,ALKES :",Valid.SetAngka3(subttl),"",null,null,null,null,"TtlObat"});               
             }                
         }
         
