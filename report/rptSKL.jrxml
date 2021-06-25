@@ -119,8 +119,8 @@ on pasien.no_rkm_medis=pasien_bayi.no_rkm_medis and pasien_bayi.penolong=pegawai
 				<imageExpression><![CDATA["http://rsbundamedika.com/webapps_update/logobmj.png"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="335" y="595" width="146" height="188" uuid="985ac0c4-2719-403e-b980-0a5b7b2041b4"/>
-				<imageExpression><![CDATA["http://rsbundamedika.com/webapps_update/ttd.png"]]></imageExpression>
+				<reportElement x="313" y="569" width="205" height="188" uuid="985ac0c4-2719-403e-b980-0a5b7b2041b4"/>
+				<imageExpression><![CDATA["http://rsbundamedika.com/webapps_update/ttd_drdesi.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="8" y="58" width="595" height="30" uuid="ebc4e026-3d93-4e77-95db-727c3309cfe2"/>
@@ -182,7 +182,7 @@ on pasien.no_rkm_medis=pasien_bayi.no_rkm_medis and pasien_bayi.penolong=pegawai
 				<textElement>
 					<font size="11"/>
 				</textElement>
-				<text><![CDATA[Yang bertanda tangan di bawah ini,                                           menerangkan dengan sesungguhnya,
+				<text><![CDATA[Yang bertanda tangan di bawah ini,                                     menerangkan dengan sesungguhnya,
 bahwa telah lahir seorang anak : ]]></text>
 			</staticText>
 			<staticText>
@@ -340,11 +340,11 @@ bahwa telah lahir seorang anak : ]]></text>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="229" y="177" width="140" height="19" uuid="d5facc3d-3bd2-4fb8-83cd-e2056483ff03"/>
+				<reportElement x="235" y="177" width="140" height="19" uuid="d5facc3d-3bd2-4fb8-83cd-e2056483ff03"/>
 				<textElement>
 					<font size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[dr. Lenawaty HS, M.Kes]]></text>
+				<text><![CDATA[dr. Desi Kurniasih ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="309" y="531" width="46" height="19" uuid="b4cb6d06-d6fc-40df-89d6-e6284522e695"/>
@@ -380,7 +380,7 @@ Direktur]]></text>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[dr. Lenawaty HS, M.Kes]]></text>
+				<text><![CDATA[dr. Desi Kurniasih]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="390" y="234" width="7" height="19" uuid="d93df3d7-8270-4680-b02f-7cef19ecda68"/>

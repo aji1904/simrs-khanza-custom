@@ -4326,7 +4326,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }
 //                lab
                 if(subttl > 0){
-                    tabModeRwJlDr.addRow(new Object[]{true,"Subtotal Lab",Valid.SetAngka3(subttl),"",null,null,null,null,"Laborat"}); 
+                    tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal Lab : "+Valid.SetAngka3(subttl),"",null,null,null,null,"Laborat"}); 
                 }
 
             } catch (Exception e) {
@@ -4377,7 +4377,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }
 //                radiologi
                 if(subttl > 0){
-                    tabModeRwJlDr.addRow(new Object[]{true,"Subtotal Radiologi",Valid.SetAngka3(subttl),"",null,null,null,null,"Radiologi"}); 
+                    tabModeRwJlDr.addRow(new Object[]{true,"","Subtotal Radiologi : "+Valid.SetAngka3(subttl),"",null,null,null,null,"Radiologi"}); 
                 }
                 
             } catch (Exception e) {
