@@ -176,14 +176,14 @@
 				<textFieldExpression><![CDATA["Untuk pembayaran biaya tersebut mohon ditransfer ke rekening "+$P{namabank}.toUpperCase()+" No Rek. "+$P{norek}+" atas nama "+$P{atasnama}+" dan konfirmasi pembayaran melalui sms/WA ke no 0821-8134-5038, dengan mencantumkan Nomor Invoice yang tertera diatas."]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="34" y="351" width="82" height="19" uuid="ce86df75-c5e4-45dd-9ae0-4fd2e3eec998"/>
+				<reportElement x="355" y="351" width="82" height="19" uuid="ce86df75-c5e4-45dd-9ae0-4fd2e3eec998"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Hormat Kami,]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="34" y="433" width="183" height="19" uuid="2edf746f-3530-4040-9e05-db1959c7acc2"/>
+				<reportElement x="355" y="433" width="183" height="19" uuid="2edf746f-3530-4040-9e05-db1959c7acc2"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
@@ -202,7 +202,7 @@
 				<text><![CDATA[Demikianlah atas perhatian dan kerjasama yang baik kami ucapkan terima kasih.]]></text>
 			</staticText>
 			<line>
-				<reportElement x="34" y="453" width="175" height="1" uuid="863f868a-3e55-4a18-8771-2dfe1968b037"/>
+				<reportElement x="355" y="453" width="175" height="1" uuid="863f868a-3e55-4a18-8771-2dfe1968b037"/>
 			</line>
 			<staticText>
 				<reportElement x="76" y="43" width="20" height="19" uuid="f6390a78-d640-4a4e-8e4c-bbe812043c07"/>
@@ -211,23 +211,6 @@
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="348" y="351" width="177" height="19" uuid="6b9f0b03-71fb-43cc-86b5-d4cc6ac82ca2"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="12"/>
-				</textElement>
-				<text><![CDATA[Wadir Keuangan & Umum]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="348" y="433" width="183" height="19" uuid="159de80c-8344-46f4-9187-4674142f6867"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{menyetujui}]]></textFieldExpression>
-			</textField>
-			<line>
-				<reportElement x="348" y="453" width="175" height="1" uuid="aa080cf1-a9e6-40c2-ad5f-139a3779d3f8"/>
-			</line>
 		</band>
 	</title>
 	<pageHeader>

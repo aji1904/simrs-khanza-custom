@@ -851,45 +851,28 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());   
             param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            
-            param.put("perusahaanasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));  
-            param.put("alamatasuransi",AlamatAsuransi.getText());  
-            param.put("telpasuransi",NoTelp.getText()); 
-            param.put("tanggal",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-            param.put("tanggaltempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-            param.put("tempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-            param.put("noinvoice",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-            param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-            param.put("namabank",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-            param.put("atasnama",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-            param.put("norek",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-            param.put("tagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("terbilang",Valid.terbilang(total)); 
-            param.put("bagianpenagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-            param.put("menyetujui",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
-            param.put("catatan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));            
-            param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
+//            
+//            param.put("perusahaanasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));  
+//            param.put("alamatasuransi",AlamatAsuransi.getText());  
+//            param.put("telpasuransi",NoTelp.getText()); 
+//            param.put("tanggal",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("tanggaltempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("tempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("noinvoice",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("namabank",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("atasnama",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("norek",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("tagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+////            param.put("terbilang",Valid.terbilang(total)); 
+//            param.put("bagianpenagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+//            param.put("menyetujui",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
+//            param.put("catatan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));            
+//            param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
 //            param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
 //            param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
             
-            pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih hasil pemeriksaan..!","Hasil Pemeriksaan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Kwitansi","Surat Pengantar","Invoice","Cetak Semua"},"Invoice");
-            if (pilihan != null){
-                switch (pilihan) {
-                    case "Kwitansi":
-                          Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
-                          break;
-                    case "Surat Pengantar":
-                          Valid.MyReport("rptSuratPenagihanPiutang2.jasper","report","::[ Surat Penagihan Piutang ]::",param);
-                          break;
-                    case "Invoice":
-                          Valid.MyReport("rptSuratPenagihanPiutang3.jasper","report","::[ Surat Penagihan Piutang ]::",param);
-                          break;
-                    case "Cetak Semua":
-                          Valid.MyReport("rptPenagihanPiutangPasien.jasper","report","::[ Surat Penagihan Piutang ]::",param);
-                          break;
-                }
-            }
-                       
+            Valid.MyReport("rptPenagihanPiutangPasien.jasper","report","::[ Surat Penagihan Piutang ]::",param);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
