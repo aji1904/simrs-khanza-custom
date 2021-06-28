@@ -34,7 +34,7 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
     private DlgAkunPenagihanPiutang akuntagih=new DlgAkunPenagihanPiutang(null,false);
     private PreparedStatement ps,ps2;
     private ResultSet rs,rs2;
-    private String nopenagihan="",tanggal="",status="",penjamin="",bagianpenagihan="",transfer="",pilihan;
+    private String nopenagihan="",tanggal="",status="",penjamin="",bagianpenagihan="",transfer="",pilihan, nopenagihan_klik;
     private double nilaitagihan=0,totaltagihan=0;
 
     /** Creates new form DlgProgramStudi
@@ -940,15 +940,68 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }//GEN-LAST:event_KdAkunKeyPressed
 
     private void ppSuratPengantarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppSuratPengantarActionPerformed
-        // TODO add your handling code here:
+        if(tbDokter.getSelectedRow()> -1){
+            if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
+                Valid.textKosong(TCari,"pilihan data");
+            }else{
+                System.out.println(tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
+                
+                
+                Map<String, Object> param = new HashMap<>();    
+                param.put("namars",akses.getnamars());
+                param.put("alamatrs",akses.getalamatrs());
+                param.put("kotars",akses.getkabupatenrs());
+                param.put("propinsirs",akses.getpropinsirs());
+                param.put("kontakrs",akses.getkontakrs());
+                param.put("emailrs",akses.getemailrs());   
+                param.put("logo",Sequel.cariGambar("select logo from setting")); 
+
+                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan.penjab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan='"+tbDokter.getSelectedRow(),3).toString().trim()+"' "));  
+                param.put("alamatasuransi",AlamatAsuransi.getText());  
+                param.put("telpasuransi",NoTelp.getText()); 
+                param.put("tanggal",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("tanggaltempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("tempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("noinvoice",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("namabank",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("atasnama",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("norek",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("tagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("terbilang",Valid.terbilang(total)); 
+                param.put("bagianpenagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
+                param.put("menyetujui",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
+                param.put("catatan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));            
+                param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
+                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
+                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
+
+                Valid.MyReport("rptPenagihanPiutangPasien.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }// TODO add your handling code here:
     }//GEN-LAST:event_ppSuratPengantarActionPerformed
 
     private void ppInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppInvoiceActionPerformed
-        // TODO add your handling code here:
+        if(tbDokter.getSelectedRow()> -1){
+            if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
+                Valid.textKosong(TCari,"pilihan data");
+            }else{
+                Sequel.queryu("update penagihan_piutang set status='Proses Penagihan' where no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
+                tampil();
+            }
+        }// TODO add your handling code here:
     }//GEN-LAST:event_ppInvoiceActionPerformed
 
     private void ppKwitansiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppKwitansiActionPerformed
-        // TODO add your handling code here:
+        if(tbDokter.getSelectedRow()> -1){
+            if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
+                Valid.textKosong(TCari,"pilihan data");
+            }else{
+                Sequel.queryu("update penagihan_piutang set status='Proses Penagihan' where no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
+                tampil();
+            }
+        }// TODO add your handling code here:
     }//GEN-LAST:event_ppKwitansiActionPerformed
 
     /**
