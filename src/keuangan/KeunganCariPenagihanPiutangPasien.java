@@ -956,9 +956,9 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 param.put("emailrs",akses.getemailrs());   
                 param.put("logo",Sequel.cariGambar("select logo from setting")); 
 
-                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan.penjab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan='"+tbDokter.getSelectedRow(),3).toString().trim()+"' "));  
-                param.put("alamatasuransi",AlamatAsuransi.getText());  
-                param.put("telpasuransi",NoTelp.getText()); 
+                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan.penjab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));  
+                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi.penjab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp.penjab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("tanggal",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
                 param.put("tanggaltempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
                 param.put("tempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
