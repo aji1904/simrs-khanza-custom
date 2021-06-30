@@ -966,7 +966,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("atasnama",Sequel.cariIsi("SELECT atas_nama FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("norek",Sequel.cariIsi("SELECT no_rek FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("tagihan",Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("tagihan",Sequel.cariIsi("SELECT FORMAT(sum(sisapiutang), 0) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan))); 
                 param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
@@ -1008,7 +1008,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("atasnama",Sequel.cariIsi("SELECT atas_nama FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("norek",Sequel.cariIsi("SELECT no_rek FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("tagihan",Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("tagihan",Sequel.cariIsi("SELECT FORMAT(sum(sisapiutang), 0) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan))); 
                 param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
@@ -1018,7 +1018,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 //                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
 
                 Valid.MyReportqry("rptSuratPenagihanPiutang4.jasper","report","::[ Surat Penagihan Piutang ]::",
-                    "SELECT detail_penagihan_piutang.no_rawat, pasien.nm_pasien, pasien.no_peserta, detail_penagihan_piutang.sisapiutang "+
+                    "SELECT detail_penagihan_piutang.no_rawat, pasien.nm_pasien, pasien.no_peserta, FORMAT(detail_penagihan_piutang.sisapiutang, 0) as sisapiutang "+
                     "FROM detail_penagihan_piutang JOIN reg_periksa ON detail_penagihan_piutang.no_rawat=reg_periksa.no_rawat JOIN pasien ON "+
                     "reg_periksa.no_rkm_medis=pasien.no_rkm_medis WHERE detail_penagihan_piutang.no_tagihan='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()+"'",param);
                 this.setCursor(Cursor.getDefaultCursor());
@@ -1053,7 +1053,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("atasnama",Sequel.cariIsi("SELECT atas_nama FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("norek",Sequel.cariIsi("SELECT no_rek FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("tagihan",Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("tagihan",Sequel.cariIsi("SELECT FORMAT(sum(sisapiutang), 0) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan))); 
                 param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
                 param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
@@ -1265,7 +1265,9 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         TCari.requestFocus();
         if(akses.getkode().equals("Admin Utama")){
             ppHapus.setEnabled(true);
-        }else{
+        }else if(akses.getakun_penagihan_piutang() == true){
+            ppHapus.setEnabled(true);
+        } else {
             ppHapus.setEnabled(false);
         }    
         ppDisetujui.setEnabled(akses.getmutasi_barang());
