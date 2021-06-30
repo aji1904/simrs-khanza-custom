@@ -23,7 +23,7 @@
     <entry key="ALARMBOOKINGPERIKSA">yes</entry>
     <entry key="ALARMPENGADUANPASIEN">yes</entry>
     <entry key="MENUTRANSPARAN">yes</entry>
-    <entry key="URLAPIBPJS">https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest/</entry>
+    <entry key="URLAPIBPJS">https://new-api.bpjs-kesehatan.go.id:8080/new-vclaim-rest</entry>
     <entry key="SECRETKEYAPIBPJS">qsOw9hxlkG/CwO9IBLFUUw==</entry>
     <entry key="CONSIDAPIBPJS">fKZfCpPaeygbm5i83oHUJA==</entry>
     <entry key="URLAPIAPLICARE">https://new-api.bpjs-kesehatan.go.id/aplicaresws</entry>

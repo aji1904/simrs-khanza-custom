@@ -247,7 +247,7 @@ Telp : 0711 3037000 / 0821 81096318]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["NO.        /"+$F{nm_poli}.toUpperCase()+"/BMJ/"+$P{romawi}+"/"+$P{tahun}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["NO.        /IGD/BMJ/"+$P{romawi}+"/"+$P{tahun}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

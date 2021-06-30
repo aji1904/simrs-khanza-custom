@@ -1597,8 +1597,9 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
         }        
     }
     
+//    auto nomor berubah ke awal jika bulan berubah
     private void autoNomor() {
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_tagihan,3),signed)),0) from penagihan_piutang where tanggal='"+Valid.SetTgl(Tanggal.getSelectedItem()+"")+"' ",
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_tagihan,3),signed)),0) from penagihan_piutang where tanggal like '"+Tanggal.getSelectedItem().toString().substring(6,10)+Tanggal.getSelectedItem().toString().substring(2,5)+"%' ",
                 Tanggal.getSelectedItem().toString().substring(6,10)+"/"+Sequel.cariIsi("SELECT toRoman (MONTH(NOW())) as tgl")+"/BMJ/Keu/",3,NoPenagihan); 
     }
        
