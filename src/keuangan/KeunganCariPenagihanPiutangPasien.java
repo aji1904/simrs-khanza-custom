@@ -34,7 +34,7 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
     private DlgAkunPenagihanPiutang akuntagih=new DlgAkunPenagihanPiutang(null,false);
     private PreparedStatement ps,ps2;
     private ResultSet rs,rs2;
-    private String nopenagihan="",tanggal="",status="",penjamin="",bagianpenagihan="",transfer="",pilihan, nopenagihan_klik;
+    private String nopenagihan="",tanggal="",status="",penjamin="",bagianpenagihan="",transfer="",pilihan, total_tagihan;
     private double nilaitagihan=0,totaltagihan=0;
 
     /** Creates new form DlgProgramStudi
@@ -944,9 +944,8 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
                 Valid.textKosong(TCari,"pilihan data");
             }else{
-                System.out.println(tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
-                
-                
+                total_tagihan = Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
+                 
                 Map<String, Object> param = new HashMap<>();    
                 param.put("namars",akses.getnamars());
                 param.put("alamatrs",akses.getalamatrs());
@@ -956,27 +955,27 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 param.put("emailrs",akses.getemailrs());   
                 param.put("logo",Sequel.cariGambar("select logo from setting")); 
 
-                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan.penjab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));  
-                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi.penjab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp.penjab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("tanggal",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("tanggaltempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("tempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("noinvoice",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("namabank",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("atasnama",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("norek",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("tagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("terbilang",Valid.terbilang(total)); 
-                param.put("bagianpenagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-                param.put("menyetujui",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
-                param.put("catatan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));            
+                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));  
+                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("tanggal",Sequel.cariIsi("SELECT tanggal FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("tanggaltempo",Sequel.cariIsi("SELECT tanggaltempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("tempo",Sequel.cariIsi("SELECT tempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("noinvoice",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()); 
+                param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT png_jawab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("atasnama",Sequel.cariIsi("SELECT atas_nama FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("norek",Sequel.cariIsi("SELECT no_rek FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("tagihan",Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan))); 
+                param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("catatan",Sequel.cariIsi("SELECT catatan FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));          
                 param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
-                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
-                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
+//                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
+//                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
 
-                Valid.MyReport("rptPenagihanPiutangPasien.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                Valid.MyReport("rptSuratPenagihanPiutang2.jasper","report","::[ Surat Penagihan Piutang ]::",param);
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }// TODO add your handling code here:
@@ -987,8 +986,42 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
                 Valid.textKosong(TCari,"pilihan data");
             }else{
-                Sequel.queryu("update penagihan_piutang set status='Proses Penagihan' where no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
-                tampil();
+                total_tagihan = Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
+                 
+                Map<String, Object> param = new HashMap<>();    
+                param.put("namars",akses.getnamars());
+                param.put("alamatrs",akses.getalamatrs());
+                param.put("kotars",akses.getkabupatenrs());
+                param.put("propinsirs",akses.getpropinsirs());
+                param.put("kontakrs",akses.getkontakrs());
+                param.put("emailrs",akses.getemailrs());   
+                param.put("logo",Sequel.cariGambar("select logo from setting")); 
+
+                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));  
+                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("tanggal",Sequel.cariIsi("SELECT tanggal FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("tanggaltempo",Sequel.cariIsi("SELECT tanggaltempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("tempo",Sequel.cariIsi("SELECT tempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("noinvoice",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()); 
+                param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT png_jawab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("atasnama",Sequel.cariIsi("SELECT atas_nama FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("norek",Sequel.cariIsi("SELECT no_rek FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("tagihan",Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan))); 
+                param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("catatan",Sequel.cariIsi("SELECT catatan FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));          
+                param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
+//                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
+//                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
+
+                Valid.MyReportqry("rptSuratPenagihanPiutang4.jasper","report","::[ Surat Penagihan Piutang ]::",
+                    "SELECT detail_penagihan_piutang.no_rawat, pasien.nm_pasien, pasien.no_peserta, detail_penagihan_piutang.sisapiutang "+
+                    "FROM detail_penagihan_piutang JOIN reg_periksa ON detail_penagihan_piutang.no_rawat=reg_periksa.no_rawat JOIN pasien ON "+
+                    "reg_periksa.no_rkm_medis=pasien.no_rkm_medis WHERE detail_penagihan_piutang.no_tagihan='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()+"'",param);
+                this.setCursor(Cursor.getDefaultCursor());
             }
         }// TODO add your handling code here:
     }//GEN-LAST:event_ppInvoiceActionPerformed
@@ -998,8 +1031,39 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
                 Valid.textKosong(TCari,"pilihan data");
             }else{
-                Sequel.queryu("update penagihan_piutang set status='Proses Penagihan' where no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
-                tampil();
+                total_tagihan = Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
+                 
+                Map<String, Object> param = new HashMap<>();    
+                param.put("namars",akses.getnamars());
+                param.put("alamatrs",akses.getalamatrs());
+                param.put("kotars",akses.getkabupatenrs());
+                param.put("propinsirs",akses.getpropinsirs());
+                param.put("kontakrs",akses.getkontakrs());
+                param.put("emailrs",akses.getemailrs());   
+                param.put("logo",Sequel.cariGambar("select logo from setting")); 
+
+                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));  
+                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("tanggal",Sequel.cariIsi("SELECT tanggal FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("tanggaltempo",Sequel.cariIsi("SELECT tanggaltempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("tempo",Sequel.cariIsi("SELECT tempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("noinvoice",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()); 
+                param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT png_jawab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("atasnama",Sequel.cariIsi("SELECT atas_nama FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("norek",Sequel.cariIsi("SELECT no_rek FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("tagihan",Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan))); 
+                param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("catatan",Sequel.cariIsi("SELECT catatan FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));          
+                param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
+//                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
+//                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
+
+                Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+                this.setCursor(Cursor.getDefaultCursor());
             }
         }// TODO add your handling code here:
     }//GEN-LAST:event_ppKwitansiActionPerformed
