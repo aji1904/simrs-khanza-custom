@@ -944,6 +944,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
                 Valid.textKosong(TCari,"pilihan data");
             }else{
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 total_tagihan = Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
                  
                 Map<String, Object> param = new HashMap<>();    
@@ -986,6 +987,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
                 Valid.textKosong(TCari,"pilihan data");
             }else{
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 total_tagihan = Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
                  
                 Map<String, Object> param = new HashMap<>();    
@@ -1031,6 +1033,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
                 Valid.textKosong(TCari,"pilihan data");
             }else{
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 total_tagihan = Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
                  
                 Map<String, Object> param = new HashMap<>();    
