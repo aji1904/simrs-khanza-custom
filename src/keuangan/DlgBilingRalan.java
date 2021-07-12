@@ -1,4 +1,4 @@
-             
+               
 package keuangan;
 
 import fungsi.WarnaTable;
