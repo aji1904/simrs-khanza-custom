@@ -1301,6 +1301,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnGrafikLimbahB3MedisPerBulan = new widget.ButtonBig();
         btnLimbahDomestik = new widget.ButtonBig();
         btnGrafikLimbahDomestikPerTanggal = new widget.ButtonBig();
+        btnLaboratorium1 = new widget.ButtonBig();
+        btnPermintaanLab1 = new widget.ButtonBig();
         internalFrame1 = new widget.InternalFrame();
         BtnMenu = new widget.ButtonBig();
         jSeparator4 = new javax.swing.JSeparator();
@@ -1594,7 +1596,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/05/2021" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16/07/2021" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6626,6 +6628,28 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
 
+        btnLaboratorium1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/laboratory.png"))); // NOI18N
+        btnLaboratorium1.setText("Periksa Lab PA");
+        btnLaboratorium1.setIconTextGap(0);
+        btnLaboratorium1.setName("btnLaboratorium1"); // NOI18N
+        btnLaboratorium1.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnLaboratorium1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaboratorium1ActionPerformed(evt);
+            }
+        });
+
+        btnPermintaanLab1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_laboratory_44676.png"))); // NOI18N
+        btnPermintaanLab1.setText("Permintaan Lab PA");
+        btnPermintaanLab1.setIconTextGap(0);
+        btnPermintaanLab1.setName("btnPermintaanLab1"); // NOI18N
+        btnPermintaanLab1.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPermintaanLab1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPermintaanLab1ActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("::[ Khanza SIMKES 2020 ]::");
         setBackground(new java.awt.Color(255, 254, 254));
@@ -9269,11 +9293,21 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         FlayMenu.removeAll();        
         FlayMenu.add(btnPermintaanLab);
         FlayMenu.add(btnLaboratorium);
+        FlayMenu.add(btnPermintaanLab1);
+        FlayMenu.add(btnLaboratorium1);
+        
         if((akses.getpermintaan_lab()==true)||(akses.getperiksa_lab()==true)){
             btnPermintaanLab.setEnabled(true);
         }else{
             btnPermintaanLab.setEnabled(akses.getpermintaan_lab());
         }
+        
+        if((akses.getpermintaan_lab()==true)||(akses.getperiksa_lab()==true)){
+            btnPermintaanLab.setEnabled(true);
+        }else{
+            btnPermintaanLab.setEnabled(akses.getpermintaan_lab());
+        }
+        
         btnLaboratorium.setEnabled(akses.getperiksa_lab());
         FlayMenu.setVisible(true); 
     }//GEN-LAST:event_btnToolLabActionPerformed
@@ -13948,6 +13982,14 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         Valid.pindah(evt,BtnCancel, edPwd);        // TODO add your handling code here:
     }//GEN-LAST:event_edAdminKeyPressed
 
+    private void btnLaboratorium1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaboratorium1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLaboratorium1ActionPerformed
+
+    private void btnPermintaanLab1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPermintaanLab1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPermintaanLab1ActionPerformed
+
     private void btnKategoriPerpustakaanActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -16834,6 +16876,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private widget.ButtonBig btnKunjunganRanap;
     private widget.ButtonBig btnLabaRugi;
     private widget.ButtonBig btnLaboratorium;
+    private widget.ButtonBig btnLaboratorium1;
     private widget.ButtonBig btnLahir;
     private widget.ButtonBig btnLamaPelayananApotek;
     private widget.ButtonBig btnLamaPelayananLab;
@@ -16922,6 +16965,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private widget.ButtonBig btnPenyakitRanapCaraBayar;
     private widget.ButtonBig btnPeriksaRadiologi;
     private widget.ButtonBig btnPermintaanLab;
+    private widget.ButtonBig btnPermintaanLab1;
     private widget.ButtonBig btnPermintaanMedis;
     private widget.ButtonBig btnPermintaanNonMedis;
     private widget.ButtonBig btnPermintaanRadiologi;
