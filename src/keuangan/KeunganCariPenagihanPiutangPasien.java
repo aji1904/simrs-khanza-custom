@@ -21,8 +21,11 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPegawai;
-import simrskhanza.DlgPenanggungJawab;
+import simrskhanza.DlgCariCaraBayar;
 
 public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
@@ -30,11 +33,11 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
     public  DlgCariPegawai pegawai=new DlgCariPegawai(null,false);
-    private DlgPenanggungJawab penjab=new DlgPenanggungJawab(null,false);
+    private DlgCariCaraBayar penjab=new DlgCariCaraBayar(null,false);
     private DlgAkunPenagihanPiutang akuntagih=new DlgAkunPenagihanPiutang(null,false);
     private PreparedStatement ps,ps2;
     private ResultSet rs,rs2;
-    private String nopenagihan="",tanggal="",status="",penjamin="",bagianpenagihan="",transfer="",pilihan, total_tagihan;
+    private String nopenagihan="",tanggal="",status="",penjamin="",bagianpenagihan="",transfer="", total_tagihan;
     private double nilaitagihan=0,totaltagihan=0;
 
     /** Creates new form DlgProgramStudi
@@ -209,6 +212,26 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
         
         ChkInput.setSelected(false);
         isForm();
+        ChkAccor.setSelected(false);
+        isPhoto();
+        HTMLEditorKit kit = new HTMLEditorKit();
+        LoadHTML.setEditable(true);
+        LoadHTML.setEditorKit(kit);
+        StyleSheet styleSheet = kit.getStyleSheet();
+        styleSheet.addRule(
+                ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi2 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#323232;}"+
+                ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi4 td{font: 11px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi5 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#AA0000;}"+
+                ".isi6 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#FF0000;}"+
+                ".isi7 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#C8C800;}"+
+                ".isi8 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#00AA00;}"+
+                ".isi9 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#969696;}"
+        );
+        
+        Document doc = kit.createDefaultDocument();
+        LoadHTML.setDocument(doc);
     }
 
     /** This method is called from within the constructor to
@@ -224,6 +247,7 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
         ppHapus = new javax.swing.JMenuItem();
         ppDisetujui = new javax.swing.JMenuItem();
         ppTidakDisetujui = new javax.swing.JMenuItem();
+        ppVerifikasi = new javax.swing.JMenuItem();
         ppSuratPengantar = new javax.swing.JMenuItem();
         ppInvoice = new javax.swing.JMenuItem();
         ppKwitansi = new javax.swing.JMenuItem();
@@ -267,6 +291,14 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
         LTotal = new widget.Label();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
+        PanelAccor = new widget.PanelBiasa();
+        ChkAccor = new widget.CekBox();
+        FormPhoto = new widget.PanelBiasa();
+        FormPass2 = new widget.PanelBiasa();
+        btnAmbilPhoto = new widget.Button();
+        BtnRefreshPhoto = new widget.Button();
+        Scroll4 = new widget.ScrollPane();
+        LoadHTML = new widget.editorpane();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -317,6 +349,22 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(ppTidakDisetujui);
+
+        ppVerifikasi.setBackground(new java.awt.Color(255, 255, 254));
+        ppVerifikasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppVerifikasi.setForeground(new java.awt.Color(50, 50, 50));
+        ppVerifikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppVerifikasi.setText("Validasi Tagihan");
+        ppVerifikasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppVerifikasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppVerifikasi.setName("ppVerifikasi"); // NOI18N
+        ppVerifikasi.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppVerifikasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppVerifikasiActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppVerifikasi);
 
         ppSuratPengantar.setBackground(new java.awt.Color(255, 255, 254));
         ppSuratPengantar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -416,9 +464,14 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
 
             }
         ));
-        tbDokter.setToolTipText("Silahkan klik pada nomor permintaan untuk verifikasi pilihan");
+        tbDokter.setToolTipText("Silahkan klik pada nomor tagihan untuk verifikasi pilihan");
         tbDokter.setComponentPopupMenu(jPopupMenu1);
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDokterMouseClicked(evt);
+            }
+        });
         scrollPane1.setViewportView(tbDokter);
 
         internalFrame1.add(scrollPane1, java.awt.BorderLayout.CENTER);
@@ -453,7 +506,7 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
         FormInput.setPreferredSize(new java.awt.Dimension(100, 74));
         FormInput.setLayout(null);
 
-        label15.setText("No.Permintaan :");
+        label15.setText("No.Penagihan :");
         label15.setName("label15"); // NOI18N
         label15.setPreferredSize(new java.awt.Dimension(60, 23));
         FormInput.add(label15);
@@ -712,6 +765,83 @@ public class KeunganCariPenagihanPiutangPasien extends javax.swing.JDialog {
 
         internalFrame1.add(panelisi1, java.awt.BorderLayout.PAGE_END);
 
+        PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
+        PanelAccor.setName("PanelAccor"); // NOI18N
+        PanelAccor.setPreferredSize(new java.awt.Dimension(445, 43));
+        PanelAccor.setLayout(new java.awt.BorderLayout(1, 1));
+
+        ChkAccor.setBackground(new java.awt.Color(255, 250, 248));
+        ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kiri.png"))); // NOI18N
+        ChkAccor.setSelected(true);
+        ChkAccor.setFocusable(false);
+        ChkAccor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ChkAccor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ChkAccor.setName("ChkAccor"); // NOI18N
+        ChkAccor.setPreferredSize(new java.awt.Dimension(15, 20));
+        ChkAccor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kiri.png"))); // NOI18N
+        ChkAccor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kanan.png"))); // NOI18N
+        ChkAccor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kanan.png"))); // NOI18N
+        ChkAccor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkAccorActionPerformed(evt);
+            }
+        });
+        PanelAccor.add(ChkAccor, java.awt.BorderLayout.WEST);
+
+        FormPhoto.setBackground(new java.awt.Color(255, 255, 255));
+        FormPhoto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), " Bukti Penagihan/Bayar : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        FormPhoto.setName("FormPhoto"); // NOI18N
+        FormPhoto.setPreferredSize(new java.awt.Dimension(115, 73));
+        FormPhoto.setLayout(new java.awt.BorderLayout());
+
+        FormPass2.setBackground(new java.awt.Color(255, 255, 255));
+        FormPass2.setBorder(null);
+        FormPass2.setName("FormPass2"); // NOI18N
+        FormPass2.setPreferredSize(new java.awt.Dimension(115, 40));
+
+        btnAmbilPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        btnAmbilPhoto.setMnemonic('U');
+        btnAmbilPhoto.setText("Ambil");
+        btnAmbilPhoto.setToolTipText("Alt+U");
+        btnAmbilPhoto.setName("btnAmbilPhoto"); // NOI18N
+        btnAmbilPhoto.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnAmbilPhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAmbilPhotoActionPerformed(evt);
+            }
+        });
+        FormPass2.add(btnAmbilPhoto);
+
+        BtnRefreshPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png"))); // NOI18N
+        BtnRefreshPhoto.setMnemonic('U');
+        BtnRefreshPhoto.setText("Refresh");
+        BtnRefreshPhoto.setToolTipText("Alt+U");
+        BtnRefreshPhoto.setName("BtnRefreshPhoto"); // NOI18N
+        BtnRefreshPhoto.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnRefreshPhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRefreshPhotoActionPerformed(evt);
+            }
+        });
+        FormPass2.add(BtnRefreshPhoto);
+
+        FormPhoto.add(FormPass2, java.awt.BorderLayout.PAGE_END);
+
+        Scroll4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        Scroll4.setName("Scroll4"); // NOI18N
+        Scroll4.setOpaque(true);
+        Scroll4.setPreferredSize(new java.awt.Dimension(200, 200));
+
+        LoadHTML.setBorder(null);
+        LoadHTML.setName("LoadHTML"); // NOI18N
+        Scroll4.setViewportView(LoadHTML);
+
+        FormPhoto.add(Scroll4, java.awt.BorderLayout.CENTER);
+
+        PanelAccor.add(FormPhoto, java.awt.BorderLayout.CENTER);
+
+        internalFrame1.add(PanelAccor, java.awt.BorderLayout.EAST);
+
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -841,7 +971,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                                 tabMode.getValueAt(i,8).toString()+"','"+
                                 tabMode.getValueAt(i,9).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Penagihan Piutang Pasien"); 
             }
-            
             Sequel.menyimpan("temporary","'0','Total Tagihan :','','','','','','','"+Valid.SetAngka(totaltagihan)+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Penagihan Piutang Pasien"); 
             Map<String, Object> param = new HashMap<>();    
             param.put("namars",akses.getnamars());
@@ -851,28 +980,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());   
             param.put("logo",Sequel.cariGambar("select logo from setting")); 
-//            
-//            param.put("perusahaanasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));  
-//            param.put("alamatasuransi",AlamatAsuransi.getText());  
-//            param.put("telpasuransi",NoTelp.getText()); 
-//            param.put("tanggal",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("tanggaltempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("tempo",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("noinvoice",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("namabank",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("atasnama",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("norek",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("tagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-////            param.put("terbilang",Valid.terbilang(total)); 
-//            param.put("bagianpenagihan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now")); 
-//            param.put("menyetujui",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
-//            param.put("catatan",Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));            
-//            param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
-//            param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
-//            param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
-            
-            Valid.MyReport("rptPenagihanPiutangPasien.jasper","report","::[ Surat Penagihan Piutang ]::",param);
+            Valid.MyReport("rptPenagihanPiutangPasien.jasper","report","::[ Data Penagihan Piutang Pasien ]::",param);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -906,14 +1014,6 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 Valid.textKosong(TCari,"pilihan data");
             }else{
                 Sequel.queryu("update penagihan_piutang set status='Sudah Dibayar' where no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
-                /*this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                aplikasi.tampilkanpermintaan=false;
-                aplikasi.tampil(tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString().trim());
-                aplikasi.isCek();
-                aplikasi.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                aplikasi.setLocationRelativeTo(internalFrame1);
-                aplikasi.setVisible(true);*/
-                this.setCursor(Cursor.getDefaultCursor());
                 tampil();
             }
         }
@@ -939,6 +1039,67 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         // TODO add your handling code here:
     }//GEN-LAST:event_KdAkunKeyPressed
 
+    private void ppVerifikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppVerifikasiActionPerformed
+        if(tbDokter.getSelectedRow()> -1){
+            if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
+                Valid.textKosong(TCari,"pilihan data");
+            }else{
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                KeuanganPiutangBelumLunas form=new KeuanganPiutangBelumLunas(null,false);
+                form.isCek();
+                form.tampiltagihan(tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
+                form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_ppVerifikasiActionPerformed
+
+    private void ChkAccorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkAccorActionPerformed
+        if(tbDokter.getSelectedRow()!= -1){
+            if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
+                Valid.textKosong(TCari,"No.Penagihan");
+            }else{
+                isPhoto();
+                panggilPhoto();
+            }
+        }else{
+            ChkAccor.setSelected(false);
+            JOptionPane.showMessageDialog(null,"Silahkan pilih No.Faktur Penerimaan...!!!");
+        }
+    }//GEN-LAST:event_ChkAccorActionPerformed
+
+    private void btnAmbilPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAmbilPhotoActionPerformed
+        if(tbDokter.getSelectedRow()!= -1){
+            if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
+                Valid.textKosong(TCari,"No.Penagihan");
+            }else{
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                Sequel.meghapus("bukti_penagihan_piutang", "no_tagihan",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString());
+                Sequel.menyimpan2("bukti_penagihan_piutang","?,''",1,new String[]{tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()});
+                Valid.panggilUrl("penagihanpiutang/login.php?act=login&usere=admin&passwordte=akusayangsamakamu&notagihan="+tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString());
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_btnAmbilPhotoActionPerformed
+
+    private void BtnRefreshPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRefreshPhotoActionPerformed
+        panggilPhoto();
+    }//GEN-LAST:event_BtnRefreshPhotoActionPerformed
+
+    private void tbDokterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDokterMouseClicked
+        if(tbDokter.getSelectedRow()!= -1){  
+            if(!tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
+                isPhoto();
+                panggilPhoto();
+            }else{
+                ChkAccor.setSelected(false);
+                isPhoto();
+            }
+        }
+    }//GEN-LAST:event_tbDokterMouseClicked
+
     private void ppSuratPengantarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppSuratPengantarActionPerformed
         if(tbDokter.getSelectedRow()> -1){
             if(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().trim().equals("")){
@@ -946,35 +1107,35 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             }else{
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 total_tagihan = Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
-                 
-                Map<String, Object> param = new HashMap<>();    
+
+                Map<String, Object> param = new HashMap<>();
                 param.put("namars",akses.getnamars());
                 param.put("alamatrs",akses.getalamatrs());
                 param.put("kotars",akses.getkabupatenrs());
                 param.put("propinsirs",akses.getpropinsirs());
                 param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs());   
-                param.put("logo",Sequel.cariGambar("select logo from setting")); 
+                param.put("emailrs",akses.getemailrs());
+                param.put("logo",Sequel.cariGambar("select logo from setting"));
 
-                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));  
-                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("tanggal",Sequel.cariIsi("SELECT tanggal FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("tanggaltempo",Sequel.cariIsi("SELECT tanggaltempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("tempo",Sequel.cariIsi("SELECT tempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("noinvoice",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()); 
+                param.put("tempo",Sequel.cariIsi("SELECT tempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("noinvoice",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
                 param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT png_jawab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("atasnama",Sequel.cariIsi("SELECT atas_nama FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("norek",Sequel.cariIsi("SELECT no_rek FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("tagihan",Sequel.cariIsi("SELECT FORMAT(sum(sisapiutang), 0) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan))); 
-                param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("catatan",Sequel.cariIsi("SELECT catatan FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));          
+                param.put("tagihan",Sequel.cariIsi("SELECT FORMAT(sum(sisapiutang), 0) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan)));
+                param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("catatan",Sequel.cariIsi("SELECT catatan FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
-//                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
-//                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
+                //                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));
+                //                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));
 
                 Valid.MyReport("rptSuratPenagihanPiutang2.jasper","report","::[ Surat Penagihan Piutang ]::",param);
                 this.setCursor(Cursor.getDefaultCursor());
@@ -989,35 +1150,35 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             }else{
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 total_tagihan = Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
-                 
-                Map<String, Object> param = new HashMap<>();    
+
+                Map<String, Object> param = new HashMap<>();
                 param.put("namars",akses.getnamars());
                 param.put("alamatrs",akses.getalamatrs());
                 param.put("kotars",akses.getkabupatenrs());
                 param.put("propinsirs",akses.getpropinsirs());
                 param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs());   
-                param.put("logo",Sequel.cariGambar("select logo from setting")); 
+                param.put("emailrs",akses.getemailrs());
+                param.put("logo",Sequel.cariGambar("select logo from setting"));
 
-                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));  
-                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("tanggal",Sequel.cariIsi("SELECT tanggal FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("tanggaltempo",Sequel.cariIsi("SELECT tanggaltempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("tempo",Sequel.cariIsi("SELECT tempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("noinvoice",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()); 
+                param.put("tempo",Sequel.cariIsi("SELECT tempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("noinvoice",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
                 param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT png_jawab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("atasnama",Sequel.cariIsi("SELECT atas_nama FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("norek",Sequel.cariIsi("SELECT no_rek FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("tagihan",Sequel.cariIsi("SELECT FORMAT(sum(sisapiutang), 0) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan))); 
-                param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("catatan",Sequel.cariIsi("SELECT catatan FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));          
+                param.put("tagihan",Sequel.cariIsi("SELECT FORMAT(sum(sisapiutang), 0) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan)));
+                param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("catatan",Sequel.cariIsi("SELECT catatan FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
-//                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
-//                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
+                //                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));
+                //                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));
 
                 Valid.MyReportqry("rptSuratPenagihanPiutang4.jasper","report","::[ Surat Penagihan Piutang ]::",
                     "SELECT detail_penagihan_piutang.no_rawat, pasien.nm_pasien, pasien.no_peserta, FORMAT(detail_penagihan_piutang.sisapiutang, 0) as sisapiutang "+
@@ -1035,35 +1196,35 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             }else{
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 total_tagihan = Sequel.cariIsi("SELECT sum(sisapiutang) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
-                 
-                Map<String, Object> param = new HashMap<>();    
+
+                Map<String, Object> param = new HashMap<>();
                 param.put("namars",akses.getnamars());
                 param.put("alamatrs",akses.getalamatrs());
                 param.put("kotars",akses.getkabupatenrs());
                 param.put("propinsirs",akses.getpropinsirs());
                 param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs());   
-                param.put("logo",Sequel.cariGambar("select logo from setting")); 
+                param.put("emailrs",akses.getemailrs());
+                param.put("logo",Sequel.cariGambar("select logo from setting"));
 
-                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));  
-                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("perusahaanasuransi",Sequel.cariIsi("SELECT nama_perusahaan FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("alamatasuransi",Sequel.cariIsi("SELECT alamat_asuransi FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("telpasuransi",Sequel.cariIsi("SELECT no_telp FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("tanggal",Sequel.cariIsi("SELECT tanggal FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("tanggaltempo",Sequel.cariIsi("SELECT tanggaltempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("tempo",Sequel.cariIsi("SELECT tempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("noinvoice",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()); 
+                param.put("tempo",Sequel.cariIsi("SELECT tempo FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("noinvoice",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim());
                 param.put("penanggungjawabasuransi",Sequel.cariIsi("SELECT png_jawab FROM penagihan_piutang JOIN penjab ON penagihan_piutang.kd_pj=penjab.kd_pj WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
+                param.put("namabank",Sequel.cariIsi("SELECT nama_bank FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("atasnama",Sequel.cariIsi("SELECT atas_nama FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("norek",Sequel.cariIsi("SELECT no_rek FROM akun_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.kd_rek=akun_penagihan_piutang.kd_rek WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
-                param.put("tagihan",Sequel.cariIsi("SELECT FORMAT(sum(sisapiutang), 0) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan))); 
-                param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim())); 
-                param.put("catatan",Sequel.cariIsi("SELECT catatan FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));          
+                param.put("tagihan",Sequel.cariIsi("SELECT FORMAT(sum(sisapiutang), 0) as total FROM detail_penagihan_piutang JOIN penagihan_piutang ON penagihan_piutang.no_tagihan=detail_penagihan_piutang.no_tagihan WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("terbilang",Valid.terbilang(Double.valueOf(total_tagihan)));
+                param.put("bagianpenagihan",Sequel.cariIsi("SELECT nama as penagihan FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("menyetujui",Sequel.cariIsi("SELECT nama as menyetujui FROM pegawai JOIN penagihan_piutang ON penagihan_piutang.nip_menyetujui=pegawai.nik WHERE penagihan_piutang.no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
+                param.put("catatan",Sequel.cariIsi("SELECT catatan FROM penagihan_piutang WHERE no_tagihan=?",tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString().trim()));
                 param.put("tgl_now", Sequel.cariIsi("SELECT sf_formatTanggal(NOW()) as tgl_now"));
-//                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));  
-//                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));  
+                //                param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdptg.getText()));
+                //                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdmenyetujui.getText()));
 
                 Valid.MyReport("rptSuratPenagihanPiutang.jasper","report","::[ Surat Penagihan Piutang ]::",param);
                 this.setCursor(Cursor.getDefaultCursor());
@@ -1094,22 +1255,30 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.Button BtnCari;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
+    private widget.Button BtnRefreshPhoto;
+    private widget.CekBox ChkAccor;
     private widget.CekBox ChkInput;
     private widget.panelisi FormInput;
+    private widget.PanelBiasa FormPass2;
+    private widget.PanelBiasa FormPhoto;
     private widget.TextBox KdAkun;
     private widget.TextBox KdPeg;
     private widget.Label LTotal;
+    private widget.editorpane LoadHTML;
     private widget.TextBox NamaBank;
     private widget.TextBox NmPeg;
     private widget.TextBox NoPenagihan;
     private widget.TextBox NoRek;
     private widget.TextBox NoTelp;
+    private widget.PanelBiasa PanelAccor;
     private javax.swing.JPanel PanelInput;
     private widget.TextBox Perusahaan;
+    private widget.ScrollPane Scroll4;
     private widget.ComboBox Status;
     private widget.TextBox TCari;
     private widget.Tanggal Tanggal1;
     private widget.Tanggal Tanggal2;
+    private widget.Button btnAmbilPhoto;
     private widget.Button btnBarang;
     private widget.Button btnPetugas;
     private widget.Button btnSuplier;
@@ -1133,6 +1302,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JMenuItem ppKwitansi;
     private javax.swing.JMenuItem ppSuratPengantar;
     private javax.swing.JMenuItem ppTidakDisetujui;
+    private javax.swing.JMenuItem ppVerifikasi;
     private widget.ScrollPane scrollPane1;
     private widget.Table tbDokter;
     // End of variables declaration//GEN-END:variables
@@ -1268,12 +1438,10 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         TCari.requestFocus();
         if(akses.getkode().equals("Admin Utama")){
             ppHapus.setEnabled(true);
-        }else if(akses.getakun_penagihan_piutang() == true){
-            ppHapus.setEnabled(true);
-        } else {
+        }else{
             ppHapus.setEnabled(false);
         }    
-        ppDisetujui.setEnabled(akses.getmutasi_barang());
+        ppVerifikasi.setEnabled(akses.getbayar_piutang());
     }
     
     private void isForm(){
@@ -1287,6 +1455,52 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             PanelInput.setPreferredSize(new Dimension(WIDTH,20));
             FormInput.setVisible(false);      
             ChkInput.setVisible(true);
+        }
+    }
+    
+    private void isPhoto(){
+        if(ChkAccor.isSelected()==true){
+            ChkAccor.setVisible(false);
+            PanelAccor.setPreferredSize(new Dimension(internalFrame1.getWidth()-300,HEIGHT));
+            FormPhoto.setVisible(true);  
+            ChkAccor.setVisible(true);
+        }else if(ChkAccor.isSelected()==false){    
+            ChkAccor.setVisible(false);
+            PanelAccor.setPreferredSize(new Dimension(15,HEIGHT));
+            FormPhoto.setVisible(false);  
+            ChkAccor.setVisible(true);
+        }
+    }
+    
+    private void panggilPhoto() {
+        if(FormPhoto.isVisible()==true){
+            try {
+                ps=koneksi.prepareStatement("select photo from bukti_penagihan_piutang where no_tagihan=?");
+                try {
+                    ps.setString(1,tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString());
+                    rs=ps.executeQuery();
+                    if(rs.next()){
+                        if(rs.getString("photo").equals("")||rs.getString("photo").equals("-")){
+                            LoadHTML.setText("<html><body><center><br><br><font face='tahoma' size='2' color='#434343'>Kosong</font></center></body></html>");
+                        }else{
+                            LoadHTML.setText("<html><body><center><img src='http://"+koneksiDB.HOSTHYBRIDWEB()+":"+koneksiDB.PORTWEB()+"/"+koneksiDB.HYBRIDWEB()+"/penagihanpiutang/"+rs.getString("photo")+"' alt='photo' width='"+(internalFrame1.getWidth()-330)+"' height='"+(internalFrame1.getHeight()-315)+"'/></center></body></html>");
+                        }  
+                    }else{
+                        LoadHTML.setText("<html><body><center><br><br><font face='tahoma' size='2' color='#434343'>Kosong</font></center></body></html>");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }
+                    if(ps!=null){
+                        ps.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } 
         }
     }
 }

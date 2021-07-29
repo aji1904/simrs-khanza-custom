@@ -6,7 +6,7 @@
     $gbr                    = imagecreate(200, 50);
     imagecolorallocate($gbr, 30, 144, 255);
     $color                  = imagecolorallocate($gbr, 253, 252, 252);
-    $font                   = './blackjack.otf'; 
+    $font                   = "blackjack.otf"; 
     $ukuran_font            = 20;
     $posisi                 = 32;
 

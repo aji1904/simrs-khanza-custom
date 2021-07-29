@@ -148,7 +148,18 @@ public final class akses {
             permintaan_stok_obat_pasien=false,pemeliharaan_inventaris=false,klasifikasi_pasien_ranap=false,bulanan_klasifikasi_pasien_ranap,
             harian_klasifikasi_pasien_ranap=false,klasifikasi_pasien_perbangsal=false,soap_perawatan=false,klaim_rawat_jalan=false,
             skrining_gizi=false,lama_penyiapan_rm=false,dosis_radiologi=false,demografi_umur_kunjungan=false,jam_diet_pasien=false,
-            rvu_bpjs=false,verifikasi_penerimaan_farmasi=false,verifikasi_penerimaan_logistik=false,hapus_data=false;
+            rvu_bpjs=false,verifikasi_penerimaan_farmasi=false,verifikasi_penerimaan_logistik=false,pemeriksaan_lab_pa=false,ringkasan_pengajuan_obat=false,
+            ringkasan_pemesanan_obat=false,ringkasan_pengadaan_obat=false,ringkasan_penerimaan_obat=false,ringkasan_hibah_obat=false,
+            ringkasan_penjualan_obat=false,ringkasan_beri_obat=false,ringkasan_piutang_obat=false,ringkasan_stok_keluar_obat=false,
+            ringkasan_retur_suplier_obat=false,ringkasan_retur_pembeli_obat=false,penilaian_awal_keperawatan_ranapkebidanan=false,
+            ringkasan_pengajuan_nonmedis=false,ringkasan_pemesanan_nonmedis=false,ringkasan_pengadaan_nonmedis=false,ringkasan_penerimaan_nonmedis=false,
+            ringkasan_stokkeluar_nonmedis=false,ringkasan_returbeli_nonmedis=false,omset_penerimaan=false,validasi_penagihan_piutang=false,
+            permintaan_ranap=false,bpjs_diagnosa_prb=false,bpjs_obat_prb=false,bpjs_surat_kontrol=false,penggunaan_bhp_ok=false,surat_keterangan_rawat_inap=false,
+            surat_keterangan_sehat=false,pendapatan_per_carabayar=false,akun_host_to_host_bank_jateng=false,pembayaran_bank_jateng=false,
+            bpjs_surat_pri=false,ringkasan_tindakan=false,lama_pelayanan_pasien=false,surat_sakit_pihak_2=false,tagihan_hutang_obat=false,
+            referensi_mobilejkn_bpjs=false,batal_pendaftaran_mobilejkn_bpjs=false,lama_operasi=false,grafik_inventaris_kategori=false,grafik_inventaris_merk=false,
+            grafik_inventaris_produsen=false,pengembalian_deposit_pasien=false,validasi_tagihan_hutang_obat=false,piutang_obat_belum_lunas=false,
+            integrasi_briapi=false;
     
     public static void setData(String user, String pass) {
        try {                
@@ -849,11 +860,55 @@ public final class akses {
                         akses.rvu_bpjs=true;
                         akses.verifikasi_penerimaan_farmasi=true;
                         akses.verifikasi_penerimaan_logistik=true;
-                        akses.hapus_data=true;
+                        akses.pemeriksaan_lab_pa=true;
+                        akses.ringkasan_pengajuan_obat=true;
+                        akses.ringkasan_pemesanan_obat=true;
+                        akses.ringkasan_pengadaan_obat=true;
+                        akses.ringkasan_penerimaan_obat=true;
+                        akses.ringkasan_hibah_obat=true;
+                        akses.ringkasan_penjualan_obat=true;
+                        akses.ringkasan_beri_obat=true;
+                        akses.ringkasan_piutang_obat=true;
+                        akses.ringkasan_stok_keluar_obat=true;
+                        akses.ringkasan_retur_suplier_obat=true;
+                        akses.ringkasan_retur_pembeli_obat=true;
+                        akses.penilaian_awal_keperawatan_ranapkebidanan=true;
+                        akses.ringkasan_pengajuan_nonmedis=true;
+                        akses.ringkasan_pemesanan_nonmedis=true;
+                        akses.ringkasan_pengadaan_nonmedis=true;
+                        akses.ringkasan_penerimaan_nonmedis=true;
+                        akses.ringkasan_stokkeluar_nonmedis=true;
+                        akses.ringkasan_returbeli_nonmedis=true;
+                        akses.omset_penerimaan=true;
+                        akses.validasi_penagihan_piutang=true;
+                        akses.permintaan_ranap=true;
+                        akses.bpjs_diagnosa_prb=true;
+                        akses.bpjs_obat_prb=true;
+                        akses.bpjs_surat_kontrol=true;
+                        akses.penggunaan_bhp_ok=true;
+                        akses.surat_keterangan_rawat_inap=true;
+                        akses.surat_keterangan_sehat=true;
+                        akses.pendapatan_per_carabayar=true;
+                        akses.akun_host_to_host_bank_jateng=true;
+                        akses.pembayaran_bank_jateng=true;
+                        akses.bpjs_surat_pri=true;
+                        akses.ringkasan_tindakan=true;
+                        akses.lama_pelayanan_pasien=true;
+                        akses.surat_sakit_pihak_2=true;
+                        akses.tagihan_hutang_obat=true;
+                        akses.referensi_mobilejkn_bpjs=true;
+                        akses.batal_pendaftaran_mobilejkn_bpjs=true;
+                        akses.lama_operasi=true;
+                        akses.grafik_inventaris_kategori=true;
+                        akses.grafik_inventaris_merk=true;
+                        akses.grafik_inventaris_produsen=true;
+                        akses.pengembalian_deposit_pasien=true;
+                        akses.validasi_tagihan_hutang_obat=true;
+                        akses.piutang_obat_belum_lunas=true;
+                        akses.integrasi_briapi=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
-                        akses.hapus_data=true;
                         akses.kode=user;
                         akses.penyakit=rs2.getBoolean("penyakit");
                         akses.obat_penyakit=rs2.getBoolean("obat_penyakit");
@@ -1535,6 +1590,52 @@ public final class akses {
                         akses.rvu_bpjs=rs2.getBoolean("rvu_bpjs");
                         akses.verifikasi_penerimaan_farmasi=rs2.getBoolean("verifikasi_penerimaan_farmasi");
                         akses.verifikasi_penerimaan_logistik=rs2.getBoolean("verifikasi_penerimaan_logistik");
+                        akses.pemeriksaan_lab_pa=rs2.getBoolean("pemeriksaan_lab_pa");
+                        akses.ringkasan_pengajuan_obat=rs2.getBoolean("ringkasan_pengajuan_obat");
+                        akses.ringkasan_pemesanan_obat=rs2.getBoolean("ringkasan_pemesanan_obat");
+                        akses.ringkasan_pengadaan_obat=rs2.getBoolean("ringkasan_pengadaan_obat");
+                        akses.ringkasan_penerimaan_obat=rs2.getBoolean("ringkasan_penerimaan_obat");
+                        akses.ringkasan_hibah_obat=rs2.getBoolean("ringkasan_hibah_obat");
+                        akses.ringkasan_penjualan_obat=rs2.getBoolean("ringkasan_penjualan_obat");
+                        akses.ringkasan_beri_obat=rs2.getBoolean("ringkasan_beri_obat");
+                        akses.ringkasan_piutang_obat=rs2.getBoolean("ringkasan_piutang_obat");
+                        akses.ringkasan_stok_keluar_obat=rs2.getBoolean("ringkasan_stok_keluar_obat");
+                        akses.ringkasan_retur_suplier_obat=rs2.getBoolean("ringkasan_retur_suplier_obat");
+                        akses.ringkasan_retur_pembeli_obat=rs2.getBoolean("ringkasan_retur_pembeli_obat");
+                        akses.penilaian_awal_keperawatan_ranapkebidanan=rs2.getBoolean("penilaian_awal_keperawatan_ranapkebidanan");
+                        akses.ringkasan_pengajuan_nonmedis=rs2.getBoolean("ringkasan_pengajuan_nonmedis");
+                        akses.ringkasan_pemesanan_nonmedis=rs2.getBoolean("ringkasan_pemesanan_nonmedis");
+                        akses.ringkasan_pengadaan_nonmedis=rs2.getBoolean("ringkasan_pengadaan_nonmedis");
+                        akses.ringkasan_penerimaan_nonmedis=rs2.getBoolean("ringkasan_penerimaan_nonmedis");
+                        akses.ringkasan_stokkeluar_nonmedis=rs2.getBoolean("ringkasan_stokkeluar_nonmedis");
+                        akses.ringkasan_returbeli_nonmedis=rs2.getBoolean("ringkasan_returbeli_nonmedis");
+                        akses.omset_penerimaan=rs2.getBoolean("omset_penerimaan");
+                        akses.validasi_penagihan_piutang=rs2.getBoolean("validasi_penagihan_piutang");
+                        akses.permintaan_ranap=rs2.getBoolean("permintaan_ranap");
+                        akses.bpjs_diagnosa_prb=rs2.getBoolean("bpjs_diagnosa_prb");
+                        akses.bpjs_obat_prb=rs2.getBoolean("bpjs_obat_prb");
+                        akses.bpjs_surat_kontrol=rs2.getBoolean("bpjs_surat_kontrol");
+                        akses.penggunaan_bhp_ok=rs2.getBoolean("penggunaan_bhp_ok");
+                        akses.surat_keterangan_rawat_inap=rs2.getBoolean("surat_keterangan_rawat_inap");
+                        akses.surat_keterangan_sehat=rs2.getBoolean("surat_keterangan_sehat");
+                        akses.pendapatan_per_carabayar=rs2.getBoolean("pendapatan_per_carabayar");
+                        akses.akun_host_to_host_bank_jateng=rs2.getBoolean("akun_host_to_host_bank_jateng");
+                        akses.pembayaran_bank_jateng=rs2.getBoolean("pembayaran_bank_jateng");
+                        akses.bpjs_surat_pri=rs2.getBoolean("bpjs_surat_pri");
+                        akses.ringkasan_tindakan=rs2.getBoolean("ringkasan_tindakan");
+                        akses.lama_pelayanan_pasien=rs2.getBoolean("lama_pelayanan_pasien");
+                        akses.surat_sakit_pihak_2=rs2.getBoolean("surat_sakit_pihak_2");
+                        akses.tagihan_hutang_obat=rs2.getBoolean("tagihan_hutang_obat");
+                        akses.referensi_mobilejkn_bpjs=rs2.getBoolean("referensi_mobilejkn_bpjs");
+                        akses.batal_pendaftaran_mobilejkn_bpjs=rs2.getBoolean("batal_pendaftaran_mobilejkn_bpjs");
+                        akses.lama_operasi=rs2.getBoolean("lama_operasi");
+                        akses.grafik_inventaris_kategori=rs2.getBoolean("grafik_inventaris_kategori");
+                        akses.grafik_inventaris_merk=rs2.getBoolean("grafik_inventaris_merk");
+                        akses.grafik_inventaris_produsen=rs2.getBoolean("grafik_inventaris_produsen");
+                        akses.pengembalian_deposit_pasien=rs2.getBoolean("pengembalian_deposit_pasien");
+                        akses.validasi_tagihan_hutang_obat=rs2.getBoolean("validasi_tagihan_hutang_obat");
+                        akses.piutang_obat_belum_lunas=rs2.getBoolean("piutang_obat_belum_lunas");
+                        akses.integrasi_briapi=rs2.getBoolean("integrasi_briapi");
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -2217,7 +2318,52 @@ public final class akses {
                         akses.rvu_bpjs=false;
                         akses.verifikasi_penerimaan_farmasi=false;
                         akses.verifikasi_penerimaan_logistik=false;
-                        akses.hapus_data=false;
+                        akses.pemeriksaan_lab_pa=false;
+                        akses.ringkasan_pengajuan_obat=false;
+                        akses.ringkasan_pemesanan_obat=false;
+                        akses.ringkasan_pengadaan_obat=false;
+                        akses.ringkasan_penerimaan_obat=false;
+                        akses.ringkasan_hibah_obat=false;
+                        akses.ringkasan_penjualan_obat=false;
+                        akses.ringkasan_beri_obat=false;
+                        akses.ringkasan_piutang_obat=false;
+                        akses.ringkasan_stok_keluar_obat=false;
+                        akses.ringkasan_retur_suplier_obat=false;
+                        akses.ringkasan_retur_pembeli_obat=false;
+                        akses.penilaian_awal_keperawatan_ranapkebidanan=false;
+                        akses.ringkasan_pengajuan_nonmedis=false;
+                        akses.ringkasan_pemesanan_nonmedis=false;
+                        akses.ringkasan_pengadaan_nonmedis=false;
+                        akses.ringkasan_penerimaan_nonmedis=false;
+                        akses.ringkasan_stokkeluar_nonmedis=false;
+                        akses.ringkasan_returbeli_nonmedis=false;
+                        akses.omset_penerimaan=false;
+                        akses.validasi_penagihan_piutang=false;
+                        akses.permintaan_ranap=false;
+                        akses.bpjs_diagnosa_prb=false;
+                        akses.bpjs_obat_prb=false;
+                        akses.bpjs_surat_kontrol=false;
+                        akses.penggunaan_bhp_ok=false;
+                        akses.surat_keterangan_rawat_inap=false;
+                        akses.surat_keterangan_sehat=false;
+                        akses.pendapatan_per_carabayar=false;
+                        akses.akun_host_to_host_bank_jateng=false;
+                        akses.pembayaran_bank_jateng=false;
+                        akses.bpjs_surat_pri=false;
+                        akses.ringkasan_tindakan=false;
+                        akses.lama_pelayanan_pasien=false;
+                        akses.surat_sakit_pihak_2=false;
+                        akses.tagihan_hutang_obat=false;
+                        akses.referensi_mobilejkn_bpjs=false;
+                        akses.batal_pendaftaran_mobilejkn_bpjs=false;
+                        akses.lama_operasi=false;
+                        akses.grafik_inventaris_kategori=false;
+                        akses.grafik_inventaris_merk=false;
+                        akses.grafik_inventaris_produsen=false;
+                        akses.pengembalian_deposit_pasien=false;
+                        akses.validasi_tagihan_hutang_obat=false;
+                        akses.piutang_obat_belum_lunas=false;
+                        akses.integrasi_briapi=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -2635,6 +2781,7 @@ public final class akses {
     public static boolean getbpjs_cek_tanggal_rujukan(){return akses.bpjs_cek_tanggal_rujukan;}
     public static boolean getpermintaan_lab(){return akses.permintaan_lab;}
     public static void setperiksalabfalse(){akses.periksa_lab=false;} 
+    public static void setperiksalabpafalse(){akses.pemeriksaan_lab_pa=false;} 
     public static void setpermintaanlabfalse(){akses.permintaan_lab=false;} 
     public static boolean getpermintaan_radiologi(){return akses.permintaan_radiologi;}
     public static void setperiksaradiologifalse(){akses.periksa_radiologi=false;} 
@@ -2954,6 +3101,50 @@ public final class akses {
     public static boolean getrvu_bpjs(){return akses.rvu_bpjs;}
     public static boolean getverifikasi_penerimaan_farmasi(){return akses.verifikasi_penerimaan_farmasi;}
     public static boolean getverifikasi_penerimaan_logistik(){return akses.verifikasi_penerimaan_logistik;}
-    public static boolean gethapus_data(){return akses.hapus_data;}
-    
+    public static boolean getpemeriksaan_lab_pa(){return akses.pemeriksaan_lab_pa;}
+    public static boolean getringkasan_pengajuan_obat(){return akses.ringkasan_pengajuan_obat;}
+    public static boolean getringkasan_pemesanan_obat(){return akses.ringkasan_pemesanan_obat;}
+    public static boolean getringkasan_pengadaan_obat(){return akses.ringkasan_pengadaan_obat;}
+    public static boolean getringkasan_penerimaan_obat(){return akses.ringkasan_penerimaan_obat;}
+    public static boolean getringkasan_hibah_obat(){return akses.ringkasan_hibah_obat;}
+    public static boolean getringkasan_penjualan_obat(){return akses.ringkasan_penjualan_obat;}
+    public static boolean getringkasan_beri_obat(){return akses.ringkasan_beri_obat;}
+    public static boolean getringkasan_piutang_obat(){return akses.ringkasan_piutang_obat;}
+    public static boolean getringkasan_stok_keluar_obat(){return akses.ringkasan_stok_keluar_obat;}
+    public static boolean getringkasan_retur_suplier_obat(){return akses.ringkasan_retur_suplier_obat;}
+    public static boolean getringkasan_retur_pembeli_obat(){return akses.ringkasan_retur_pembeli_obat;}
+    public static boolean getpenilaian_awal_keperawatan_ranapkebidanan(){return akses.penilaian_awal_keperawatan_ranapkebidanan;}
+    public static boolean getringkasan_pengajuan_nonmedis(){return akses.ringkasan_pengajuan_nonmedis;}
+    public static boolean getringkasan_pemesanan_nonmedis(){return akses.ringkasan_pemesanan_nonmedis;}
+    public static boolean getringkasan_pengadaan_nonmedis(){return akses.ringkasan_pengadaan_nonmedis;}
+    public static boolean getringkasan_penerimaan_nonmedis(){return akses.ringkasan_penerimaan_nonmedis;}
+    public static boolean getringkasan_stokkeluar_nonmedis(){return akses.ringkasan_stokkeluar_nonmedis;}
+    public static boolean getringkasan_returbeli_nonmedis(){return akses.ringkasan_returbeli_nonmedis;}
+    public static boolean getomset_penerimaan(){return akses.omset_penerimaan;}
+    public static boolean getvalidasi_penagihan_piutang(){return akses.validasi_penagihan_piutang;}
+    public static boolean getpermintaan_ranap(){return akses.permintaan_ranap;}
+    public static boolean getbpjs_diagnosa_prb(){return akses.bpjs_diagnosa_prb;}
+    public static boolean getbpjs_obat_prb(){return akses.bpjs_obat_prb;}
+    public static boolean getbpjs_surat_kontrol(){return akses.bpjs_surat_kontrol;}
+    public static boolean getpenggunaan_bhp_ok(){return akses.penggunaan_bhp_ok;}
+    public static boolean getsurat_keterangan_rawat_inap(){return akses.surat_keterangan_rawat_inap;}
+    public static boolean getsurat_keterangan_sehat(){return akses.surat_keterangan_sehat;}
+    public static boolean getpendapatan_per_carabayar(){return akses.pendapatan_per_carabayar;}
+    public static boolean getakun_host_to_host_bank_jateng(){return akses.akun_host_to_host_bank_jateng;}
+    public static boolean getpembayaran_bank_jateng(){return akses.pembayaran_bank_jateng;}
+    public static boolean getbpjs_surat_pri(){return akses.bpjs_surat_pri;}
+    public static boolean getringkasan_tindakan(){return akses.ringkasan_tindakan;}
+    public static boolean getlama_pelayanan_pasien(){return akses.lama_pelayanan_pasien;}
+    public static boolean getsurat_sakit_pihak_2(){return akses.surat_sakit_pihak_2;}
+    public static boolean gettagihan_hutang_obat(){return akses.tagihan_hutang_obat;}
+    public static boolean getreferensi_mobilejkn_bpjs(){return akses.referensi_mobilejkn_bpjs;}
+    public static boolean getbatal_pendaftaran_mobilejkn_bpjs(){return akses.batal_pendaftaran_mobilejkn_bpjs;}
+    public static boolean getlama_operasi(){return akses.lama_operasi;}
+    public static boolean getgrafik_inventaris_kategori(){return akses.grafik_inventaris_kategori;}
+    public static boolean getgrafik_inventaris_merk(){return akses.grafik_inventaris_merk;}
+    public static boolean getgrafik_inventaris_produsen(){return akses.grafik_inventaris_produsen;}
+    public static boolean getpengembalian_deposit_pasien(){return akses.pengembalian_deposit_pasien;}
+    public static boolean getvalidasi_tagihan_hutang_obat(){return akses.validasi_tagihan_hutang_obat;}
+    public static boolean getpiutang_obat_belum_lunas(){return akses.piutang_obat_belum_lunas;}
+    public static boolean getintegrasi_briapi(){return akses.integrasi_briapi;}
 }   

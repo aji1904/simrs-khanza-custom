@@ -4,15 +4,6 @@
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.unit." value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="noperiksa" class="java.lang.String"/>
 	<parameter name="norm" class="java.lang.String"/>
 	<parameter name="namapasien" class="java.lang.String"/>
@@ -624,7 +615,23 @@ Telp : 0711 3037000 / 0821 81096318]]></text>
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<summary>
-		<band height="246">
+		<band height="208">
+			<componentElement>
+				<reportElement x="40" y="37" width="108" height="85" isRemoveLineWhenBlank="true" uuid="60494034-794f-4b76-af73-935218fe96e1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
+					<jr:codeExpression><![CDATA[$P{petugas}+"	jam :" +$P{jam}+"	no periksa : "+$P{noperiksa}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
+			<componentElement>
+				<reportElement x="336" y="37" width="104" height="82" isRemoveLineWhenBlank="true" uuid="acc7ca59-4c3f-4b45-b130-fa70f9b47ee5">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
+					<jr:codeExpression><![CDATA[$P{penjab}+"	jam : "+$P{jam}+"	no periksa : "+$P{noperiksa}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
 			<staticText>
 				<reportElement mode="Transparent" x="26" y="30" width="138" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="51fc6db9-e916-4f67-aa6a-2aa8f7fa0e97"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -634,7 +641,7 @@ Telp : 0711 3037000 / 0821 81096318]]></text>
 				<text><![CDATA[Petugas Laboratorium]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="-1" y="144" width="190" height="15" uuid="84ab6396-bc66-465b-8fe0-1ae317342d17"/>
+				<reportElement x="-1" y="114" width="190" height="15" uuid="84ab6396-bc66-465b-8fe0-1ae317342d17"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10"/>
 					<paragraph lineSpacing="Single"/>
@@ -677,24 +684,8 @@ Telp : 0711 3037000 / 0821 81096318]]></text>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
-			<componentElement>
-				<reportElement x="40" y="53" width="108" height="85" isRemoveLineWhenBlank="true" uuid="60494034-794f-4b76-af73-935218fe96e1">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
-					<jr:codeExpression><![CDATA[$P{petugas}+"	jam :" +$P{jam}+"	no periksa : "+$P{noperiksa}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
-			<componentElement>
-				<reportElement x="336" y="54" width="104" height="82" isRemoveLineWhenBlank="true" uuid="acc7ca59-4c3f-4b45-b130-fa70f9b47ee5">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
-					<jr:codeExpression><![CDATA[$P{penjab}+"	jam : "+$P{jam}+"	no periksa : "+$P{noperiksa}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
 			<textField isBlankWhenNull="true">
-				<reportElement x="280" y="144" width="220" height="15" uuid="7b5d6ede-0a05-42f6-bf17-e185320eef46"/>
+				<reportElement x="280" y="114" width="220" height="15" uuid="7b5d6ede-0a05-42f6-bf17-e185320eef46"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10"/>
 					<paragraph lineSpacing="Single"/>
@@ -710,7 +701,7 @@ Telp : 0711 3037000 / 0821 81096318]]></text>
 N =  Normal    L  =  Low (Rendah)   H =  High (Tinggi)	]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="9" y="190" width="221" height="43" uuid="0662f036-942e-4cae-87f0-231e0d5a9c78"/>
+				<reportElement x="9" y="160" width="221" height="43" uuid="0662f036-942e-4cae-87f0-231e0d5a9c78"/>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font fontName="Times New Roman" size="10"/>
 					<paragraph lineSpacing="Single"/>
@@ -718,7 +709,7 @@ N =  Normal    L  =  Low (Rendah)   H =  High (Tinggi)	]]></text>
 				<textFieldExpression><![CDATA[$P{kesan2}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="260" y="190" width="255" height="43" uuid="67e65e90-881a-411e-bf73-78c846721be9"/>
+				<reportElement x="260" y="160" width="255" height="43" uuid="67e65e90-881a-411e-bf73-78c846721be9"/>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font fontName="Times New Roman" size="10"/>
 					<paragraph lineSpacing="Single"/>
@@ -726,7 +717,7 @@ N =  Normal    L  =  Low (Rendah)   H =  High (Tinggi)	]]></text>
 				<textFieldExpression><![CDATA[$P{saran2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="10" y="170" width="89" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="0401268c-b0ce-4618-be63-85fa3385fdd1"/>
+				<reportElement mode="Transparent" x="10" y="140" width="89" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="0401268c-b0ce-4618-be63-85fa3385fdd1"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -734,7 +725,7 @@ N =  Normal    L  =  Low (Rendah)   H =  High (Tinggi)	]]></text>
 				<text><![CDATA[KESAN :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="260" y="170" width="89" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="d34560f2-5c3f-4af2-a22f-20365132190e"/>
+				<reportElement mode="Transparent" x="260" y="140" width="89" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="d34560f2-5c3f-4af2-a22f-20365132190e"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10" isBold="true"/>
 					<paragraph lineSpacing="Single"/>

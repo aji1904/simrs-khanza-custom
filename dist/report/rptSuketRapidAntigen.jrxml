@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSuketRapidAntigen2" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="10" uuid="25cb7f3b-f2db-4263-aea7-ddbefe8c73a8">
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="alamatrs" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="propinsirs" class="java.lang.String"/>
+	<parameter name="kontakrs" class="java.lang.String"/>
+	<parameter name="emailrs" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="romawi" class="java.lang.String"/>
+	<parameter name="tahun" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nm_pasien" class="java.lang.String"/>
+	<field name="jk" class="java.lang.String"/>
+	<field name="umur" class="java.lang.String"/>
+	<field name="nm_poli" class="java.lang.String"/>
+	<field name="tgl_now" class="java.lang.String"/>
+	<field name="no_rkm_medis" class="java.lang.String"/>
+	<field name="no_ijn_praktek" class="java.lang.String"/>
+	<field name="nm_dokter" class="java.lang.String"/>
+	<field name="tgl_lahir" class="java.lang.String"/>
+	<field name="no_ktp" class="java.lang.String"/>
+	<field name="alamat" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="575" splitType="Stretch">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="3" y="0" width="50" height="50" uuid="5bc64ee9-7201-4ca4-8570-5ce6d0041773">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="59" y="2" width="442" height="19" uuid="b187a496-769b-4909-af7d-cea149a1e8c6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RS BUNDA MEDIKA JAKABARING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="14" width="439" height="46" uuid="3ee8cbfa-37f1-4523-88f8-1bb56a64b825"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Jl. Gubenur H.A Bastari, Desa Sei Kedukan, Kec. Rambutan
+Kab. Banyuasin, rs.bundamedika.jkbaring@gmail.com
+Telp : 0711 3037000 / 0821 81096318]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="55" width="404" height="1" uuid="a4c9e7ba-e96c-448f-8ee8-239a8dba2bed"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="1" y="62" width="379" height="19" uuid="4cd4925b-4b29-4156-b71d-ee64b6d8c60c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SURAT KETERANGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="107" width="321" height="19" uuid="e273e36d-ef71-4af2-a53d-1351693630af"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Saya yang bertanda tangan dibawah ini menerangkan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="126" width="45" height="19" uuid="b8ee7c51-bc8e-49d7-897a-1f5d1e292928"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="146" width="82" height="19" uuid="c85ce08e-523f-4c89-be46-53adb20e1e8b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="189" width="82" height="19" uuid="b929ccc2-ddaf-497b-975f-9bef60161812"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Nama Pasien ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="388" width="364" height="50" uuid="836d2f78-ea35-4839-9374-28237dd28c55"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Demikian surat keterangan ini dibuat dengan kondisi sebenarnya dan dipergunakan sebagaimana mestinya.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="130" y="79" width="121" height="1" uuid="416f51ac-af46-44d9-b492-2d6fb76eefa7"/>
+			</line>
+			<staticText>
+				<reportElement x="83" y="146" width="255" height="19" uuid="8c4768a0-fe8f-4d6e-811c-a1145b44df9b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[: Dokter Umum RS Bunda Medika Jakabaring]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="169" width="129" height="19" uuid="df15f196-039c-43f0-b72a-9cacfba97501"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Menerangkan bahwa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="208" width="82" height="19" uuid="ddf1f220-0831-4390-993c-4d9a480507d6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[No. KTP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="227" width="82" height="19" uuid="5a609cf0-938a-48c9-8603-16a4351e1401"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Tanggal lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="246" width="82" height="19" uuid="f536049a-39a1-4172-89bd-5d22dd9a3e55"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="289" width="286" height="19" uuid="df60823b-8964-4bd9-9f68-8f96a2ad16f7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Telah dilakukan pemeriksaan RAPID ANTIGEN pada hari ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="309" width="415" height="40" uuid="94a38e11-45a9-49f0-b16b-c05b145aff30"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Berdasarkan  informasi dari Laboratorium, pada nama tersebut diatas telah dikeluarkan hasil Laboratorium SWAB NASOPHARING sebagai berikut :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="340" width="155" height="19" uuid="170ca7f3-f75d-4bb3-8b47-a8bf1b5523e1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Tanggal Pengambilan Sampel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="360" width="155" height="19" uuid="db8d502d-3fa4-4571-900a-a64d072b47ef"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Hasil Rapid Antigen]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="83" y="127" width="276" height="18" uuid="1b9e6413-ac6d-4d90-9460-c0d104e9ba0e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{nm_dokter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="189" width="276" height="18" uuid="8886c1d7-2c36-4fde-8547-236a82f4c663"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="208" width="276" height="18" uuid="e4979467-9a6a-4867-92fe-b937408ad23a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{no_ktp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="227" width="276" height="18" uuid="9f2bfda1-fb78-4618-99c8-1c4bd9f6c474"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{tgl_lahir}+" ("+$F{umur}+")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="246" width="276" height="34" uuid="21c7708d-fc32-44bc-83ba-c4837f8b9437"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="290" width="158" height="18" uuid="44d54580-d8a7-4b1a-8de1-96570ed6a2d7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tgl_now}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="157" y="340" width="127" height="18" uuid="75778b99-55f9-483d-99d4-fc4e07cdd61b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{tgl_now}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="159" y="360" width="155" height="19" uuid="d82d05c1-feda-4e6c-8890-c616869ffce2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[: Negatif SArs coV -2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="494" width="202" height="18" uuid="8bb1685e-3cb6-4c38-a9cb-57f21e197026"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="511" width="202" height="18" uuid="f06060ef-d380-4453-98a8-f114bdc49997"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_ijn_praktek}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="416" width="202" height="18" uuid="d5316e62-0b8e-4b2c-adaa-d62b5e0a4c36"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kotars}+", "+$F{tgl_now}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="82" width="379" height="18" uuid="487bb298-5532-4b82-a52c-bb64c3daf45b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NO.        /"+$F{nm_poli}.toUpperCase()+"/BMJ/"+$P{romawi}+"/"+$P{tahun}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

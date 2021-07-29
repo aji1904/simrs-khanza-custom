@@ -95,7 +95,7 @@
 				<text><![CDATA[HASIL PEMERIKSAAN LABORATORIUM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="212" width="88" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="6f87e6e4-ca6e-4ed0-967c-4397687d1e32"/>
+				<reportElement mode="Transparent" x="0" y="208" width="88" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="6f87e6e4-ca6e-4ed0-967c-4397687d1e32"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -103,7 +103,7 @@
 				<text><![CDATA[Alamat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="89" y="212" width="70" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="eec8af5c-c9ee-4a3b-a55f-8fc3ff72e676"/>
+				<reportElement mode="Transparent" x="89" y="208" width="70" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="eec8af5c-c9ee-4a3b-a55f-8fc3ff72e676"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -111,7 +111,7 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="100" y="212" width="424" height="15" uuid="b8ba56ca-c2a7-44d7-953d-d94bf0a1a516"/>
+				<reportElement x="100" y="208" width="424" height="15" uuid="b8ba56ca-c2a7-44d7-953d-d94bf0a1a516"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10"/>
 					<paragraph lineSpacing="Single"/>
@@ -637,7 +637,19 @@ Telp : 0711 3037000 / 0821 81096318]]></text>
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<summary>
-		<band height="391">
+		<band height="160">
+			<componentElement>
+				<reportElement x="352" y="64" width="108" height="81" uuid="aef024aa-06cb-4dcd-b4dc-654fd4ea8c76"/>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$P{penjab}+"	Jam : "+$P{jam}+" no periksa :"+$P{noperiksa}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
+			<componentElement>
+				<reportElement x="39" y="64" width="106" height="79" uuid="7c6c6d9f-36d4-4495-8957-0eb31662a77a"/>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$P{petugas}+"	Jam : "+$P{jam}+" no periksa :"+$P{noperiksa}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
 			<textField pattern="dd/MM/yyyy HH.mm.ss" isBlankWhenNull="false">
 				<reportElement key="textField" x="52" y="25" width="134" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="259223a8-8c17-4b55-b82e-d11948365c08">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -699,7 +711,7 @@ Print by]]></text>
 				<textFieldExpression><![CDATA[$P{petugas}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="338" y="86" width="134" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="be69c797-af34-4de2-8eeb-7ca7a7f59ae4"/>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="338" y="56" width="134" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="be69c797-af34-4de2-8eeb-7ca7a7f59ae4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="11" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -707,27 +719,15 @@ Print by]]></text>
 				<text><![CDATA[Spesialis Patologi Klinik]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="317" y="186" width="178" height="15" uuid="e907ff2a-ab7a-4029-a5b7-f3291aa71aff"/>
+				<reportElement x="317" y="137" width="178" height="15" uuid="e907ff2a-ab7a-4029-a5b7-f3291aa71aff"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{penjab}]]></textFieldExpression>
 			</textField>
-			<componentElement>
-				<reportElement x="352" y="104" width="108" height="81" uuid="aef024aa-06cb-4dcd-b4dc-654fd4ea8c76"/>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<jr:codeExpression><![CDATA[$P{penjab}+"	Jam : "+$P{jam}+" no periksa :"+$P{noperiksa}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
-			<componentElement>
-				<reportElement x="39" y="104" width="106" height="79" uuid="7c6c6d9f-36d4-4495-8957-0eb31662a77a"/>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<jr:codeExpression><![CDATA[$P{petugas}+"	Jam : "+$P{jam}+" no periksa :"+$P{noperiksa}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="25" y="87" width="134" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="b16fa98f-dd7e-4e54-a8d7-0401a9d77128"/>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="25" y="57" width="134" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="b16fa98f-dd7e-4e54-a8d7-0401a9d77128"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="11" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -735,7 +735,7 @@ Print by]]></text>
 				<text><![CDATA[Petugas Laboratorium]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="17" y="186" width="156" height="15" uuid="8ee23571-6760-4dae-84b5-4fd2b650e6ee"/>
+				<reportElement x="17" y="136" width="156" height="15" uuid="8ee23571-6760-4dae-84b5-4fd2b650e6ee"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10"/>
 					<paragraph lineSpacing="Single"/>

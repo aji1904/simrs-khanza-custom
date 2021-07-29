@@ -6,7 +6,6 @@
 package simrskhanza;
 
 import usu.widget.util.WidgetUtilities;
-
 /**
  *
  * @author khanzasoft

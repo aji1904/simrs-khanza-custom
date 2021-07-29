@@ -206,13 +206,6 @@ and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab]]>
 					<jr:codeExpression><![CDATA[$P{namars}+", "+$F{no_rkm_medis}+", Nama Bayi : "+$F{nm_pasien}+", "+$P{dpjp}+", Lahir : "+$F{tgl_lahir}+", "+"Reg : "+$F{tgl_daftar}+", Jaminan : "+$F{png_jawab}+", Nama Ibu : "+$F{nm_ibu}]]></jr:codeExpression>
 				</jr:QRCode>
 			</componentElement>
-			<staticText>
-				<reportElement x="5" y="326" width="100" height="30" uuid="ee4d08da-0076-4313-9265-085cf970d830"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Anak-anak]]></text>
-			</staticText>
 		</band>
 	</title>
 </jasperReport>

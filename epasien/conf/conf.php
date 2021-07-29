@@ -133,7 +133,7 @@
     function bukaquery($sql){    
         $konektor=bukakoneksi();
         $result=mysqli_query($konektor, $sql)
-        or die (/*mysqli_error($konektor)*/"<br/><font color=red><b>Terjadi Kesalahan</b></font>".JSRedirect2("index.php?act=Home",4));
+        or die (mysqli_error($konektor)."<br/><font color=red><b>Terjadi Kesalahan</b></font>".JSRedirect2("index.php?act=Home",4));
         mysqli_close($konektor);
         return $result;
     }
@@ -569,7 +569,7 @@
     
     function encrypt_decrypt($string,$action){
         $secret_key     = 'Bar12345Bar12345'; 
-        $secret_iv      = 'sayangsamakhanzaBar12345Bar12345';
+        $secret_iv      = 'sayangsamakhanza';
         $output         = FALSE;
         $encrypt_method = "AES-256-CBC";
         $key            = hash('sha256', $secret_key);
