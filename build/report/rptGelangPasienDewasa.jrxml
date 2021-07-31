@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="56" pageHeight="708" columnWidth="50" leftMargin="3" rightMargin="3" topMargin="3" bottomMargin="3">
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="85" pageHeight="708" columnWidth="79" leftMargin="3" rightMargin="3" topMargin="3" bottomMargin="3" uuid="6b3cd0af-e06f-4609-bb1d-151e105dda7a">
 	<property name="ireport.zoom" value="1.4363522962149822"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="431"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -90,49 +100,134 @@ and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab]]>
 		<band/>
 	</background>
 	<title>
-		<band height="702">
+		<band height="497">
+			<componentElement>
+				<reportElement x="4" y="239" width="75" height="75" uuid="d321faec-baa7-4362-bf94-78173ce6a109">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$P{namars}+", "+$F{no_rkm_medis}+", "+$F{nm_pasien}+", "+$P{dpjp}+", "+$F{tgl_lahir}+", "+"Reg : "+$F{tgl_daftar}+",  No Telp : "+$F{no_tlp}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
 			<textField pattern="">
-				<reportElement mode="Opaque" x="28" y="427" width="12" height="205"/>
-				<textElement verticalAlignment="Middle" rotation="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
+				<reportElement mode="Opaque" x="24" y="76" width="12" height="126" uuid="8ce3f462-7d9e-47b8-81cc-00b00645f73f"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["No. RM : "+$F{no_rkm_medis}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{tanggal}+"/"+$F{no_rkm_medis}]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement mode="Opaque" x="13" y="446" width="15" height="185"/>
-				<textElement verticalAlignment="Middle" rotation="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="true"/>
+				<reportElement mode="Opaque" x="14" y="76" width="12" height="126" uuid="516a3a1d-f571-4d82-8ef2-0b3b0f59b052"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{dpjp}]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement mode="Opaque" x="37" y="461" width="13" height="171"/>
-				<textElement verticalAlignment="Middle" rotation="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
+				<reportElement mode="Transparent" x="54" y="104" width="13" height="98" uuid="76a0c47d-5470-4a8c-891b-b5d85c681e18"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Tgl Lahir : "+$F{tgl_lahir}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$F{no_rkm_medis}]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement mode="Opaque" x="0" y="408" width="13" height="192"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="true"/>
+				<reportElement mode="Transparent" x="3" y="34" width="13" height="168" uuid="0f4bf54e-fa2f-4cc3-9ed9-2775a3d5f475"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$F{nm_pasien}+"  ("+$F{jk}+")"]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement mode="Opaque" x="25" y="292" width="12" height="205"/>
-				<textElement verticalAlignment="Middle" rotation="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
+				<reportElement mode="Transparent" x="34" y="76" width="13" height="126" uuid="96c56fdc-c582-439e-a498-425a359c340b"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Tanggal Dirawat : "+$P{tanggal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$F{tgl_lahir}+" ("+$F{umur}+")"]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement mode="Opaque" x="38" y="295" width="12" height="205"/>
-				<textElement verticalAlignment="Middle" rotation="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="true"/>
+				<reportElement mode="Transparent" x="64" y="124" width="13" height="78" uuid="f792b8f5-9314-4a72-ab0b-5d1846444c2e"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["DPJP : "+$P{dpjp}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{tanggal}]]></textFieldExpression>
 			</textField>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="44" y="124" width="13" height="78" uuid="d62a60a1-2e5a-4062-949b-02d32a2614f1"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{png_jawab}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="3" y="214" width="13" height="24" uuid="517bc451-d330-4d32-ab1c-0782026cbaf2"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nama"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="34" y="214" width="13" height="24" uuid="575eecd9-c560-4c30-9638-a2438df2d5b3"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Lahir"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="54" y="197" width="13" height="41" uuid="61c385ee-7975-4756-a8bd-205c2d3c7566"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RM"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="44" y="197" width="13" height="41" uuid="7b55e3d4-f7a7-440a-9b28-10d667c8fd31"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Penjamin"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="24" y="214" width="13" height="24" uuid="325d2d5f-8214-43be-ac4c-34e974cbcad9"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["REG"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="14" y="214" width="13" height="24" uuid="8a91af35-0547-4b79-80ca-ceb24c2553f8"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DPJP"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="64" y="197" width="13" height="41" uuid="6aa5b0a7-eca2-42e0-a72f-27d06273756c"/>
+				<textElement verticalAlignment="Middle" rotation="Left">
+					<font fontName="Calibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rawat"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="308" width="100" height="30" uuid="d20bd061-1838-460d-baa4-095650947a4b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dewasa]]></text>
+			</staticText>
 		</band>
 	</title>
 </jasperReport>
