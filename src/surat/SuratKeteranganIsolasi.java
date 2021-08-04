@@ -60,7 +60,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         setSize(628,674);
         
         tabMode=new DefaultTableModel(null,new Object[]{
-            "No.Surat","No.Rawat","No.RM.","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","Status","Tanggal","Telepon","Keterangan"
+            "No.Surat","No.Rawat","No.RM.","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","Kode Petugas","Nama Petugas","Status","Telepon","Tanggal","Keterangan"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -70,7 +70,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 15; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(105);
@@ -89,7 +89,15 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             }else if(i==7){
                 column.setPreferredWidth(150);
             }else if(i==8){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(150);
+            }else if(i==9){
+                column.setPreferredWidth(150);
+            }else if(i==10){
+                column.setPreferredWidth(100);
+            }else if(i==11){
+                column.setPreferredWidth(100);
+            }else if(i==12){
+                column.setPreferredWidth(300);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -150,11 +158,11 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             public void windowClosing(WindowEvent e) {}
             @Override
             public void windowClosed(WindowEvent e) {
-//                if(petugas.getTable().getSelectedRow()!= -1){
-//                    KdPetugas.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),0).toString());
-//                    TPetugas.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),1).toString());
-//                }   
-//                KdPetugas.requestFocus();
+                if(petugas.getTable().getSelectedRow()!= -1){
+                    KdPetugas.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),0).toString());
+                    TPetugas.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),1).toString());
+                }   
+                KdPetugas.requestFocus();
             }
             @Override
             public void windowIconified(WindowEvent e) {}
@@ -224,11 +232,15 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         jLabel24 = new widget.Label();
         status = new widget.ComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Keterangan = new javax.swing.JTextArea();
         jLabel14 = new widget.Label();
-        jLabel15 = new widget.Label();
         jLabel8 = new widget.Label();
         telepon = new widget.TextBox();
+        btnPetugas = new widget.Button();
+        TPetugas = new widget.TextBox();
+        KdPetugas = new widget.TextBox();
+        jLabel9 = new widget.Label();
+        jLabel10 = new widget.Label();
         ChkInput = new widget.CekBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
@@ -254,6 +266,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Surat Keterangan Covid ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
+        internalFrame1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
@@ -274,6 +287,8 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             }
         });
         Scroll.setViewportView(tbObat);
+
+        internalFrame1.add(Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 288, 1300, 216));
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -513,6 +528,8 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
 
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
+        internalFrame1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 505, 1300, -1));
+
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
         PanelInput.setPreferredSize(new java.awt.Dimension(192, 186));
@@ -590,24 +607,24 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tanggal_surat);
-        Tanggal_surat.setBounds(380, 70, 90, 23);
+        Tanggal_surat.setBounds(100, 160, 90, 23);
 
         jLabel5.setText("Dokter P.J. :");
         jLabel5.setName("jLabel5"); // NOI18N
         FormInput.add(jLabel5);
-        jLabel5.setBounds(280, 40, 95, 23);
+        jLabel5.setBounds(0, 100, 95, 23);
 
         KdDok.setEditable(false);
         KdDok.setHighlighter(null);
         KdDok.setName("KdDok"); // NOI18N
         FormInput.add(KdDok);
-        KdDok.setBounds(380, 40, 99, 23);
+        KdDok.setBounds(100, 100, 99, 23);
 
         TDokter.setEditable(false);
         TDokter.setHighlighter(null);
         TDokter.setName("TDokter"); // NOI18N
         FormInput.add(TDokter);
-        TDokter.setBounds(490, 40, 179, 23);
+        TDokter.setBounds(210, 100, 179, 23);
 
         btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnDokter.setMnemonic('2');
@@ -624,14 +641,14 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnDokter);
-        btnDokter.setBounds(670, 40, 28, 23);
+        btnDokter.setBounds(390, 100, 28, 23);
 
         jLabel24.setText("Status :");
         jLabel24.setName("jLabel24"); // NOI18N
         FormInput.add(jLabel24);
-        jLabel24.setBounds(370, 70, 160, 23);
+        jLabel24.setBounds(90, 160, 160, 23);
 
-        status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NON REAKTIF", "REAKTIF" }));
+        status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NEGATIF COVID-19", "SELESAI ISOLASI" }));
         status.setName("status"); // NOI18N
         status.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -639,27 +656,22 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(status);
-        status.setBounds(530, 70, 170, 23);
+        status.setBounds(250, 160, 170, 23);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setName("jTextArea1"); // NOI18N
-        jScrollPane1.setViewportView(jTextArea1);
+        Keterangan.setColumns(20);
+        Keterangan.setRows(5);
+        Keterangan.setName("Keterangan"); // NOI18N
+        jScrollPane1.setViewportView(Keterangan);
 
         FormInput.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 110, 690, 120);
+        jScrollPane1.setBounds(490, 40, 600, 190);
 
-        jLabel14.setText("Keterangan");
+        jLabel14.setText("Keterangan :");
         jLabel14.setName("jLabel14"); // NOI18N
         FormInput.add(jLabel14);
-        jLabel14.setBounds(10, 90, 80, 23);
-
-        jLabel15.setText("Tanggal Surat :");
-        jLabel15.setName("jLabel15"); // NOI18N
-        FormInput.add(jLabel15);
-        jLabel15.setBounds(290, 70, 80, 23);
+        jLabel14.setBounds(400, 40, 80, 23);
 
         jLabel8.setText("No. Surat Sakit :");
         jLabel8.setName("jLabel8"); // NOI18N
@@ -676,7 +688,48 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         FormInput.add(telepon);
         telepon.setBounds(100, 70, 180, 23);
 
+        btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPetugas.setMnemonic('2');
+        btnPetugas.setToolTipText("Alt+2");
+        btnPetugas.setName("btnPetugas"); // NOI18N
+        btnPetugas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPetugasActionPerformed(evt);
+            }
+        });
+        btnPetugas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnPetugasKeyPressed(evt);
+            }
+        });
+        FormInput.add(btnPetugas);
+        btnPetugas.setBounds(390, 130, 28, 23);
+
+        TPetugas.setEditable(false);
+        TPetugas.setHighlighter(null);
+        TPetugas.setName("TPetugas"); // NOI18N
+        FormInput.add(TPetugas);
+        TPetugas.setBounds(210, 130, 179, 23);
+
+        KdPetugas.setEditable(false);
+        KdPetugas.setHighlighter(null);
+        KdPetugas.setName("KdPetugas"); // NOI18N
+        FormInput.add(KdPetugas);
+        KdPetugas.setBounds(100, 130, 99, 23);
+
+        jLabel9.setText("Tanggal Cetak :");
+        jLabel9.setName("jLabel9"); // NOI18N
+        FormInput.add(jLabel9);
+        jLabel9.setBounds(0, 160, 90, 23);
+
+        jLabel10.setText("Petugas :");
+        jLabel10.setName("jLabel10"); // NOI18N
+        FormInput.add(jLabel10);
+        jLabel10.setBounds(0, 130, 95, 23);
+
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
+
+        internalFrame1.add(PanelInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 16, 1300, 240));
 
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
         ChkInput.setMnemonic('I');
@@ -697,31 +750,10 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
                 ChkInputActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout internalFrame1Layout = new javax.swing.GroupLayout(internalFrame1);
-        internalFrame1.setLayout(internalFrame1Layout);
-        internalFrame1Layout.setHorizontalGroup(
-            internalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(ChkInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(internalFrame1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(PanelInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        internalFrame1Layout.setVerticalGroup(
-            internalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(internalFrame1Layout.createSequentialGroup()
-                .addComponent(PanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ChkInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        internalFrame1.add(ChkInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 262, 1300, -1));
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
+        internalFrame1.getAccessibleContext().setAccessibleName("::[ Data Surat Keterangan Isolasi ]::");
         internalFrame1.getAccessibleContext().setAccessibleDescription("");
 
         pack();
@@ -751,14 +783,12 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"Pasien");
         }else if(KdDok.getText().trim().equals("")||TDokter.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"Dokter");
-        }
-//        else if(KdPetugas.getText().trim().equals("")||TPetugas.getText().trim().equals("")){
-//            Valid.textKosong(TNoRw,"Petugas");
-//        }
-        else{
-            if(Sequel.menyimpantf("surat_keterangan_isolasi","?,?,?,?,?,?,?,?,?","No.Surat",7,new String[]{
-                    NoSurat.getText(),TNoRw.getText(),KdDok.getText(),status.getSelectedItem().toString(),
-                    Valid.SetTgl(Tanggal_surat.getSelectedItem()+"")
+        }else if(KdPetugas.getText().trim().equals("")||TPetugas.getText().trim().equals("")){
+            Valid.textKosong(TNoRw,"Petugas");
+        }else{
+            if(Sequel.menyimpantf("surat_keterangan_isolasi","?,?,?,?,?,?,?,?","No.Surat",8,new String[]{
+                    NoSurat.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),status.getSelectedItem().toString(),
+                    telepon.getText(),Valid.SetTgl(Tanggal_surat.getSelectedItem()+""),Keterangan.getText()
                 })==true){
                 tampil();
                 emptTeks();
@@ -808,11 +838,9 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"Pasien");
         }else if(KdDok.getText().trim().equals("")||TDokter.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"Dokter");
-        }
-//        else if(KdPetugas.getText().trim().equals("")||TPetugas.getText().trim().equals("")){
-//            Valid.textKosong(TNoRw,"Petugas");
-//        }
-        else{   
+        }else if(KdPetugas.getText().trim().equals("")||TPetugas.getText().trim().equals("")){
+            Valid.textKosong(TNoRw,"Petugas");
+        }else{   
             if(tbObat.getSelectedRow()!= -1){
                 if(Sequel.mengedittf("surat_keterangan_isolasi","no_surat=?","no_surat=?,no_rawat=?,kd_dokter=?,nip=?,status=?,tgl_surat=?,telepon=?,ket=?",7,new String[]{
                     NoSurat.getText(),TNoRw.getText(),KdDok.getText(),Valid.SetTgl(Tanggal_surat.getSelectedItem()+""),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
@@ -1005,6 +1033,18 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_teleponKeyPressed
 
+    private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugasActionPerformed
+        // TODO add your handling code here:
+        petugas.isCek();
+        petugas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        petugas.setLocationRelativeTo(internalFrame1);
+        petugas.setVisible(true);
+    }//GEN-LAST:event_btnPetugasActionPerformed
+
+    private void btnPetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPetugasKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPetugasKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1035,6 +1075,8 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
     private widget.TextBox KdDok;
+    private widget.TextBox KdPetugas;
+    private javax.swing.JTextArea Keterangan;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCetakSuratCovid;
     private widget.TextBox NoSurat;
@@ -1045,12 +1087,14 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
+    private widget.TextBox TPetugas;
     private widget.Tanggal Tanggal_surat;
     private widget.Button btnDokter;
+    private widget.Button btnPetugas;
     private javax.swing.ButtonGroup buttonGroup1;
     private widget.InternalFrame internalFrame1;
+    private widget.Label jLabel10;
     private widget.Label jLabel14;
-    private widget.Label jLabel15;
     private widget.Label jLabel19;
     private widget.Label jLabel21;
     private widget.Label jLabel24;
@@ -1060,10 +1104,10 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
+    private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.ComboBox status;
@@ -1075,16 +1119,15 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try{
             ps=koneksi.prepareStatement(
-                 "select surat_keterangan_covid.no_surat,surat_keterangan_covid.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,"+
-                 "surat_keterangan_covid.kd_dokter,dokter.nm_dokter,surat_keterangan_covid.nip,petugas.nama,surat_keterangan_covid.igm,"+
-                 "surat_keterangan_covid.igg,surat_keterangan_covid.sehat,surat_keterangan_covid.tidaksehat,surat_keterangan_covid.berlakumulai,"+
-                 "surat_keterangan_covid.berlakuselsai from surat_keterangan_covid inner join reg_periksa on surat_keterangan_covid.no_rawat=reg_periksa.no_rawat "+
+                 "select surat_keterangan_isolasi.no_surat,surat_keterangan_isolasi.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,"+
+                 "surat_keterangan_isolasi.kd_dokter,dokter.nm_dokter,surat_keterangan_isolasi.nip,petugas.nama,surat_keterangan_isolasi.status,"+
+                 "surat_keterangan_isolasi.telepon,surat_keterangan_isolasi.tanggal_surat,surat_keterangan_isolasi.ket from surat_keterangan_isolasi inner join reg_periksa on surat_keterangan_isolasi.no_rawat=reg_periksa.no_rawat "+
                  "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                 "inner join dokter on surat_keterangan_covid.kd_dokter=dokter.kd_dokter "+
-                 "inner join petugas on surat_keterangan_covid.nip=petugas.nip "+
-                 "where surat_keterangan_covid.berlakumulai between ? and ? "+
-                 (TCari.getText().trim().equals("")?"":"and (surat_keterangan_covid.no_surat like ? or dokter.nm_dokter like ? or pasien.no_rkm_medis like ? or "+
-                 "pasien.nm_pasien like ? or petugas.nama like ? or surat_keterangan_covid.no_rawat like ?)")+" order by surat_keterangan_covid.no_surat");
+                 "inner join dokter on surat_keterangan_isolasi.kd_dokter=dokter.kd_dokter "+
+                 "inner join petugas on surat_keterangan_isolasi.nip=petugas.nip "+
+                 "where surat_keterangan_isolasi.tanggal_surat between ? and ? "+
+                 (TCari.getText().trim().equals("")?"":"and (surat_keterangan_isolasi.no_surat like ? or dokter.nm_dokter like ? or pasien.no_rkm_medis like ? or "+
+                 "pasien.nm_pasien like ? or petugas.nama like ? or surat_keterangan_isolasi.no_rawat like ?)")+" order by surat_keterangan_isolasi.no_surat");
             try {
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
@@ -1101,9 +1144,8 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
                     tabMode.addRow(new String[]{
                         rs.getString("no_surat"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),rs.getString("kd_dokter"),rs.getString("nm_dokter"),
-                        rs.getString("nip"),rs.getString("nama"),rs.getString("igm"),rs.getString("igg"),
-                        rs.getString("sehat"),rs.getString("tidaksehat"),rs.getString("berlakumulai"),
-                        rs.getString("berlakuselsai")
+                        rs.getString("nip"),rs.getString("nama"),rs.getString("status"),rs.getString("telepon"),
+                        rs.getString("tanggal_surat"),rs.getString("ket")
                     });
                 }
             } catch (Exception e) {
@@ -1162,6 +1204,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         DTPCari1.setDate(tgl1);
         KdDok.setText(Kdokter);        
         TDokter.setText(NmDokter);
+        Keterangan.setText("HAI INI TESTSADKASSS");
 
         isRawat();
         isPsien(); 
