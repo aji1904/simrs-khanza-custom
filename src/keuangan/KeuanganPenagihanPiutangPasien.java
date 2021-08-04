@@ -168,7 +168,7 @@ public final class KeuanganPenagihanPiutangPasien extends javax.swing.JDialog {
         }
         tbBelumDitagihkan.setDefaultRenderer(Object.class, new WarnaTable());
 
-        NoPenagihan.setDocument(new batasInput((byte)17).getKata(NoPenagihan));
+        NoPenagihan.setDocument(new batasInput((byte)30).getKata(NoPenagihan));
         Catatan.setDocument(new batasInput((int)100).getKata(Catatan));
         Ditujukan.setDocument(new batasInput((int)150).getKata(Ditujukan));
         TCari.setDocument(new batasInput((int)100).getKata(TCari));

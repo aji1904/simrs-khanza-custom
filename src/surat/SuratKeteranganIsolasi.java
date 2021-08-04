@@ -97,12 +97,16 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             }else if(i==11){
                 column.setPreferredWidth(100);
             }else if(i==12){
+                column.setPreferredWidth(100);
+            }else if(i==13){
+                column.setPreferredWidth(100);
+            }else if(i==14){
                 column.setPreferredWidth(300);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
         
-        NoSurat.setDocument(new batasInput((byte)17).getKata(NoSurat));
+        NoSurat.setDocument(new batasInput((byte)30).getKata(NoSurat));
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));      
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));           
         if(koneksiDB.CARICEPAT().equals("aktif")){
@@ -1128,7 +1132,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
                  "where surat_keterangan_isolasi.tanggal_surat between ? and ? "+
                  (TCari.getText().trim().equals("")?"":"and (surat_keterangan_isolasi.no_surat like ? or dokter.nm_dokter like ? or pasien.no_rkm_medis like ? or "+
                  "pasien.nm_pasien like ? or petugas.nama like ? or surat_keterangan_isolasi.no_rawat like ?)")+" order by surat_keterangan_isolasi.no_surat");
-            try {
+            try {   
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
                 if(!TCari.getText().trim().equals("")){
@@ -1204,7 +1208,12 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         DTPCari1.setDate(tgl1);
         KdDok.setText(Kdokter);        
         TDokter.setText(NmDokter);
-        Keterangan.setText("HAI INI TESTSADKASSS");
+        Keterangan.setText("dan mengalami perbaikan secara klinis. Maka yang bersangkutan tetap perlu melakukan isolasi mandiri di rumah selama 3 hari.\n" +
+            "Selama pasien menjalani isolasi mandiri di rumah, maka yang bersangkutan perlu mengikuti ketentuan sebagai berikut:\n" +
+            "1.Tetap dirumah dengan menetapkan Perilaku Hidup Bersih dan Sehat (PHBS) yaitu cuci tangan dengan sabun, istirahat yang cukup, banyak makan sayur dan buah dan tidak merokok.\n" +
+            "2.Dilarang pergi bekerja atau ke tempat umum\n" +
+            "3.Membatasi dan mengurangi kontak dengan anggota keluarga, selalu memakai masker dan batas jarak minimal 1 (satu) meter pada saat berbicara dengan anggota keluarga\n" +
+            "Lakukan pembersihan rumah secara rutin dengan cairan desinfektan, terutama daerah yang sering disentuh.");
 
         isRawat();
         isPsien(); 
