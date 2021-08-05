@@ -33,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariDokter;
 import kepegawaian.DlgCariPetugas;
+import simrskhanza.DlgPasien;
 
 
 /**
@@ -70,7 +71,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 15; i++) {
+        for (i = 0; i < 12; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(105);
@@ -95,12 +96,6 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             }else if(i==10){
                 column.setPreferredWidth(100);
             }else if(i==11){
-                column.setPreferredWidth(100);
-            }else if(i==12){
-                column.setPreferredWidth(100);
-            }else if(i==13){
-                column.setPreferredWidth(100);
-            }else if(i==14){
                 column.setPreferredWidth(300);
             }
         }
@@ -196,7 +191,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnCetakSuratCovid = new javax.swing.JMenuItem();
+        MnCetakSuratIsolasi = new javax.swing.JMenuItem();
         buttonGroup1 = new javax.swing.ButtonGroup();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -204,7 +199,6 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
-        BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
         BtnPrint = new widget.Button();
@@ -245,23 +239,24 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         KdPetugas = new widget.TextBox();
         jLabel9 = new widget.Label();
         jLabel10 = new widget.Label();
+        btnDokter1 = new widget.Button();
         ChkInput = new widget.CekBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnCetakSuratCovid.setBackground(new java.awt.Color(250, 250, 250));
-        MnCetakSuratCovid.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCetakSuratCovid.setForeground(new java.awt.Color(50, 50, 50));
-        MnCetakSuratCovid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCetakSuratCovid.setText("Cetak Surat Keterangan Covid");
-        MnCetakSuratCovid.setName("MnCetakSuratCovid"); // NOI18N
-        MnCetakSuratCovid.setPreferredSize(new java.awt.Dimension(200, 26));
-        MnCetakSuratCovid.addActionListener(new java.awt.event.ActionListener() {
+        MnCetakSuratIsolasi.setBackground(new java.awt.Color(250, 250, 250));
+        MnCetakSuratIsolasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakSuratIsolasi.setForeground(new java.awt.Color(50, 50, 50));
+        MnCetakSuratIsolasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCetakSuratIsolasi.setText("Cetak Surat Keterangan Isolasi");
+        MnCetakSuratIsolasi.setName("MnCetakSuratIsolasi"); // NOI18N
+        MnCetakSuratIsolasi.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnCetakSuratIsolasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakSuratCovidActionPerformed(evt);
+                MnCetakSuratIsolasiActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(MnCetakSuratCovid);
+        jPopupMenu1.add(MnCetakSuratIsolasi);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -316,23 +311,6 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         BtnSimpan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 BtnSimpanKeyPressed(evt);
-            }
-        });
-
-        BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
-        BtnBatal.setText("Baru");
-        BtnBatal.setToolTipText("Alt+B");
-        BtnBatal.setName("BtnBatal"); // NOI18N
-        BtnBatal.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnBatal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBatalActionPerformed(evt);
-            }
-        });
-        BtnBatal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnBatalKeyPressed(evt);
             }
         });
 
@@ -426,11 +404,9 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         panelGlass8Layout.setHorizontalGroup(
             panelGlass8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGlass8Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(97, 97, 97)
                 .addComponent(BtnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(BtnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addGap(18, 18, 18)
                 .addComponent(BtnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(BtnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -446,9 +422,9 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             .addGroup(panelGlass8Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addGroup(panelGlass8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelGlass8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BtnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BtnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnAll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -467,7 +443,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2021" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -481,7 +457,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2021" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -596,7 +572,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         TNoRM.setBounds(242, 10, 111, 23);
 
         Tanggal_surat.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2021" }));
+        Tanggal_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2021" }));
         Tanggal_surat.setDisplayFormat("dd-MM-yyyy");
         Tanggal_surat.setName("Tanggal_surat"); // NOI18N
         Tanggal_surat.setOpaque(false);
@@ -731,6 +707,23 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         FormInput.add(jLabel10);
         jLabel10.setBounds(0, 130, 95, 23);
 
+        btnDokter1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDokter1.setMnemonic('2');
+        btnDokter1.setToolTipText("Alt+2");
+        btnDokter1.setName("btnDokter1"); // NOI18N
+        btnDokter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDokter1ActionPerformed(evt);
+            }
+        });
+        btnDokter1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnDokter1KeyPressed(evt);
+            }
+        });
+        FormInput.add(btnDokter1);
+        btnDokter1.setBounds(390, 100, 28, 23);
+
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
         internalFrame1.add(PanelInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 16, 1300, 240));
@@ -808,21 +801,8 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
-    private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
-        emptTeks();
-        ChkInput.setSelected(true);
-        isForm(); 
-        
-}//GEN-LAST:event_BtnBatalActionPerformed
-
-    private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            emptTeks();
-        }else{Valid.pindah(evt, BtnSimpan, BtnHapus);}
-}//GEN-LAST:event_BtnBatalKeyPressed
-
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Valid.hapusTable(tabMode,NoSurat,"surat_keterangan_covid","no_surat");
+        Valid.hapusTable(tabMode,NoSurat,"surat_keterangan_isolasi","no_surat");
         tampil();
         emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
@@ -831,7 +811,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnHapusActionPerformed(null);
         }else{
-            Valid.pindah(evt, BtnBatal, BtnEdit);
+//            Valid.pindah(evt, BtnBatal, BtnEdit);
         }
 }//GEN-LAST:event_BtnHapusKeyPressed
 
@@ -846,8 +826,8 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"Petugas");
         }else{   
             if(tbObat.getSelectedRow()!= -1){
-                if(Sequel.mengedittf("surat_keterangan_isolasi","no_surat=?","no_surat=?,no_rawat=?,kd_dokter=?,nip=?,status=?,tgl_surat=?,telepon=?,ket=?",7,new String[]{
-                    NoSurat.getText(),TNoRw.getText(),KdDok.getText(),Valid.SetTgl(Tanggal_surat.getSelectedItem()+""),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
+                if(Sequel.mengedittf("surat_keterangan_isolasi","no_surat=?","no_surat=?,no_rawat=?,kd_dokter=?,nip=?,status=?,telepon=?,tanggal_surat=?,ket=?",9,new String[]{
+                    NoSurat.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),status.getSelectedItem().toString(),telepon.getText(),Valid.SetTgl(Tanggal_surat.getSelectedItem()+""),Keterangan.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
                 })==true){
                     tampil();
                     emptTeks();
@@ -878,7 +858,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         if(tabMode.getRowCount()==0){
             JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            BtnBatal.requestFocus();
+//            BtnBatal.requestFocus();
         }else if(tabMode.getRowCount()!=0){
             Map<String, Object> param = new HashMap<>(); 
             param.put("namars",akses.getnamars());
@@ -985,7 +965,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
 //        Valid.pindah(evt,NoSurat,TanggalAkhir);
     }//GEN-LAST:event_Tanggal_suratKeyPressed
 
-    private void MnCetakSuratCovidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratCovidActionPerformed
+    private void MnCetakSuratIsolasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratIsolasiActionPerformed
         if(TPasien.getText().trim().equals("")){
             JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
         }else{
@@ -999,7 +979,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
                 param.put("emailrs",akses.getemailrs());  
                 param.put("logo",Sequel.cariGambar("select logo from setting")); 
                 param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdDok.getText())); 
-//                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdPetugas.getText())); 
+                param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdPetugas.getText())); 
                 Valid.MyReportqry("rptSuratKeteranganCovid.jasper","report","::[ Surat Keterangan Covid ]::",
                             "select surat_keterangan_covid.no_surat,surat_keterangan_covid.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,spesialis.nm_sps,"+
                             "surat_keterangan_covid.kd_dokter,dokter.nm_dokter,surat_keterangan_covid.nip,petugas.nama,surat_keterangan_covid.igm,pasien.tgl_lahir,"+
@@ -1016,7 +996,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
                             "where surat_keterangan_covid.no_surat='"+NoSurat.getText()+"' ",param);
                 this.setCursor(Cursor.getDefaultCursor());  
        }
-    }//GEN-LAST:event_MnCetakSuratCovidActionPerformed
+    }//GEN-LAST:event_MnCetakSuratIsolasiActionPerformed
 
     private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterActionPerformed
         dokter.isCek();
@@ -1049,6 +1029,14 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPetugasKeyPressed
 
+    private void btnDokter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokter1ActionPerformed
+       
+    }//GEN-LAST:event_btnDokter1ActionPerformed
+
+    private void btnDokter1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDokter1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDokter1KeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1067,7 +1055,6 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
-    private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
@@ -1082,7 +1069,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     private widget.TextBox KdPetugas;
     private javax.swing.JTextArea Keterangan;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnCetakSuratCovid;
+    private javax.swing.JMenuItem MnCetakSuratIsolasi;
     private widget.TextBox NoSurat;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
@@ -1094,6 +1081,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     private widget.TextBox TPetugas;
     private widget.Tanggal Tanggal_surat;
     private widget.Button btnDokter;
+    private widget.Button btnDokter1;
     private widget.Button btnPetugas;
     private javax.swing.ButtonGroup buttonGroup1;
     private widget.InternalFrame internalFrame1;
@@ -1169,14 +1157,17 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
-        TNoRw.setText("");
-        TNoRM.setText("");
-        TPasien.setText("");
+//        TNoRw.setText("");
+//        TNoRM.setText("");
+//        TPasien.setText("");
+        telepon.setText("");
         NoSurat.setText("");
+        KdPetugas.setText("");
+        TPetugas.setText("");
         status.setSelectedIndex(0);
         Tanggal_surat.setDate(new Date());
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,3),signed)),0) from surat_keterangan_covid where berlakumulai='"+Valid.SetTgl(Tanggal_surat.getSelectedItem()+"")+"' ",
-                "SKRT"+Tanggal_surat.getSelectedItem().toString().substring(6,10)+Tanggal_surat.getSelectedItem().toString().substring(3,5)+Tanggal_surat.getSelectedItem().toString().substring(0,2),3,NoSurat); 
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,3),signed)),0) from surat_keterangan_isolasi where tanggal_surat='"+Valid.SetTgl(Tanggal_surat.getSelectedItem()+"")+"' ",
+                Tanggal_surat.getSelectedItem().toString().substring(0,2),3,NoSurat); 
         NoSurat.requestFocus();
     }
 
@@ -1189,8 +1180,12 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
             KdDok.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
             TDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            KdPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
+            TPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
             status.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
-            Valid.SetTgl(Tanggal_surat,tbObat.getValueAt(tbObat.getSelectedRow(),12).toString());
+            telepon.setText(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
+            Valid.SetTgl(Tanggal_surat,tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
+            Keterangan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
         }
     }
 
@@ -1204,16 +1199,17 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     
     public void setNoRm(String norwt, Date tgl1, String Kdokter,String NmDokter) {
         TNoRw.setText(norwt);
-        TCari.setText(norwt);
+//        TCari.setText(norwt);
         DTPCari1.setDate(tgl1);
         KdDok.setText(Kdokter);        
         TDokter.setText(NmDokter);
-        Keterangan.setText("dan mengalami perbaikan secara klinis. Maka yang bersangkutan tetap perlu melakukan isolasi mandiri di rumah selama 3 hari.\n" +
-            "Selama pasien menjalani isolasi mandiri di rumah, maka yang bersangkutan perlu mengikuti ketentuan sebagai berikut:\n" +
+        Keterangan.setText("dan mengalami perbaikan secara klinis, maka yang bersangkutan tetap perlu melakukan isolasi mandiri di rumah selama  7 hari.\n\n" +
+            "Selama pasien menjalani isolasi mandiri di rumah, maka yang bersangkutan perlu mengikuti ketentuan sebagai berikut:\n\n" +
             "1.Tetap dirumah dengan menetapkan Perilaku Hidup Bersih dan Sehat (PHBS) yaitu cuci tangan dengan sabun, istirahat yang cukup, banyak makan sayur dan buah dan tidak merokok.\n" +
             "2.Dilarang pergi bekerja atau ke tempat umum\n" +
             "3.Membatasi dan mengurangi kontak dengan anggota keluarga, selalu memakai masker dan batas jarak minimal 1 (satu) meter pada saat berbicara dengan anggota keluarga\n" +
-            "Lakukan pembersihan rumah secara rutin dengan cairan desinfektan, terutama daerah yang sering disentuh.");
+            "4.Lakukan pembersihan rumah secara rutin dengan cairan desinfektan, terutama daerah yang sering disentuh.\n\n" +
+            "Demikian surat keterangan ini dibuat, semoga dapat dipergunakan sebagaimana mestinya.");
 
         isRawat();
         isPsien(); 

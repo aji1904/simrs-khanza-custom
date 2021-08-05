@@ -97,7 +97,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
         
-        NoSurat.setDocument(new batasInput((byte)17).getKata(NoSurat));
+        NoSurat.setDocument(new batasInput((byte)30).getKata(NoSurat));
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));      
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));           
         if(koneksiDB.CARICEPAT().equals("aktif")){
@@ -1118,8 +1118,8 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
             TDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
             KdPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
             TPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
-            hasil_rapid.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
-            Valid.SetTgl(Tanggal_hasil,tbObat.getValueAt(tbObat.getSelectedRow(),13).toString());  
+            hasil_rapid.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
+            Valid.SetTgl(Tanggal_hasil,tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());  
         }
     }
 
