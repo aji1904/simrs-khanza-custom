@@ -744,6 +744,7 @@ import ziscsr.ZISUkuranRumahPenerimaDankes;
  * @author perpustakaan
  */
 public class frmUtama extends javax.swing.JFrame {
+
     private final Connection koneksi=koneksiDB.condb();
     private final sekuel Sequel=new sekuel();
     private final validasi Valid=new validasi();
@@ -762,10 +763,12 @@ public class frmUtama extends javax.swing.JFrame {
     private frmUtama() {
         super();
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
+
         initKhanza();
         setIconImage(new ImageIcon(super.getClass().getResource("/picture/yaski24.png")).getImage());
         
-        this.setSize(screen.width,screen.height);
+//        this.setSize(screen.width,screen.height);
         edAdmin.setDocument(new batasInput((byte)100).getKata(edAdmin));
         edPwd.setDocument(new batasInput((byte)100).getKata(edPwd));
         DlgLogin.setSize(299,180);
@@ -1647,7 +1650,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19/07/2021" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/08/2021" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
