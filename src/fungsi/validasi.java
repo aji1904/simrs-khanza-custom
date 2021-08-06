@@ -433,6 +433,20 @@ public final class validasi {
             
         }
     }
+    
+    public void hapusTable2(DefaultTableModel tabMode,JTextField nilai_field,JTextField nilai_field2,String table,String field) {
+        if(tabMode.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis...!!!!");
+            nilai_field.requestFocus();
+        }else if(nilai_field.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus.\nKlik data pada table untuk memilih...!!!!");
+        }else if(! nilai_field.getText().trim().equals("")){            
+            sek.meghapus(table,field,nilai_field.getText()+nilai_field2.getText());            
+            
+        }
+    }
+    
+    
 
     public void hapusTable(DefaultTableModel tabMode,JComboBox nilai_field,String table,String field) {
         if(tabMode.getRowCount()==0){

@@ -174,7 +174,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             public void windowDeactivated(WindowEvent e) {}
         });
         
-        ChkInput.setSelected(false);
+//        ChkInput.setSelected(false);
         isForm();
     }
         
@@ -242,7 +242,6 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         jLabel10 = new widget.Label();
         btnDokter1 = new widget.Button();
         NoSurat1 = new widget.TextBox();
-        ChkInput = new widget.CekBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -289,7 +288,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbObat);
 
-        internalFrame1.add(Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 288, 1300, 216));
+        internalFrame1.add(Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 264, 1300, 240));
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -445,7 +444,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2021" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -459,7 +458,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2021" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -574,7 +573,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         TNoRM.setBounds(242, 10, 111, 23);
 
         Tanggal_surat.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2021" }));
+        Tanggal_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2021" }));
         Tanggal_surat.setDisplayFormat("dd-MM-yyyy");
         Tanggal_surat.setName("Tanggal_surat"); // NOI18N
         Tanggal_surat.setOpaque(false);
@@ -740,27 +739,6 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
 
         internalFrame1.add(PanelInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 16, 1300, 240));
 
-        ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('I');
-        ChkInput.setText(".: Input Data");
-        ChkInput.setToolTipText("Alt+I");
-        ChkInput.setBorderPainted(true);
-        ChkInput.setBorderPaintedFlat(true);
-        ChkInput.setFocusable(false);
-        ChkInput.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ChkInput.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkInput.setName("ChkInput"); // NOI18N
-        ChkInput.setPreferredSize(new java.awt.Dimension(192, 20));
-        ChkInput.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkInputActionPerformed(evt);
-            }
-        });
-        internalFrame1.add(ChkInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 262, 1300, -1));
-
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
         internalFrame1.getAccessibleContext().setAccessibleName("::[ Data Surat Keterangan Isolasi ]::");
         internalFrame1.getAccessibleContext().setAccessibleDescription("");
@@ -816,8 +794,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Gabung = NoSurat.getText()+NoSurat1.getText();
-        Valid.hapusTable(tabMode,Gabung,"surat_keterangan_isolasi","no_surat");
+        Valid.hapusTable2(tabMode,NoSurat,NoSurat1,"surat_keterangan_isolasi","no_surat");
         tampil();
         emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
@@ -957,10 +934,6 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_tbObatMouseClicked
 
-    private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkInputActionPerformed
-       isForm();
-    }//GEN-LAST:event_ChkInputActionPerformed
-
     private void tbObatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbObatKeyReleased
         if(tabMode.getRowCount()!=0){
             if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
@@ -997,9 +970,9 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
                 param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdPetugas.getText())); 
                 Valid.MyReportqry("rptSuratKeteranganIsolasi.jasper","report","::[ Surat Keterangan Isolasi ]::",
                             "select surat_keterangan_isolasi.no_surat,surat_keterangan_isolasi.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,spesialis.nm_sps,"+
-                            "surat_keterangan_isolasi.kd_dokter,dokter.nm_dokter,surat_keterangan_isolasi.nip,petugas.nama,surat_keterangan_isolasi.status,pasien.tgl_lahir,"+
+                            "surat_keterangan_isolasi.kd_dokter,dokter.nm_dokter,surat_keterangan_isolasi.nip,petugas.nama,surat_keterangan_isolasi.status,pasien.tgl_lahir,pasien.no_ktp,"+
                             "surat_keterangan_isolasi.telepon,surat_keterangan_isolasi.ket,pasien.jk,"+
-                            "surat_keterangan_isolasi.tanggal_surat,pasien.pekerjaan,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat "+
+                            "sf_formatTanggal(surat_keterangan_isolasi.tanggal_surat) as tanggal_surat,pasien.pekerjaan,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat "+
                             "from surat_keterangan_isolasi inner join reg_periksa on surat_keterangan_isolasi.no_rawat=reg_periksa.no_rawat "+
                             "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join dokter on surat_keterangan_isolasi.kd_dokter=dokter.kd_dokter "+
@@ -1080,7 +1053,6 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
-    private widget.CekBox ChkInput;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
@@ -1252,21 +1224,21 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
 
         isRawat();
         isPsien(); 
-        ChkInput.setSelected(true);
+//        ChkInput.setSelected(true);
         isForm();
     }
     private void isForm(){
-        if(ChkInput.isSelected()==true){
-            ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH,188));
-            FormInput.setVisible(true);      
-            ChkInput.setVisible(true);
-        }else if(ChkInput.isSelected()==false){           
-            ChkInput.setVisible(false);            
-            PanelInput.setPreferredSize(new Dimension(WIDTH,20));
-            FormInput.setVisible(false);      
-            ChkInput.setVisible(true);
-        }
+//        if(ChkInput.isSelected()==true){
+//            ChkInput.setVisible(false);
+//            PanelInput.setPreferredSize(new Dimension(WIDTH,188));
+//            FormInput.setVisible(true);      
+//            ChkInput.setVisible(true);
+//        }else if(ChkInput.isSelected()==false){           
+////            ChkInput.setVisible(false);            
+//            PanelInput.setPreferredSize(new Dimension(WIDTH,20));
+//            FormInput.setVisible(false);      
+////            ChkInput.setVisible(true);
+//        }
     }
        
     
