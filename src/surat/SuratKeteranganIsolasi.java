@@ -48,7 +48,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private int i=0;
-    private String tgl;
+    private String Gabung;
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     /** Creates new form DlgRujuk
@@ -816,7 +816,8 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Valid.hapusTable(tabMode,NoSurat,"surat_keterangan_isolasi","no_surat");
+        Gabung = NoSurat.getText()+NoSurat1.getText();
+        Valid.hapusTable(tabMode,Gabung,"surat_keterangan_isolasi","no_surat");
         tampil();
         emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
@@ -1185,15 +1186,17 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         TPetugas.setText("");
         status.setSelectedIndex(0);
         Tanggal_surat.setDate(new Date());
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,3),signed)),0) from surat_keterangan_isolasi where tanggal_surat='"+Valid.SetTgl(Tanggal_surat.getSelectedItem()+"")+"' ",
-                Tanggal_surat.getSelectedItem().toString().substring(0,0),3,NoSurat); 
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,4),signed)),0) from surat_keterangan_isolasi where tanggal_surat='"+Valid.SetTgl(Tanggal_surat.getSelectedItem().toString().substring(6,10)+"")+"' ",
+                Tanggal_surat.getSelectedItem().toString().substring(0,0),4,NoSurat); 
         NoSurat.requestFocus();
     }
+    
 
  
     private void getData() {
         if(tbObat.getSelectedRow()!= -1){
-            NoSurat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
+            NoSurat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().substring(0,4));
+            NoSurat1.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().substring(4,tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().length()));
             TNoRw.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
             TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
             TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
