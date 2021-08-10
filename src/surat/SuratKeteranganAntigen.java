@@ -60,7 +60,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         setSize(628,674);
         
         tabMode=new DefaultTableModel(null,new Object[]{
-            "No.Surat","No.Rawat","No.RM.","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","NIP",
+            "No.Surat","Kode Surat","No.Rawat","No.RM.","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","NIP",
             "Petugas","Hasil Rapid Antigen","Tanggal Hasil"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -71,7 +71,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 11; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(105);
@@ -92,6 +92,8 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
             }else if(i==8){
                 column.setPreferredWidth(150);
             }else if(i==9){
+                column.setPreferredWidth(81);
+            }else if(i==10){
                 column.setPreferredWidth(81);
             }
         }
@@ -231,6 +233,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         btnPetugas = new widget.Button();
         jLabel25 = new widget.Label();
         hasil_rapid = new widget.ComboBox();
+        NoSurat1 = new widget.TextBox();
         ChkInput = new widget.CekBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
@@ -239,7 +242,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         MnCetakSuratCovid.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakSuratCovid.setForeground(new java.awt.Color(50, 50, 50));
         MnCetakSuratCovid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCetakSuratCovid.setText("Cetak Surat Keterangan Covid");
+        MnCetakSuratCovid.setText("Cetak Surat Keterangan Antigen");
         MnCetakSuratCovid.setName("MnCetakSuratCovid"); // NOI18N
         MnCetakSuratCovid.setPreferredSize(new java.awt.Dimension(200, 26));
         MnCetakSuratCovid.addActionListener(new java.awt.event.ActionListener() {
@@ -427,7 +430,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2021" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -441,7 +444,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2021" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -516,7 +519,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
             }
         });
         FormInput.add(NoSurat);
-        NoSurat.setBounds(99, 40, 180, 23);
+        NoSurat.setBounds(100, 40, 60, 23);
 
         jLabel4.setText("No.Rawat :");
         jLabel4.setName("jLabel4"); // NOI18N
@@ -545,7 +548,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         TPasien.setBounds(355, 10, 365, 23);
 
         Tanggal_hasil.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal_hasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2021" }));
+        Tanggal_hasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2021" }));
         Tanggal_hasil.setDisplayFormat("dd-MM-yyyy");
         Tanggal_hasil.setName("Tanggal_hasil"); // NOI18N
         Tanggal_hasil.setOpaque(false);
@@ -666,6 +669,16 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         FormInput.add(hasil_rapid);
         hasil_rapid.setBounds(620, 70, 100, 23);
 
+        NoSurat1.setHighlighter(null);
+        NoSurat1.setName("NoSurat1"); // NOI18N
+        NoSurat1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NoSurat1KeyPressed(evt);
+            }
+        });
+        FormInput.add(NoSurat1);
+        NoSurat1.setBounds(170, 40, 180, 23);
+
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
@@ -725,8 +738,8 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         }else if(KdPetugas.getText().trim().equals("")||TPetugas.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"Petugas");
         }else{
-            if(Sequel.menyimpantf("surat_keterangan_antigen","?,?,?,?,?,?","No.Surat",6,new String[]{
-                    NoSurat.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),hasil_rapid.getSelectedItem().toString(),
+            if(Sequel.menyimpantf("surat_keterangan_antigen","?,?,?,?,?,?,?","No.Surat",7,new String[]{
+                    NoSurat.getText(),NoSurat1.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),hasil_rapid.getSelectedItem().toString(),
                     Valid.SetTgl(Tanggal_hasil.getSelectedItem()+"")
                 })==true){
                 tampil();
@@ -757,7 +770,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Valid.hapusTable(tabMode,NoSurat,"surat_keterangan_antigen","no_surat");
+        Valid.hapusTable2(tabMode,NoSurat,NoSurat1,"surat_keterangan_antigen","no_surat","kode_surat");
         tampil();
         emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
@@ -781,8 +794,8 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"Petugas");
         }else{   
             if(tbObat.getSelectedRow()!= -1){
-                if(Sequel.mengedittf("surat_keterangan_antigen","no_surat=?","no_surat=?,no_rawat=?,kd_dokter=?,nip=?,hasil_rapid=?,tanggal_hasil=?",7,new String[]{
-                    NoSurat.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),hasil_rapid.getSelectedItem().toString(),
+                if(Sequel.mengedittf("surat_keterangan_antigen","no_surat=?","no_surat=?,kode_surat=?,no_rawat=?,kd_dokter=?,nip=?,hasil_rapid=?,tanggal_hasil=?",8,new String[]{
+                    NoSurat.getText(),NoSurat1.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),hasil_rapid.getSelectedItem().toString(),
                     Valid.SetTgl(Tanggal_hasil.getSelectedItem()+""),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
                 })==true){
                     tampil();
@@ -935,10 +948,10 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
                 param.put("logo",Sequel.cariGambar("select logo from setting")); 
                 param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdDok.getText())); 
                 param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdPetugas.getText())); 
-                Valid.MyReportqry("rptSuratKeteranganAntigen1.jasper","report","::[ Surat Keterangan Antigen ]::",
-                            "select surat_keterangan_antigen.no_surat,surat_keterangan_antigen.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.alamat,pasien.umur,"+
+                Valid.MyReportqry("rptSuratKeteranganAntigen.jasper","report","::[ Surat Keterangan Antigen ]::",
+                            "select concat(surat_keterangan_antigen.no_surat,surat_keterangan_antigen.kode_surat) as no_surat,surat_keterangan_antigen.no_rawat,pasien.no_rkm_medis,pasien.jk,pasien.nm_pasien,pasien.alamat,pasien.no_ktp,pasien.tgl_lahir,pasien.umur,"+
                             "surat_keterangan_antigen.kd_dokter,dokter.nm_dokter,dokter.no_ijn_praktek,surat_keterangan_antigen.nip,petugas.nama,"+
-                            "surat_keterangan_antigen.hasil_rapid,surat_keterangan_antigen.tanggal_hasil from surat_keterangan_antigen inner join reg_periksa on surat_keterangan_antigen.no_rawat=reg_periksa.no_rawat "+
+                            "surat_keterangan_antigen.hasil_rapid,spesialis.nm_sps, sf_formatTanggal(NOW()) as tgl_now,surat_keterangan_antigen.tanggal_hasil,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat from surat_keterangan_antigen inner join reg_periksa on surat_keterangan_antigen.no_rawat=reg_periksa.no_rawat "+
                             "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join dokter on surat_keterangan_antigen.kd_dokter=dokter.kd_dokter "+
                             "inner join petugas on surat_keterangan_antigen.nip=petugas.nip "+
@@ -981,6 +994,10 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_hasil_rapidActionPerformed
 
+    private void NoSurat1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoSurat1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoSurat1KeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1015,6 +1032,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCetakSuratCovid;
     private widget.TextBox NoSurat;
+    private widget.TextBox NoSurat1;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
@@ -1050,7 +1068,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try{
             ps=koneksi.prepareStatement(
-                "select surat_keterangan_antigen.no_surat,surat_keterangan_antigen.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.alamat,pasien.umur,"+
+                "select surat_keterangan_antigen.no_surat,surat_keterangan_antigen.kode_surat,surat_keterangan_antigen.kode_surat,surat_keterangan_antigen.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.alamat,pasien.umur,"+
                 "surat_keterangan_antigen.kd_dokter,dokter.nm_dokter,dokter.no_ijn_praktek,surat_keterangan_antigen.nip,petugas.nama,"+
                 "surat_keterangan_antigen.hasil_rapid,surat_keterangan_antigen.tanggal_hasil from surat_keterangan_antigen inner join reg_periksa on surat_keterangan_antigen.no_rawat=reg_periksa.no_rawat "+
                 "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
@@ -1073,7 +1091,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new String[]{
-                        rs.getString("no_surat"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),
+                        rs.getString("no_surat"),rs.getString("kode_surat"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),rs.getString("kd_dokter"),rs.getString("nm_dokter"),
                         rs.getString("nip"),rs.getString("nama"),rs.getString("hasil_rapid"),
                         rs.getString("tanggal_hasil")
@@ -1096,14 +1114,16 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
-        TNoRw.setText("");
-        TNoRM.setText("");
-        TPasien.setText("");
+//        TNoRw.setText("");
+//        TNoRM.setText("");
+//        TPasien.setText("");
         NoSurat.setText("");
+        NoSurat1.setText(Sequel.cariIsi("select CONCAT('/SUKET-ANTIGEN/BMJ/',toRoman(MONTH(NOW())),'/',YEAR(NOW())) as nosurat1"));     
+
         hasil_rapid.setSelectedIndex(0);
         Tanggal_hasil.setDate(new Date());
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,3),signed)),0) from surat_keterangan_antigen where tanggal_hasil='"+Valid.SetTgl(Tanggal_hasil.getSelectedItem()+"")+"' ",
-                "SKRT"+Tanggal_hasil.getSelectedItem().toString().substring(0,2),3,NoSurat); 
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,3),signed)),0) from surat_keterangan_antigen where tanggal_hasil like '"+Tanggal_hasil.getSelectedItem().toString().substring(6,10)+Tanggal_hasil.getSelectedItem().toString().substring(2,5)+"%' ",
+                Tanggal_hasil.getSelectedItem().toString().substring(0,0),3,NoSurat); 
         NoSurat.requestFocus();
     }
 
@@ -1111,15 +1131,16 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
     private void getData() {
         if(tbObat.getSelectedRow()!= -1){
             NoSurat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
-            TNoRw.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
-            TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
-            TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
-            KdDok.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
-            TDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
-            KdPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
-            TPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
-            hasil_rapid.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
-            Valid.SetTgl(Tanggal_hasil,tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());  
+            NoSurat1.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
+            TNoRw.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
+            TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
+            TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
+            KdDok.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            TDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
+            KdPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
+            TPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
+            hasil_rapid.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
+            Valid.SetTgl(Tanggal_hasil,tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());  
         }
     }
 
@@ -1131,11 +1152,12 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
         Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='"+TNoRM.getText()+"' ",TPasien);
     }
     
-    public void setNoRm(String norwt, Date tgl1, Date tgl2) {
+    public void setNoRm(String norwt, Date tgl1, String kd_dokter, String Nm_dokter) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         DTPCari1.setDate(tgl1);
-        DTPCari2.setDate(tgl2);
+        KdDok.setText(kd_dokter);
+        TDokter.setText(Nm_dokter);
         isRawat();
         isPsien(); 
         ChkInput.setSelected(true);

@@ -675,6 +675,7 @@ import surat.SuratCutiHamil;
 import surat.SuratIndeks;
 import surat.SuratKeluar;
 import surat.SuratKeteranganCovid;
+import surat.SuratKeteranganIsolasi;
 import surat.SuratKeteranganAntigen;
 import surat.SuratKeteranganRawatInap;
 import surat.SuratKeteranganSehat;
@@ -1650,7 +1651,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/08/2021" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09/08/2021" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6697,6 +6698,7 @@ public class frmUtama extends javax.swing.JFrame {
         setTitle("::[ Khanza SIMKES 2020 ]::");
         setBackground(new java.awt.Color(255, 254, 254));
         setIconImages(null);
+        setPreferredSize(new java.awt.Dimension(1024, 768));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentMoved(java.awt.event.ComponentEvent evt) {
                 formComponentMoved(evt);
@@ -16360,6 +16362,19 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnSuratKeteranganIsolasiActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SuratKeteranganIsolasi form=new SuratKeteranganIsolasi(this,false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     private void btnPemakaianAirTanahActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -17801,7 +17816,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnZISKamarMandiPenerimaDankes,btnZISDapurRumahPenerimaDankes,btnZISKursiRumahPenerimaDankes,btnZISKategoriPHBSPenerimaDankes,
             btnZISElektronikPenerimaDankes,btnZISTernakPenerimaDankes,btnZISJenisSimpananPenerimaDankes,btnPenilaianAwalRalanBayi,
             btnZISKategoriAsnafPenerimaDankes,btnMasterMasalahKeperawatanAnak,btnMasterImunisasi,btnZISPatologisPenerimaDankes,btnPCareCekKartu,
-            btnSuratBebasNarkoba,btnSuratKeteranganCovid,btnSuratKeteranganAntigen,btnPemakaianAirTanah,btnGrafikPemakaianAirTanahPerTanggal,btnGrafikPemakaianAirTanahPerBulan,
+            btnSuratBebasNarkoba,btnSuratKeteranganCovid,btnSuratKeteranganAntigen,btnSuratKeteranganIsolasi,btnPemakaianAirTanah,btnGrafikPemakaianAirTanahPerTanggal,btnGrafikPemakaianAirTanahPerBulan,
             btnLamaPelayananPoli,btnHemodialisa,btnGrafikHemodialisaPerTanggal,btnGrafikHemodialisaPerBulan,btnGrafikHemodialisaPerTahun,
             btnGrafikMeninggalPerBulan,btnLaporanTahunanIRJ,btnPerbaikanInventaris,btnSuratCutiHamil,btnPermintaanStokObatPasien,btnPemeliharaanInventaris,
             btnKlasifikasiPasienRanap,btnBulananKlasifikasiPasienRanap,btnHarianKlasifikasiPasienRanap,btnKlasifikasiPasienPerRuang,btnSOAPPerawatan,
@@ -21131,6 +21146,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getsurat_keterangan_covid()==true){
                 Panelmenu.add(btnSuratKeteranganAntigen);
+                jmlmenu++;
+            }
+            
+            if(akses.getsurat_keterangan_covid()==true){
+                Panelmenu.add(btnSuratKeteranganIsolasi);
                 jmlmenu++;
             }
             
@@ -24760,6 +24780,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         
         if(akses.getsurat_keterangan_covid()==true){
             Panelmenu.add(btnSuratKeteranganAntigen);
+            jmlmenu++;
+        }
+        
+        if(akses.getsurat_keterangan_covid()==true){
+            Panelmenu.add(btnSuratKeteranganIsolasi);
             jmlmenu++;
         }
         
@@ -29663,6 +29688,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }                
         }
         
+        if(akses.getsurat_keterangan_covid()==true){
+            if(btnSuratKeteranganIsolasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSuratKeteranganIsolasi);
+                jmlmenu++;
+            }                
+        }
+        
         if(akses.getsurat_keterangan_rawat_inap()==true){
             if(btnSuratKeteranganRawatInap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnSuratKeteranganRawatInap);
@@ -31805,6 +31837,14 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnSuratKeteranganAntigen.setName("btnSuratKeteranganAntigen"); 
         btnSuratKeteranganAntigen.setPreferredSize(new java.awt.Dimension(200, 90));
         btnSuratKeteranganAntigen.addActionListener(this::btnSuratKeteranganAntigenActionPerformed);
+        
+        btnSuratKeteranganIsolasi = new widget.ButtonBig();
+        btnSuratKeteranganIsolasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_Microscope-Scientific-Laboratory-Test-Chemistry_5958964.png"))); 
+        btnSuratKeteranganIsolasi.setText("Surat Keterangan Isolasi");
+        btnSuratKeteranganIsolasi.setIconTextGap(0);
+        btnSuratKeteranganIsolasi.setName("btnSuratKeteranganIsolasi"); 
+        btnSuratKeteranganIsolasi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratKeteranganIsolasi.addActionListener(this::btnSuratKeteranganIsolasiActionPerformed);
         
         btnPemakaianAirTanah = new widget.ButtonBig();
         btnPemakaianAirTanah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_Ecology_tap_water_2992443.png"))); 

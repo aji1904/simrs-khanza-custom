@@ -336,7 +336,7 @@ PADA KASUS KONFIRMASI COVID-19]]></text>
 				<textFieldExpression><![CDATA[$F{nm_sps}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="340" y="634" width="191" height="21" uuid="89a8b382-2293-49e7-a2e8-e56b9fb0038b"/>
+				<reportElement x="340" y="651" width="191" height="21" uuid="89a8b382-2293-49e7-a2e8-e56b9fb0038b"/>
 				<textElement textAlignment="Left">
 					<font fontName="Times New Roman" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -344,23 +344,15 @@ PADA KASUS KONFIRMASI COVID-19]]></text>
 				<text><![CDATA[RS Bunda Medika Jakabaring]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="340" y="720" width="190" height="19" uuid="1e66929e-0db8-4cc6-a0a7-1a1715a4eb8b"/>
+				<reportElement x="340" y="742" width="190" height="19" uuid="1e66929e-0db8-4cc6-a0a7-1a1715a4eb8b"/>
 				<textElement textAlignment="Left">
 					<font fontName="Times New Roman" size="12"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="339" y="740" width="194" height="1" uuid="c51e3f23-6c3b-4bdb-81fe-d94f34f88f3d">
-					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
 			<textField pattern="dd MMMM yyyy">
-				<reportElement x="340" y="619" width="190" height="15" uuid="7167fbf4-eb28-48bb-afe6-fb682e3fe056"/>
+				<reportElement x="340" y="636" width="190" height="15" uuid="7167fbf4-eb28-48bb-afe6-fb682e3fe056"/>
 				<textElement textAlignment="Left">
 					<font fontName="Times New Roman" size="12"/>
 					<paragraph lineSpacing="Single"/>

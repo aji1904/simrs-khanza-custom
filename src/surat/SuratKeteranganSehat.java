@@ -54,8 +54,8 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
         setSize(628,674);
         
         tabMode=new DefaultTableModel(null,new Object[]{
-            "No.Surat","No.Rawat","No.R.M.","Nama Pasien","Tanggal","BB","TB",
-            "Tensi","Suhu","Buta Warna","Keperluan","Kesimpulan"
+            "No.Surat","Kode Surat","No.Rawat","No.R.M.","Nama Pasien","Tanggal","BB","TB",
+            "Tensi","Suhu","Buta Warna","Nadi","Nafas","Keperluan","Kesimpulan"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -65,37 +65,44 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 12; i++) {
+        for (i = 0; i < 15; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(105);
-            }else if(i==1){
+                column.setPreferredWidth(50);
+            }else if (i==1){
                 column.setPreferredWidth(105);
             }else if(i==2){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(105);
             }else if(i==3){
-                column.setPreferredWidth(170);
+                column.setPreferredWidth(70);
             }else if(i==4){
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(170);
             }else if(i==5){
-                column.setPreferredWidth(35);
+                column.setPreferredWidth(65);
             }else if(i==6){
                 column.setPreferredWidth(35);
             }else if(i==7){
-                column.setPreferredWidth(50);
-            }else if(i==8){
                 column.setPreferredWidth(35);
+            }else if(i==8){
+                column.setPreferredWidth(50);
             }else if(i==9){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(35);
             }else if(i==10){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(35);
             }else if(i==11){
+                column.setPreferredWidth(35);
+            }else if(i==12){
+                column.setPreferredWidth(70);
+            }else if(i==13){
+                column.setPreferredWidth(150);
+            }else if(i==14){
                 column.setPreferredWidth(80);
            }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
         
-        NoSurat.setDocument(new batasInput((byte)17).getKata(NoSurat));
+        NoSurat.setDocument(new batasInput((byte)10).getKata(NoSurat));
+        NoSurat1.setDocument(new batasInput((byte)30).getKata(NoSurat));
         Bb.setDocument(new batasInput((byte)3).getKata(Bb));
         Tb.setDocument(new batasInput((byte)3).getKata(Tb));
         Tensi.setDocument(new batasInput((byte)8).getKata(Tensi));
@@ -194,6 +201,14 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
         CmbKesimpulan = new widget.ComboBox();
         TanggalSurat = new widget.Tanggal();
         jLabel16 = new widget.Label();
+        NoSurat1 = new widget.TextBox();
+        Nadi = new widget.TextBox();
+        jLabel8 = new widget.Label();
+        jLabel9 = new widget.Label();
+        nafas = new widget.TextBox();
+        jLabel10 = new widget.Label();
+        jLabel11 = new widget.Label();
+        jLabel12 = new widget.Label();
         ChkInput = new widget.CekBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
@@ -233,13 +248,21 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Surat Keterangan Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
-        internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
+        internalFrame1.setLayout(new java.awt.BorderLayout());
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
-        Scroll.setPreferredSize(new java.awt.Dimension(452, 200));
+        Scroll.setPreferredSize(new java.awt.Dimension(400, 200));
 
         tbObat.setAutoCreateRowSorter(true);
+        tbObat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbObat.setComponentPopupMenu(jPopupMenu1);
         tbObat.setName("tbObat"); // NOI18N
@@ -404,7 +427,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2021" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -418,7 +441,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2021" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -473,9 +496,10 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 126));
+        PanelInput.setPreferredSize(new java.awt.Dimension(300, 126));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
+        FormInput.setMinimumSize(new java.awt.Dimension(0, 165));
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(100, 165));
         FormInput.setLayout(null);
@@ -483,7 +507,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
         jLabel3.setText("Keperluan :");
         jLabel3.setName("jLabel3"); // NOI18N
         FormInput.add(jLabel3);
-        jLabel3.setBounds(299, 70, 70, 23);
+        jLabel3.setBounds(350, 70, 70, 23);
 
         NoSurat.setHighlighter(null);
         NoSurat.setName("NoSurat"); // NOI18N
@@ -498,7 +522,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             }
         });
         FormInput.add(NoSurat);
-        NoSurat.setBounds(79, 40, 150, 23);
+        NoSurat.setBounds(80, 40, 50, 23);
 
         jLabel4.setText("No.Rawat :");
         jLabel4.setName("jLabel4"); // NOI18N
@@ -531,7 +555,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
         jLabel13.setText("Kg");
         jLabel13.setName("jLabel13"); // NOI18N
         FormInput.add(jLabel13);
-        jLabel13.setBounds(369, 40, 20, 23);
+        jLabel13.setBounds(430, 40, 20, 23);
 
         Bb.setName("Bb"); // NOI18N
         Bb.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -540,17 +564,17 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             }
         });
         FormInput.add(Bb);
-        Bb.setBounds(317, 40, 50, 23);
+        Bb.setBounds(380, 40, 40, 23);
 
         jLabel14.setText("Berat Badan :");
         jLabel14.setName("jLabel14"); // NOI18N
         FormInput.add(jLabel14);
-        jLabel14.setBounds(233, 40, 80, 23);
+        jLabel14.setBounds(300, 40, 80, 23);
 
         jLabel15.setText("Tinggi Badan :");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput.add(jLabel15);
-        jLabel15.setBounds(391, 40, 80, 23);
+        jLabel15.setBounds(450, 40, 80, 23);
 
         Keperluan.setName("Keperluan"); // NOI18N
         Keperluan.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -559,18 +583,18 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             }
         });
         FormInput.add(Keperluan);
-        Keperluan.setBounds(373, 70, 150, 23);
+        Keperluan.setBounds(420, 70, 150, 23);
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel17.setText("Cm");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(532, 40, 20, 23);
+        jLabel17.setBounds(590, 40, 20, 23);
 
         jLabel18.setText("Tensi :");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput.add(jLabel18);
-        jLabel18.setBounds(564, 40, 40, 23);
+        jLabel18.setBounds(630, 40, 40, 23);
 
         Tensi.setName("Tensi"); // NOI18N
         Tensi.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -579,19 +603,19 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tensi);
-        Tensi.setBounds(608, 40, 70, 23);
+        Tensi.setBounds(670, 40, 60, 23);
 
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel20.setText("mmHg");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
-        jLabel20.setBounds(680, 40, 40, 23);
+        jLabel20.setBounds(740, 40, 40, 23);
 
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel22.setText("°C");
         jLabel22.setName("jLabel22"); // NOI18N
         FormInput.add(jLabel22);
-        jLabel22.setBounds(121, 70, 30, 23);
+        jLabel22.setBounds(140, 70, 20, 23);
 
         Suhu.setName("Suhu"); // NOI18N
         Suhu.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -600,17 +624,17 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             }
         });
         FormInput.add(Suhu);
-        Suhu.setBounds(79, 70, 40, 23);
+        Suhu.setBounds(79, 70, 60, 23);
 
         jLabel23.setText("Suhu :");
         jLabel23.setName("jLabel23"); // NOI18N
         FormInput.add(jLabel23);
-        jLabel23.setBounds(0, 70, 75, 23);
+        jLabel23.setBounds(0, 0, 0, 23);
 
-        jLabel5.setText("No. Surat :");
+        jLabel5.setText("Suhu :");
         jLabel5.setName("jLabel5"); // NOI18N
         FormInput.add(jLabel5);
-        jLabel5.setBounds(0, 40, 75, 23);
+        jLabel5.setBounds(0, 70, 75, 23);
 
         Tb.setName("Tb"); // NOI18N
         Tb.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -619,17 +643,17 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tb);
-        Tb.setBounds(475, 40, 55, 23);
+        Tb.setBounds(540, 40, 40, 23);
 
         jLabel27.setText("Buta Warna :");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(130, 70, 83, 23);
+        jLabel27.setBounds(140, 70, 83, 23);
 
         jLabel28.setText("Kesimpulan :");
         jLabel28.setName("jLabel28"); // NOI18N
         FormInput.add(jLabel28);
-        jLabel28.setBounds(527, 70, 75, 23);
+        jLabel28.setBounds(580, 70, 75, 23);
 
         CmbButaWarna.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
         CmbButaWarna.setName("CmbButaWarna"); // NOI18N
@@ -639,7 +663,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             }
         });
         FormInput.add(CmbButaWarna);
-        CmbButaWarna.setBounds(217, 70, 80, 23);
+        CmbButaWarna.setBounds(230, 70, 80, 23);
 
         CmbKesimpulan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sehat", "Tidak Sehat" }));
         CmbKesimpulan.setName("CmbKesimpulan"); // NOI18N
@@ -649,10 +673,10 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             }
         });
         FormInput.add(CmbKesimpulan);
-        CmbKesimpulan.setBounds(606, 70, 114, 23);
+        CmbKesimpulan.setBounds(660, 70, 114, 23);
 
         TanggalSurat.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2021" }));
+        TanggalSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2021" }));
         TanggalSurat.setDisplayFormat("dd-MM-yyyy");
         TanggalSurat.setName("TanggalSurat"); // NOI18N
         TanggalSurat.setOpaque(false);
@@ -668,12 +692,70 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             }
         });
         FormInput.add(TanggalSurat);
-        TanggalSurat.setBounds(630, 10, 90, 23);
+        TanggalSurat.setBounds(680, 10, 90, 23);
 
         jLabel16.setText("Tanggal :");
         jLabel16.setName("jLabel16"); // NOI18N
         FormInput.add(jLabel16);
-        jLabel16.setBounds(566, 10, 60, 23);
+        jLabel16.setBounds(620, 10, 60, 23);
+
+        NoSurat1.setHighlighter(null);
+        NoSurat1.setName("NoSurat1"); // NOI18N
+        NoSurat1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NoSurat1ActionPerformed(evt);
+            }
+        });
+        NoSurat1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NoSurat1KeyPressed(evt);
+            }
+        });
+        FormInput.add(NoSurat1);
+        NoSurat1.setBounds(140, 40, 160, 23);
+
+        Nadi.setName("Nadi"); // NOI18N
+        Nadi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NadiKeyPressed(evt);
+            }
+        });
+        FormInput.add(Nadi);
+        Nadi.setBounds(910, 10, 60, 23);
+
+        jLabel8.setText("x / menit");
+        jLabel8.setName("jLabel8"); // NOI18N
+        FormInput.add(jLabel8);
+        jLabel8.setBounds(970, 40, 50, 23);
+
+        jLabel9.setText("Frekuensi Pernafasan :");
+        jLabel9.setName("jLabel9"); // NOI18N
+        FormInput.add(jLabel9);
+        jLabel9.setBounds(780, 40, 120, 23);
+
+        nafas.setName("nafas"); // NOI18N
+        nafas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nafasKeyPressed(evt);
+            }
+        });
+        FormInput.add(nafas);
+        nafas.setBounds(910, 40, 60, 23);
+
+        jLabel10.setText("Frekuensi Nadi :");
+        jLabel10.setName("jLabel10"); // NOI18N
+        FormInput.add(jLabel10);
+        jLabel10.setBounds(780, 10, 120, 23);
+
+        jLabel11.setText("x / menit");
+        jLabel11.setName("jLabel11"); // NOI18N
+        FormInput.add(jLabel11);
+        jLabel11.setBounds(970, 10, 50, 23);
+
+        jLabel12.setText("No. Surat :");
+        jLabel12.setName("jLabel12"); // NOI18N
+        FormInput.add(jLabel12);
+        jLabel12.setBounds(0, 40, 75, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -736,9 +818,9 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             Valid.textKosong(Keperluan,"Keperluan");
        
         }else{
-            if(Sequel.menyimpantf("surat_keterangan_sehat","?,?,?,?,?,?,?,?,?,?","No.Surat",10,new String[]{
-                    NoSurat.getText(),TNoRw.getText(),Valid.SetTgl(TanggalSurat.getSelectedItem()+""),Bb.getText(),Tb.getText(),Tensi.getText(),Suhu.getText(),CmbButaWarna.getSelectedItem()+"",
-                    Keperluan.getText(),CmbKesimpulan.getSelectedItem()+""
+            if(Sequel.menyimpantf("surat_keterangan_sehat","?,?,?,?,?,?,?,?,?,?,?,?,?","No.Surat",13,new String[]{
+                    NoSurat.getText(),NoSurat1.getText(),TNoRw.getText(),Valid.SetTgl(TanggalSurat.getSelectedItem()+""),Bb.getText(),Tb.getText(),Tensi.getText(),Suhu.getText(),CmbButaWarna.getSelectedItem()+"",
+                    Keperluan.getText(),CmbKesimpulan.getSelectedItem()+"",Nadi.getText(),nafas.getText()
                 })==true){
                 tampil();
                 emptTeks();
@@ -768,7 +850,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Valid.hapusTable(tabMode,NoSurat,"surat_keterangan_sehat","no_surat");
+        Valid.hapusTable2(tabMode,NoSurat,NoSurat1,"surat_keterangan_sehat","no_surat","kode_surat");
         tampil();
         emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
@@ -798,10 +880,10 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             Valid.textKosong(Keperluan,"Keperluan");
         }else{    
             if(tbObat.getSelectedRow()!= -1){
-                if(Sequel.mengedittf("surat_keterangan_sehat","no_surat=?","no_surat=?,no_rawat=?,tanggalsurat=?,berat=?,tinggi=?,tensi=?,suhu=?,butawarna=?,keperluan=?,kesimpulan=?",11,new String[]{
-                    NoSurat.getText(),TNoRw.getText(),Valid.SetTgl(TanggalSurat.getSelectedItem()+""),Bb.getText(),Tb.getText(),Tensi.getText(),Suhu.getText(),CmbButaWarna.getSelectedItem().toString(),
-                    Keperluan.getText(),CmbKesimpulan.getSelectedItem().toString(),
-                    tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
+                if(Sequel.mengedittf2("surat_keterangan_sehat","no_surat=?","kode_surat=?","no_surat=?,kode_surat=?,no_rawat=?,tanggalsurat=?,berat=?,tinggi=?,tensi=?,suhu=?,butawarna=?,keperluan=?,kesimpulan=?,nadi=?,nafas=?",15,new String[]{
+                    NoSurat.getText(),NoSurat1.getText(),TNoRw.getText(),Valid.SetTgl(TanggalSurat.getSelectedItem()+""),Bb.getText(),Tb.getText(),Tensi.getText(),Suhu.getText(),CmbButaWarna.getSelectedItem().toString(),
+                    Keperluan.getText(),CmbKesimpulan.getSelectedItem().toString(),Nadi.getText(),nafas.getText(),
+                    tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),1).toString()
                 })==true){
                     tampil();
                     emptTeks();
@@ -845,14 +927,14 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             tgl=" surat_keterangan_sehat.tanggalsurat between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' ";
             if(TCari.getText().trim().equals("")){
                 Valid.MyReportqry("rptDataSuratKeteranganSehat.jasper","report","::[ Data Surat Keterangan Sehat ]::",
-                     "select surat_keterangan_sehat.no_surat,surat_keterangan_sehat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
+                     "select concat ('surat_keterangan_sehat.no_surat','surat_keterangan_sehat.kode_surat') as no_surat,surat_keterangan_sehat.no_rawat,surat_keterangan_sehat.nadi,surat_keterangan_sehat.nafas,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
                      "surat_keterangan_sehat.tanggalsurat,surat_keterangan_sehat.berat,surat_keterangan_sehat.tinggi,surat_keterangan_sehat.tensi,surat_keterangan_sehat.suhu,surat_keterangan_sehat.butawarna, "+                  
                      "surat_keterangan_sehat.keperluan,surat_keterangan_sehat.kesimpulan from surat_keterangan_sehat inner join reg_periksa on surat_keterangan_sehat.no_rawat=reg_periksa.no_rawat "+
                      "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                      "where "+tgl+"order by surat_keterangan_sehat.no_surat",param);
             }else{
                 Valid.MyReportqry("rptDataSuratKeteranganSehat.jasper","report","::[ Data Surat Keterangan Sehat ]::",
-                     "select surat_keterangan_sehat.no_surat,surat_keterangan_sehat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
+                     "select concat ('surat_keterangan_sehat.no_surat','surat_keterangan_sehat.kode_surat') as no_surat,surat_keterangan_sehat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
                      "surat_keterangan_sehat.tanggalawal,surat_keterangan_sehat.tanggalakhir "+                  
                      "from surat_keterangan_sehat inner join reg_periksa on surat_keterangan_sehat.no_rawat=reg_periksa.no_rawat "+
                      "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
@@ -951,11 +1033,11 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
                 param.put("emailrs",akses.getemailrs());  
                 param.put("logo",Sequel.cariGambar("select logo from setting")); 
                 Valid.MyReportqry("rptSuratKeteranganSehat.jasper","report","::[ Surat Keterangan Sehat ]::",
-                              " select surat_keterangan_sehat.no_surat,DATE_FORMAT(surat_keterangan_sehat.tanggalsurat,'%d-%m-%Y')as tanggalsurat,surat_keterangan_sehat.berat,surat_keterangan_sehat.tinggi,surat_keterangan_sehat.tensi,surat_keterangan_sehat.suhu, "+
-                              " surat_keterangan_sehat.butawarna,surat_keterangan_sehat.keperluan,surat_keterangan_sehat.kesimpulan,dokter.nm_dokter,pasien.jk," +
-                              " pasien.nm_pasien,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat" +
+                              " select concat(surat_keterangan_sehat.no_surat,surat_keterangan_sehat.kode_surat) as no_surat, spesialis.nm_sps,DATE_FORMAT(surat_keterangan_sehat.tanggalsurat,'%d-%m-%Y')as tanggalsurat,surat_keterangan_sehat.berat,surat_keterangan_sehat.tinggi,surat_keterangan_sehat.tensi,surat_keterangan_sehat.suhu, "+
+                              " surat_keterangan_sehat.butawarna,surat_keterangan_sehat.keperluan,surat_keterangan_sehat.kesimpulan,surat_keterangan_sehat.nadi,surat_keterangan_sehat.nafas,dokter.nm_dokter,dokter.no_ijn_praktek,pasien.jk," +
+                              " pasien.nm_pasien,pasien.tgl_lahir,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat" +
                               " from surat_keterangan_sehat inner join reg_periksa inner join pasien inner join dokter inner join kelurahan inner join kecamatan inner join kabupaten" +
-                              " on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_dokter=dokter.kd_dokter and pasien.kd_kel=kelurahan.kd_kel and "+
+                              " on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_dokter=dokter.kd_dokter join spesialis on dokter.kd_sps=spesialis.kd_sps and pasien.kd_kel=kelurahan.kd_kel and "+
                               " pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab and reg_periksa.no_rawat=surat_keterangan_sehat.no_rawat "+
                               " where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",param);
                 this.setCursor(Cursor.getDefaultCursor());  
@@ -1027,6 +1109,22 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
         Valid.pindah(evt,Keperluan,BtnSimpan);
     }//GEN-LAST:event_CmbKesimpulanKeyPressed
 
+    private void NoSurat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoSurat1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoSurat1ActionPerformed
+
+    private void NoSurat1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoSurat1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoSurat1KeyPressed
+
+    private void NadiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NadiKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NadiKeyPressed
+
+    private void nafasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nafasKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nafasKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1063,7 +1161,9 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCetakSuratSehat;
     private javax.swing.JMenuItem MnCetakSuratSehat1;
+    private widget.TextBox Nadi;
     private widget.TextBox NoSurat;
+    private widget.TextBox NoSurat1;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.TextBox Suhu;
@@ -1075,6 +1175,9 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
     private widget.TextBox Tb;
     private widget.TextBox Tensi;
     private widget.InternalFrame internalFrame1;
+    private widget.Label jLabel10;
+    private widget.Label jLabel11;
+    private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel14;
     private widget.Label jLabel15;
@@ -1093,8 +1196,11 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel8;
+    private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private widget.TextBox nafas;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbObat;
@@ -1106,16 +1212,16 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             tgl=" surat_keterangan_sehat.tanggalsurat between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' ";
             if(TCari.getText().trim().equals("")){
                 ps=koneksi.prepareStatement(
-                     "select surat_keterangan_sehat.no_surat,surat_keterangan_sehat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
+                     "select surat_keterangan_sehat.no_surat,surat_keterangan_sehat.kode_surat,surat_keterangan_sehat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
                      "surat_keterangan_sehat.tanggalsurat,surat_keterangan_sehat.berat,surat_keterangan_sehat.tinggi,surat_keterangan_sehat.tensi,surat_keterangan_sehat.suhu, "+                  
-                     "surat_keterangan_sehat.butawarna,surat_keterangan_sehat.keperluan,surat_keterangan_sehat.kesimpulan from surat_keterangan_sehat inner join reg_periksa on surat_keterangan_sehat.no_rawat=reg_periksa.no_rawat "+
+                     "surat_keterangan_sehat.butawarna,surat_keterangan_sehat.nadi,surat_keterangan_sehat.nafas,surat_keterangan_sehat.keperluan,surat_keterangan_sehat.kesimpulan from surat_keterangan_sehat inner join reg_periksa on surat_keterangan_sehat.no_rawat=reg_periksa.no_rawat "+
                      "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                      "where "+tgl+"order by surat_keterangan_sehat.no_surat");
             }else{
                 ps=koneksi.prepareStatement(
-                     "select surat_keterangan_sehat.no_surat,surat_keterangan_sehat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
+                     "select surat_keterangan_sehat.no_surat,surat_keterangan_sehat.kode_surat,surat_keterangan_sehat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
                      "surat_keterangan_sehat.tanggalsurat,surat_keterangan_sehat.berat,surat_keterangan_sehat.tinggi,surat_keterangan_sehat.tensi,surat_keterangan_sehat.suhu, "+                  
-                     "surat_keterangan_sehat.butawarna,surat_keterangan_sehat.keperluan,surat_keterangan_sehat.kesimpulan from surat_keterangan_sehat inner join reg_periksa on surat_keterangan_sehat.no_rawat=reg_periksa.no_rawat "+
+                     "surat_keterangan_sehat.butawarna,surat_keterangan_sehat.nadi,surat_keterangan_sehat.nafas,surat_keterangan_sehat.keperluan,surat_keterangan_sehat.kesimpulan from surat_keterangan_sehat inner join reg_periksa on surat_keterangan_sehat.no_rawat=reg_periksa.no_rawat "+
                      "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                      "where "+tgl+"and no_surat like '%"+TCari.getText().trim()+"%' or "+
                      tgl+"and surat_keterangan_sehat.no_rawat like '%"+TCari.getText().trim()+"%' or "+
@@ -1124,7 +1230,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
                      tgl+"and surat_keterangan_sehat.tanggalsurat like '%"+TCari.getText().trim()+"%' "+
                      "order by surat_keterangan_sehat.no_surat");
             }
-                
+              
             try {
                 rs=ps.executeQuery();
                 while(rs.next()){
@@ -1132,7 +1238,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
                         rs.getString(1),rs.getString(2),rs.getString(3),
                         rs.getString(4),rs.getString(5),rs.getString(6),
                         rs.getString(7),rs.getString(8),rs.getString(9),
-                        rs.getString(10),rs.getString(11),rs.getString(12)
+                        rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15)
                         
                     });
                 }
@@ -1153,20 +1259,23 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
-        TNoRw.setText("");
-        TNoRM.setText("");
-        TPasien.setText("");
+//        TNoRw.setText("");
+//        TNoRM.setText("");
+//        TPasien.setText("");
         NoSurat.setText("");
+        NoSurat1.setText(Sequel.cariIsi("select CONCAT('/SUKET-SEHAT/BMJ/',toRoman(MONTH(NOW())),'/',YEAR(NOW())) as nosurat1"));     
         Bb.setText("");
         Tb.setText("");
         Tensi.setText("");
         Suhu.setText("");
+        Nadi.setText("");
+        nafas.setText("");
         Keperluan.setText("");
         TanggalSurat.setDate(new Date());
         CmbButaWarna.setSelectedItem("Tidak");
         CmbKesimpulan.setSelectedItem("Sehat");
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,3),signed)),0) from surat_keterangan_sehat where tanggalsurat='"+Valid.SetTgl(TanggalSurat.getSelectedItem()+"")+"' ",
-                "SKD"+TanggalSurat.getSelectedItem().toString().substring(6,10)+TanggalSurat.getSelectedItem().toString().substring(3,5)+TanggalSurat.getSelectedItem().toString().substring(0,2),3,NoSurat);
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,3),signed)),0) from surat_keterangan_sehat where tanggalsurat like '"+TanggalSurat.getSelectedItem().toString().substring(6,10)+TanggalSurat.getSelectedItem().toString().substring(2,5)+"%' ",
+                TanggalSurat.getSelectedItem().toString().substring(0,0),3,NoSurat);
         NoSurat.requestFocus();
     }
 
@@ -1174,17 +1283,20 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
     private void getData() {
         if(tbObat.getSelectedRow()!= -1){
             NoSurat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
-            TNoRw.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
-            TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
-            TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
-            Valid.SetTgl(TanggalSurat,tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
-            Bb.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
-            Tb.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
-            Tensi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
-            Suhu.setText(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
-            CmbButaWarna.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
-            Keperluan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
-            CmbKesimpulan.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
+            NoSurat1.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
+            TNoRw.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
+            TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
+            TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
+            Valid.SetTgl(TanggalSurat,tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            Bb.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
+            Tb.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
+            Tensi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
+            Suhu.setText(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
+            CmbButaWarna.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
+            Nadi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
+            nafas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),12).toString());
+            Keperluan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),13).toString());
+            CmbKesimpulan.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString());
         }
     }
 

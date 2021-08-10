@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariDokter;
 import kepegawaian.DlgCariPetugas;
-import simrskhanza.DlgPasien;
+//import simrskhanza.DlgPasien;
 
 
 /**
@@ -61,7 +61,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         setSize(628,674);
         
         tabMode=new DefaultTableModel(null,new Object[]{
-            "No.Surat","No.Rawat","No.RM.","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","Kode Petugas","Nama Petugas","Status","Telepon","Tanggal","Keterangan"
+            "No.Surat","Kode Surat","No.Rawat","No.RM.","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","Kode Petugas","Nama Petugas","Status","Telepon","Tanggal","Keterangan"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -71,10 +71,10 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 12; i++) {
+        for (i = 0; i < 13; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(105);
+                column.setPreferredWidth(50);
             }else if(i==1){
                 column.setPreferredWidth(105);
             }else if(i==2){
@@ -94,6 +94,8 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             }else if(i==9){
                 column.setPreferredWidth(150);
             }else if(i==10){
+                column.setPreferredWidth(100);
+            }else if(i==11){
                 column.setPreferredWidth(100);
             }else if(i==11){
                 column.setPreferredWidth(300);
@@ -773,14 +775,12 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         }else if(KdPetugas.getText().trim().equals("")||TPetugas.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"Petugas");
         }else{
-            if(Sequel.menyimpantf("surat_keterangan_isolasi","?,?,?,?,?,?,?,?","No.Surat",8,new String[]{
-                    NoSurat.getText()+NoSurat1.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),status.getSelectedItem().toString(),
+            if(Sequel.menyimpantf("surat_keterangan_isolasi","?,?,?,?,?,?,?,?,?","No.Surat",9,new String[]{
+                    NoSurat.getText(),NoSurat1.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),status.getSelectedItem().toString(),
                     telepon.getText(),Valid.SetTgl(Tanggal_surat.getSelectedItem()+""),Keterangan.getText()
                 })==true){
                 tampil();
                 emptTeks();
-            }else {
-                JOptionPane.showMessageDialog(null,"Maaf, data nomor rawat "+TNoRw.getText()+" atasnama pasien "+TPasien.getText()+" sudah disimpan");
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -794,7 +794,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Valid.hapusTable2(tabMode,NoSurat,NoSurat1,"surat_keterangan_isolasi","no_surat");
+        Valid.hapusTable2(tabMode,NoSurat,NoSurat1,"surat_keterangan_isolasi","no_surat","kode_surat");
         tampil();
         emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
@@ -818,8 +818,8 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"Petugas");
         }else{   
             if(tbObat.getSelectedRow()!= -1){
-                if(Sequel.mengedittf("surat_keterangan_isolasi","no_surat=?","no_surat=?,no_rawat=?,kd_dokter=?,nip=?,status=?,telepon=?,tanggal_surat=?,ket=?",9,new String[]{
-                    NoSurat.getText()+NoSurat1.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),status.getSelectedItem().toString(),telepon.getText(),Valid.SetTgl(Tanggal_surat.getSelectedItem()+""),Keterangan.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
+                if(Sequel.mengedittf("surat_keterangan_isolasi","no_surat=?","no_surat=?, kode_surat=?,no_rawat=?,kd_dokter=?,nip=?,status=?,telepon=?,tanggal_surat=?,ket=?",10,new String[]{
+                    NoSurat.getText(), NoSurat1.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),status.getSelectedItem().toString(),telepon.getText(),Valid.SetTgl(Tanggal_surat.getSelectedItem()+""),Keterangan.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
                 })==true){
                     tampil();
                     emptTeks();
@@ -860,7 +860,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());   
             param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReportqry("rptDataSuratCovid.jasper","report","::[ Data Surat Keterangan Isolasi ]::",
+            Valid.MyReportqry("rptDataSuratIsolasi1.jasper","report","::[ Data Surat Keterangan Isolasi ]::",
                 "select surat_keterangan_covid.no_surat,surat_keterangan_covid.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,"+
                 "surat_keterangan_covid.kd_dokter,dokter.nm_dokter,surat_keterangan_covid.nip,petugas.nama,surat_keterangan_covid.igm,"+
                 "surat_keterangan_covid.igg,surat_keterangan_covid.sehat,surat_keterangan_covid.tidaksehat,surat_keterangan_covid.berlakumulai,"+
@@ -969,7 +969,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
                 param.put("finger",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdDok.getText())); 
                 param.put("finger2",Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdPetugas.getText())); 
                 Valid.MyReportqry("rptSuratKeteranganIsolasi.jasper","report","::[ Surat Keterangan Isolasi ]::",
-                            "select surat_keterangan_isolasi.no_surat,surat_keterangan_isolasi.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,spesialis.nm_sps,"+
+                            "select concat(surat_keterangan_isolasi.no_surat,surat_keterangan_isolasi.kode_surat) as no_surat,surat_keterangan_isolasi.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,spesialis.nm_sps,"+
                             "surat_keterangan_isolasi.kd_dokter,dokter.nm_dokter,surat_keterangan_isolasi.nip,petugas.nama,surat_keterangan_isolasi.status,pasien.tgl_lahir,pasien.no_ktp,"+
                             "surat_keterangan_isolasi.telepon,surat_keterangan_isolasi.ket,pasien.jk,"+
                             "sf_formatTanggal(surat_keterangan_isolasi.tanggal_surat) as tanggal_surat,pasien.pekerjaan,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat "+
@@ -981,7 +981,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
                             "inner join kelurahan on pasien.kd_kel=kelurahan.kd_kel "+
                             "inner join kecamatan on pasien.kd_kec=kecamatan.kd_kec "+
                             "inner join kabupaten on pasien.kd_kab=kabupaten.kd_kab "+
-                            "where surat_keterangan_isolasi.no_surat='"+NoSurat.getText()+NoSurat1.getText()+"' ",param);
+                            "where surat_keterangan_isolasi.no_surat='"+NoSurat.getText()+"' and surat_keterangan_isolasi.kode_surat='"+NoSurat1.getText()+"' ",param);
                 this.setCursor(Cursor.getDefaultCursor());  
        }
     }//GEN-LAST:event_MnCetakSuratIsolasiActionPerformed
@@ -1103,7 +1103,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try{
             ps=koneksi.prepareStatement(
-                 "select surat_keterangan_isolasi.no_surat,surat_keterangan_isolasi.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,"+
+                 "select surat_keterangan_isolasi.no_surat,surat_keterangan_isolasi.kode_surat,surat_keterangan_isolasi.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,"+
                  "surat_keterangan_isolasi.kd_dokter,dokter.nm_dokter,surat_keterangan_isolasi.nip,petugas.nama,surat_keterangan_isolasi.status,"+
                  "surat_keterangan_isolasi.telepon,surat_keterangan_isolasi.tanggal_surat,surat_keterangan_isolasi.ket from surat_keterangan_isolasi inner join reg_periksa on surat_keterangan_isolasi.no_rawat=reg_periksa.no_rawat "+
                  "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
@@ -1126,7 +1126,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new String[]{
-                        rs.getString("no_surat"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),
+                        rs.getString("no_surat"),rs.getString("kode_surat"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),rs.getString("kd_dokter"),rs.getString("nm_dokter"),
                         rs.getString("nip"),rs.getString("nama"),rs.getString("status"),rs.getString("telepon"),
                         rs.getString("tanggal_surat"),rs.getString("ket")
@@ -1158,7 +1158,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
         TPetugas.setText("");
         status.setSelectedIndex(0);
         Tanggal_surat.setDate(new Date());
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,4),signed)),0) from surat_keterangan_isolasi where tanggal_surat='"+Valid.SetTgl(Tanggal_surat.getSelectedItem().toString().substring(6,10)+"")+"' ",
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,4),signed)),0) from surat_keterangan_isolasi where tanggal_surat like '"+Tanggal_surat.getSelectedItem().toString().substring(6,10)+"%' ",
                 Tanggal_surat.getSelectedItem().toString().substring(0,0),4,NoSurat); 
         NoSurat.requestFocus();
     }
@@ -1167,19 +1167,19 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
  
     private void getData() {
         if(tbObat.getSelectedRow()!= -1){
-            NoSurat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().substring(0,4));
-            NoSurat1.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().substring(4,tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().length()));
-            TNoRw.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
-            TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
-            TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
-            KdDok.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
-            TDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
-            KdPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
-            TPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
-            status.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
-            telepon.setText(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
-            Valid.SetTgl(Tanggal_surat,tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
-            Keterangan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
+            NoSurat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
+            NoSurat1.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
+            TNoRw.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
+            TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
+            TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
+            KdDok.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            TDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
+            KdPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
+            TPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
+            status.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
+            telepon.setText(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
+            Valid.SetTgl(Tanggal_surat,tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
+            Keterangan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),12).toString());
         }
     }
 
@@ -1192,19 +1192,7 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
     }
     
     public void setNoRm(String norwt, Date tgl1, String Kdokter,String NmDokter) {
-//        get data nomor
-//        try{
-//            ps=koneksi.prepareStatement("select CONCAT('/SUKET/BMJ/',toRoman(MONTH(NOW())),'/',YEAR(NOW())) as nosurat1");
-//            
-//            rs=ps.executeQuery();
-//            while(rs.next()){
-////                rs.getString("no_surat");
-//                NoSurat1.setText(rs.getString("no_surat"));
-//
-//            }
-//        }catch(Exception e){
-//            System.out.println("Notifikasi : "+e);
-//        }
+
         
         TNoRw.setText(norwt);
 //        TCari.setText(norwt);
