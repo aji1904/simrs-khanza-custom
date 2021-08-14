@@ -40,19 +40,12 @@ inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis]]>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="tanggalsurat" class="java.lang.String">
+	<field name="tanggal_hasil" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="tanggalawal"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="suratsakit"/>
 	</field>
-	<field name="berat" class="java.lang.String"/>
-	<field name="tinggi" class="java.lang.String"/>
-	<field name="tensi" class="java.lang.String"/>
-	<field name="suhu" class="java.lang.String"/>
-	<field name="butawarna" class="java.lang.String"/>
-	<field name="keperluan" class="java.lang.String"/>
-	<field name="kesimpulan" class="java.lang.String"/>
-	<field name="nadi" class="java.lang.String"/>
-	<field name="nafas" class="java.lang.String"/>
+	<field name="nm_dokter" class="java.lang.String"/>
+	<field name="hasil_rapid" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -64,7 +57,7 @@ inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis]]>
 					<font fontName="Tahoma" size="11" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[DATA SURAT KETERANGAN SEHAT]]></text>
+				<text><![CDATA[DATA SURAT KETERANGAN ANTIGEN]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="2" y="14" width="808" height="14" uuid="6b2cb1f1-e487-41ae-b640-59a5b2ef91ea"/>
@@ -116,44 +109,12 @@ inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis]]>
 	<columnHeader>
 		<band height="19" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="548" y="0" width="33" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="4881f548-f6e5-43b5-ad8a-62a898b24cac"/>
+				<reportElement mode="Opaque" x="680" y="0" width="119" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="770fa689-f79b-495d-9620-fa7c08bd3422"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Tensi]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="697" y="1" width="33" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="e521c4e4-1823-4b67-a5ce-82c8dba64d3d"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[FP]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="614" y="0" width="59" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="f4419229-47b7-40f6-bd14-3dd9980eb3f7"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Buta warna]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="723" y="0" width="76" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="770fa689-f79b-495d-9620-fa7c08bd3422"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Kesimpulan]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="523" y="0" width="25" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="5ff337c0-3f36-41c9-9551-e4485ed17b6c"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[TB]]></text>
+				<text><![CDATA[Hasil]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="157" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="663c7fcb-4912-44fd-a9e2-e6940e113ce0"/>
@@ -188,22 +149,6 @@ inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis]]>
 				</textElement>
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="437" y="0" width="63" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="1ae3d156-18a9-4c56-8378-e9cf63572867"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Tanggal Surat]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="500" y="0" width="23" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="378886cd-215d-49bd-9a88-a518b42f770f"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[BB]]></text>
-			</staticText>
 			<line>
 				<reportElement x="0" y="16" width="800" height="1" uuid="43861b23-1114-4037-8d95-f1e7d0eaaa0a"/>
 				<graphicElement>
@@ -217,20 +162,20 @@ inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis]]>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="581" y="1" width="33" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="88e1ca0a-8443-40f9-b3a8-a5254075cd2b"/>
+				<reportElement mode="Opaque" x="437" y="1" width="63" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="16174483-28d2-46e1-8e57-db67e393d728"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Suhu]]></text>
+				<text><![CDATA[Tanggal Surat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="673" y="1" width="24" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="42614d97-1d4f-4c66-9403-d49351a4b9ba"/>
+				<reportElement mode="Opaque" x="500" y="1" width="180" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="e84cc6e4-a391-46f3-936d-7d984793c64d"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[FN]]></text>
+				<text><![CDATA[Dokter]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -269,60 +214,12 @@ inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis]]>
 				<textFieldExpression><![CDATA[$F{nm_pasien}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="443" y="0" width="47" height="10" uuid="83e30522-459a-49ee-80a9-1a31e3f8ad75"/>
+				<reportElement positionType="Float" x="681" y="0" width="118" height="10" uuid="7ddbf619-b7d0-4d39-97cf-52bcc3cb2bf0"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tanggalsurat}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="501" y="0" width="22" height="10" uuid="9813455b-3c02-4aa9-b1f6-be1993965175"/>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{berat}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="525" y="0" width="22" height="10" uuid="d3d5ff69-f689-4b95-97e8-12b4553119e6"/>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tinggi}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="548" y="0" width="33" height="10" uuid="40288959-da03-4ea2-b869-b92fd90e50a9"/>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tensi}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="697" y="1" width="31" height="10" uuid="d34f9bfb-0dfa-40c4-8642-56afa02d28b7"/>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nafas}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="615" y="0" width="58" height="10" uuid="b9ae7e33-bbe5-4444-be55-32356eab72e5"/>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{butawarna}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="724" y="0" width="75" height="10" uuid="7ddbf619-b7d0-4d39-97cf-52bcc3cb2bf0"/>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{kesimpulan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{hasil_rapid}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" x="0" y="11" width="800" height="1" uuid="6fd07346-b0d3-4de4-89f0-126bba8d0979">
@@ -333,20 +230,20 @@ inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis]]>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="582" y="1" width="31" height="10" uuid="2628118b-e246-4828-9688-41c6c7f486d3"/>
+				<reportElement positionType="Float" x="443" y="0" width="47" height="10" uuid="6813be28-55b7-4da2-b5c8-609980d34b46"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{suhu}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tanggal_hasil}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="674" y="1" width="31" height="10" uuid="50c222e0-7273-4b8b-86a0-b10202eece95"/>
+				<reportElement positionType="Float" x="506" y="0" width="174" height="10" uuid="e97c5e1e-ac28-440d-9462-514a9b826303"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nadi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

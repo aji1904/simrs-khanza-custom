@@ -14,6 +14,8 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import java.awt.Color;
+
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -422,6 +424,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label68 = new widget.Label();
         nama_bayi = new widget.TextBox();
         label69 = new widget.Label();
+        ChkRM = new widget.CekBox();
 
         Popup.setName("Popup"); // NOI18N
 
@@ -1701,7 +1704,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(NoRm);
-        NoRm.setBounds(89, 12, 100, 23);
+        NoRm.setBounds(90, 10, 80, 23);
 
         label18.setText("Ibu Bayi :");
         label18.setName("label18"); // NOI18N
@@ -1987,7 +1990,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(NmBayi);
-        NmBayi.setBounds(191, 12, 244, 23);
+        NmBayi.setBounds(180, 10, 210, 23);
 
         label35.setText("Umur Ayah :");
         label35.setName("label35"); // NOI18N
@@ -2202,6 +2205,20 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label69.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label69);
         label69.setBounds(860, 60, 100, 23);
+
+        ChkRM.setBorder(null);
+        ChkRM.setSelected(true);
+        ChkRM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkRM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ChkRM.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ChkRM.setName("ChkRM"); // NOI18N
+        ChkRM.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ChkRMItemStateChanged(evt);
+            }
+        });
+        FormInput.add(ChkRM);
+        ChkRM.setBounds(390, 10, 23, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -3650,6 +3667,121 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         // TODO add your handling code here:
     }//GEN-LAST:event_nama_bayiActionPerformed
 
+    private void ChkRMItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ChkRMItemStateChanged
+        if(ChkRM.isSelected()==true){
+            NoRm.setEditable(false);
+            NoRm.setBackground(new Color(245,250,240));
+            autoNomor();
+        }else if(ChkRM.isSelected()==false){
+            NoRm.setEditable(true);
+            NoRm.setBackground(new Color(250,255,245));
+        }
+    }//GEN-LAST:event_ChkRMItemStateChanged
+    
+    private void autoNomor() {  
+//        if(Kd2.getText().equals("")){
+//            if(ChkRM.isSelected()==true){
+//                if(tahun.equals("Yes")){
+//                    awalantahun=Daftar.getSelectedItem().toString().substring(8,10);
+//                }else{
+//                    awalantahun="";
+//                }
+//
+//                if(bulan.equals("Yes")){
+//                    awalanbulan=Daftar.getSelectedItem().toString().substring(3,5);
+//                }else{
+//                    awalanbulan="";
+//                }
+//
+//                if(posisitahun.equals("Depan")){
+//                    switch (pengurutan) {
+//                        case "Straight":
+//                            Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                            break;
+//                        case "Terminal":
+//                            Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),5,2),SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                            break;
+//                        case "Middle":
+//                            Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2),SUBSTRING(RIGHT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                            break;
+//                    }
+//                }else if(posisitahun.equals("Belakang")){
+//                    switch (pengurutan) {
+//                        case "Straight":
+//                            Valid.autoNomer3("select ifnull(MAX(CONVERT(LEFT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                            break;
+//                        case "Terminal":
+//                            Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),5,2),SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                            break;
+//                        case "Middle":
+//                            Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2),SUBSTRING(LEFT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                            break;
+//                    }            
+//                }
+//
+//                if(posisitahun.equals("Depan")){
+//                    NoRm.setText(awalantahun+awalanbulan+NoRm.getText());
+//                }else if(posisitahun.equals("Belakang")){
+//                    if(!(awalanbulan+awalantahun).equals("")){
+//                        NoRm.setText(NoRm.getText()+"-"+awalanbulan+awalantahun);
+//                    }else{
+//                        NoRm.setText(NoRm.getText());
+//                    }            
+//                }
+//            }
+//        }
+        if(Kd2.getText().equals("")){
+            if(ChkRM.isSelected()==true){
+                if(tahun.equals("Yes")){
+                    awalantahun=Daftar.getSelectedItem().toString().substring(8,10);
+                }else{
+                    awalantahun="";
+                }
+
+                if(bulan.equals("Yes")){
+                    awalanbulan=Daftar.getSelectedItem().toString().substring(3,5);
+                }else{
+                    awalanbulan="";
+                }
+
+                if(posisitahun.equals("Depan")){
+                    switch (pengurutan) {
+                        case "Straight":
+                            Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
+                            break;
+                        case "Terminal":
+                            Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),5,2),SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+                            break;
+                        case "Middle":
+                            Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2),SUBSTRING(RIGHT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+                            break;
+                    }
+                }else if(posisitahun.equals("Belakang")){
+                    switch (pengurutan) {
+                        case "Straight":
+                            Valid.autoNomer3("select ifnull(MAX(CONVERT(LEFT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
+                            break;
+                        case "Terminal":
+                            Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),5,2),SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+                            break;
+                        case "Middle":
+                            Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2),SUBSTRING(LEFT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+                            break;
+                    }            
+                }
+
+                if(posisitahun.equals("Depan")){
+                    NoRm.setText(awalantahun+awalanbulan+NoRm.getText());
+                }else if(posisitahun.equals("Belakang")){
+                    if(!(awalanbulan+awalantahun).equals("")){
+                        NoRm.setText(NoRm.getText()+"-"+awalanbulan+awalantahun);
+                    }else{
+                        NoRm.setText(NoRm.getText());
+                    }            
+                }
+            }
+        }
+    }
     /**
     * @param args the command line arguments
     */
@@ -3695,6 +3827,7 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.Button BtnSimpan1;
     private widget.ComboBox CaraLahir;
     private widget.CekBox ChkInput;
+    private widget.CekBox ChkRM;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Tanggal Daftar;
@@ -4041,58 +4174,58 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         BtnPrint.setEnabled(akses.getkelahiran_bayi());
     }
     
-    private void autoNomor() {  
-        if(Kd2.getText().equals("")){            
-            if(tahun.equals("Yes")){
-                awalantahun=Daftar.getSelectedItem().toString().substring(8,10);
-            }else{
-                awalantahun="";
-            }
-
-            if(bulan.equals("Yes")){
-                awalanbulan=Daftar.getSelectedItem().toString().substring(3,5);
-            }else{
-                awalanbulan="";
-            }
-
-            if(posisitahun.equals("Depan")){
-                switch (pengurutan) {
-                    case "Straight":
-                        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
-                        break;
-                    case "Terminal":
-                        Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),5,2),SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-                        break;
-                    case "Middle":
-                        Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2),SUBSTRING(RIGHT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-                        break;
-                }
-            }else if(posisitahun.equals("Belakang")){
-                switch (pengurutan) {
-                    case "Straight":
-                        Valid.autoNomer3("select ifnull(MAX(CONVERT(LEFT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
-                        break;
-                    case "Terminal":
-                        Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),5,2),SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-                        break;
-                    case "Middle":
-                        Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2),SUBSTRING(LEFT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-                        break;
-                }            
-            }
-
-            if(posisitahun.equals("Depan")){
-                NoRm.setText(awalantahun+awalanbulan+NoRm.getText());
-            }else if(posisitahun.equals("Belakang")){
-                if(!(awalanbulan+awalantahun).equals("")){
-                    NoRm.setText(NoRm.getText()+"-"+awalanbulan+awalantahun);
-                }else{
-                    NoRm.setText(NoRm.getText());
-                }            
-            }
-        }        
-    }
-    
+//    private void autoNomor() {  
+//        if(Kd2.getText().equals("")){            
+//            if(tahun.equals("Yes")){
+//                awalantahun=Daftar.getSelectedItem().toString().substring(8,10);
+//            }else{
+//                awalantahun="";
+//            }
+//
+//            if(bulan.equals("Yes")){
+//                awalanbulan=Daftar.getSelectedItem().toString().substring(3,5);
+//            }else{
+//                awalanbulan="";
+//            }
+//
+//            if(posisitahun.equals("Depan")){
+//                switch (pengurutan) {
+//                    case "Straight":
+//                        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                        break;
+//                    case "Terminal":
+//                        Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),5,2),SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                        break;
+//                    case "Middle":
+//                        Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2),SUBSTRING(RIGHT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                        break;
+//                }
+//            }else if(posisitahun.equals("Belakang")){
+//                switch (pengurutan) {
+//                    case "Straight":
+//                        Valid.autoNomer3("select ifnull(MAX(CONVERT(LEFT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                        break;
+//                    case "Terminal":
+//                        Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),5,2),SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                        break;
+//                    case "Middle":
+//                        Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2),SUBSTRING(LEFT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
+//                        break;
+//                }            
+//            }
+//
+//            if(posisitahun.equals("Depan")){
+//                NoRm.setText(awalantahun+awalanbulan+NoRm.getText());
+//            }else if(posisitahun.equals("Belakang")){
+//                if(!(awalanbulan+awalantahun).equals("")){
+//                    NoRm.setText(NoRm.getText()+"-"+awalanbulan+awalantahun);
+//                }else{
+//                    NoRm.setText(NoRm.getText());
+//                }            
+//            }
+//        }        
+//    }
+//    
     public JTable getTable(){
         return tbDokter;
     }

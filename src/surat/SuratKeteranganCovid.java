@@ -61,7 +61,7 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         
         tabMode=new DefaultTableModel(null,new Object[]{
             "No.Surat","Kode Surat","No.Rawat","No.R.M.","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","NIP",
-            "Petugas","Rapid Test IgM","Rapid Test IgG","S","TS","Berlaku","Sampai"
+            "Petugas","Rapid Test IgM","Rapid Test IgG","Tanggal"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -71,7 +71,7 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 15; i++) {
+        for (i = 0; i < 12; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(60);
@@ -96,13 +96,7 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
             }else if(i==10){
                 column.setPreferredWidth(81);
             }else if(i==11){
-                column.setPreferredWidth(20);
-            }else if(i==12){
-                column.setPreferredWidth(20);
-            }else if(i==13){
-                column.setPreferredWidth(65);
-            }else if(i==14){
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(80);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -228,10 +222,8 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         jLabel4 = new widget.Label();
         TNoRw = new widget.TextBox();
         TPasien = new widget.TextBox();
-        TanggalAkhir = new widget.Tanggal();
         TNoRM = new widget.TextBox();
-        jLabel16 = new widget.Label();
-        TanggalAwal = new widget.Tanggal();
+        Tanggal = new widget.Tanggal();
         jLabel13 = new widget.Label();
         jLabel5 = new widget.Label();
         KdDok = new widget.TextBox();
@@ -245,9 +237,6 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         IgM = new widget.ComboBox();
         jLabel25 = new widget.Label();
         IgG = new widget.ComboBox();
-        TidakSehat = new widget.RadioButton();
-        Sehat = new widget.RadioButton();
-        jLabel9 = new widget.Label();
         NoSurat1 = new widget.TextBox();
         ChkInput = new widget.CekBox();
 
@@ -445,7 +434,7 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2021" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -459,7 +448,7 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2021" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -562,24 +551,6 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         FormInput.add(TPasien);
         TPasien.setBounds(355, 10, 365, 23);
 
-        TanggalAkhir.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalAkhir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2021" }));
-        TanggalAkhir.setDisplayFormat("dd-MM-yyyy");
-        TanggalAkhir.setName("TanggalAkhir"); // NOI18N
-        TanggalAkhir.setOpaque(false);
-        TanggalAkhir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TanggalAkhirActionPerformed(evt);
-            }
-        });
-        TanggalAkhir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TanggalAkhirKeyPressed(evt);
-            }
-        });
-        FormInput.add(TanggalAkhir);
-        TanggalAkhir.setBounds(630, 40, 90, 23);
-
         TNoRM.setEditable(false);
         TNoRM.setHighlighter(null);
         TNoRM.setName("TNoRM"); // NOI18N
@@ -591,34 +562,28 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         FormInput.add(TNoRM);
         TNoRM.setBounds(242, 10, 111, 23);
 
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("s.d.");
-        jLabel16.setName("jLabel16"); // NOI18N
-        FormInput.add(jLabel16);
-        jLabel16.setBounds(599, 40, 27, 23);
-
-        TanggalAwal.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalAwal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2021" }));
-        TanggalAwal.setDisplayFormat("dd-MM-yyyy");
-        TanggalAwal.setName("TanggalAwal"); // NOI18N
-        TanggalAwal.setOpaque(false);
-        TanggalAwal.addActionListener(new java.awt.event.ActionListener() {
+        Tanggal.setForeground(new java.awt.Color(50, 70, 50));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2021" }));
+        Tanggal.setDisplayFormat("dd-MM-yyyy");
+        Tanggal.setName("Tanggal"); // NOI18N
+        Tanggal.setOpaque(false);
+        Tanggal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TanggalAwalActionPerformed(evt);
+                TanggalActionPerformed(evt);
             }
         });
-        TanggalAwal.addKeyListener(new java.awt.event.KeyAdapter() {
+        Tanggal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TanggalAwalKeyPressed(evt);
+                TanggalKeyPressed(evt);
             }
         });
-        FormInput.add(TanggalAwal);
-        TanggalAwal.setBounds(505, 40, 90, 23);
+        FormInput.add(Tanggal);
+        Tanggal.setBounds(600, 40, 90, 23);
 
-        jLabel13.setText("Hasil Rapid Test Berlaku Sejak :");
+        jLabel13.setText("Tanggal Hasil :");
         jLabel13.setName("jLabel13"); // NOI18N
         FormInput.add(jLabel13);
-        jLabel13.setBounds(301, 40, 200, 23);
+        jLabel13.setBounds(390, 40, 200, 23);
 
         jLabel5.setText("Dokter P.J. :");
         jLabel5.setName("jLabel5"); // NOI18N
@@ -718,44 +683,6 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         FormInput.add(IgG);
         IgG.setBounds(599, 100, 120, 23);
 
-        TidakSehat.setBackground(new java.awt.Color(240, 250, 230));
-        TidakSehat.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
-        buttonGroup1.add(TidakSehat);
-        TidakSehat.setText("Tidak Sehat Dan Ada Tanda Dan Gejala Tertular Covid-19");
-        TidakSehat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        TidakSehat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        TidakSehat.setName("TidakSehat"); // NOI18N
-        TidakSehat.setPreferredSize(new java.awt.Dimension(95, 23));
-        TidakSehat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TidakSehatActionPerformed(evt);
-            }
-        });
-        FormInput.add(TidakSehat);
-        TidakSehat.setBounds(415, 130, 310, 23);
-
-        Sehat.setBackground(new java.awt.Color(240, 250, 230));
-        Sehat.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
-        buttonGroup1.add(Sehat);
-        Sehat.setSelected(true);
-        Sehat.setText("Sehat Dan Tidak Ada Tanda Dan Gejala Tertular Covid-19");
-        Sehat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Sehat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Sehat.setName("Sehat"); // NOI18N
-        Sehat.setPreferredSize(new java.awt.Dimension(95, 23));
-        Sehat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SehatActionPerformed(evt);
-            }
-        });
-        FormInput.add(Sehat);
-        Sehat.setBounds(99, 130, 310, 23);
-
-        jLabel9.setText("Hasil Tes :");
-        jLabel9.setName("jLabel9"); // NOI18N
-        FormInput.add(jLabel9);
-        jLabel9.setBounds(0, 130, 95, 23);
-
         NoSurat1.setHighlighter(null);
         NoSurat1.setName("NoSurat1"); // NOI18N
         NoSurat1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -798,7 +725,7 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
     
     private void NoSuratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoSuratKeyPressed
-       Valid.pindah(evt,TCari,TanggalAwal);
+       Valid.pindah(evt,TCari,Tanggal);
 }//GEN-LAST:event_NoSuratKeyPressed
 
     private void TNoRwKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRwKeyPressed
@@ -824,9 +751,9 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         }else if(KdPetugas.getText().trim().equals("")||TPetugas.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"Petugas");
         }else{
-            if(Sequel.menyimpantf("surat_keterangan_covid","?,?,?,?,?,?,?,?,?,?,?","No.Surat",11,new String[]{
+            if(Sequel.menyimpantf("surat_keterangan_covid","?,?,?,?,?,?,?,?","No.Surat",8,new String[]{
                     NoSurat.getText(),NoSurat1.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),IgM.getSelectedItem().toString(),IgG.getSelectedItem().toString(),
-                    (Sehat.isSelected()?"V":"x"),(TidakSehat.isSelected()?"V":"x"),Valid.SetTgl(TanggalAwal.getSelectedItem()+""),Valid.SetTgl(TanggalAkhir.getSelectedItem()+"")
+                    Valid.SetTgl(Tanggal.getSelectedItem()+"")
                 })==true){
                 tampil();
                 emptTeks();
@@ -880,9 +807,9 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"Petugas");
         }else{   
             if(tbObat.getSelectedRow()!= -1){
-                if(Sequel.mengedittf2("surat_keterangan_covid","no_surat=?","kode_surat=?","no_surat=?,kode_surat=?,no_rawat=?,kd_dokter=?,nip=?,igm=?,igg=?,sehat=?,tidaksehat=?,berlakumulai=?,berlakuselsai=?",13,new String[]{
-                    NoSurat.getText(),NoSurat1.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),IgM.getSelectedItem().toString(),IgG.getSelectedItem().toString(),(Sehat.isSelected()?"V":"x"),
-                    (TidakSehat.isSelected()?"V":"x"),Valid.SetTgl(TanggalAwal.getSelectedItem()+""),Valid.SetTgl(TanggalAkhir.getSelectedItem()+""),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),1).toString()
+                if(Sequel.mengedittf2("surat_keterangan_covid","no_surat=?","kode_surat=?","no_surat=?,kode_surat=?,no_rawat=?,kd_dokter=?,nip=?,igm=?,igg=?,tanggal=?",10,new String[]{
+                    NoSurat.getText(),NoSurat1.getText(),TNoRw.getText(),KdDok.getText(),KdPetugas.getText(),IgM.getSelectedItem().toString(),IgG.getSelectedItem().toString(),
+                    Valid.SetTgl(Tanggal.getSelectedItem()+""),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),1).toString()
                 })==true){
                     tampil();
                     emptTeks();
@@ -926,12 +853,12 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
             Valid.MyReportqry("rptDataSuratCovid.jasper","report","::[ Data Surat Keterangan Covid ]::",
                 "select surat_keterangan_covid.no_surat,surat_keterangan_covid.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,"+
                 "surat_keterangan_covid.kd_dokter,dokter.nm_dokter,surat_keterangan_covid.nip,petugas.nama,surat_keterangan_covid.igm,"+
-                "surat_keterangan_covid.igg,surat_keterangan_covid.sehat,surat_keterangan_covid.tidaksehat,surat_keterangan_covid.berlakumulai,"+
-                "surat_keterangan_covid.berlakuselsai from surat_keterangan_covid inner join reg_periksa on surat_keterangan_covid.no_rawat=reg_periksa.no_rawat "+
+                "surat_keterangan_covid.igg,surat_keterangan_covid.tanggal "+
+                "from surat_keterangan_covid inner join reg_periksa on surat_keterangan_covid.no_rawat=reg_periksa.no_rawat "+
                 "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                 "inner join dokter on surat_keterangan_covid.kd_dokter=dokter.kd_dokter "+
                 "inner join petugas on surat_keterangan_covid.nip=petugas.nip "+
-                "where surat_keterangan_covid.berlakumulai between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' "+
+                "where surat_keterangan_covid.tanggal between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' "+
                 (TCari.getText().trim().equals("")?"":"and (surat_keterangan_covid.no_surat like '%"+TCari.getText().trim()+"%' or dokter.nm_dokter like '%"+TCari.getText().trim()+"%' "+
                 "or pasien.no_rkm_medis like '%"+TCari.getText().trim()+"%' or pasien.nm_pasien like '%"+TCari.getText().trim()+"%' or petugas.nama like '%"+TCari.getText().trim()+"%' "+
                 "or surat_keterangan_covid.no_rawat like '%"+TCari.getText().trim()+"%')")+" order by surat_keterangan_covid.no_surat",param);
@@ -984,10 +911,6 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllKeyPressed
    
                                   
-    private void TanggalAkhirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TanggalAkhirKeyPressed
-        Valid.pindah(evt,TanggalAwal,btnDokter);
-}//GEN-LAST:event_TanggalAkhirKeyPressed
-
     private void TNoRMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRMKeyPressed
        
 }//GEN-LAST:event_TNoRMKeyPressed
@@ -1016,17 +939,13 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbObatKeyReleased
 
-    private void TanggalAkhirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanggalAkhirActionPerformed
+    private void TanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanggalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TanggalAkhirActionPerformed
+    }//GEN-LAST:event_TanggalActionPerformed
 
-    private void TanggalAwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanggalAwalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TanggalAwalActionPerformed
-
-    private void TanggalAwalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TanggalAwalKeyPressed
-        Valid.pindah(evt,NoSurat,TanggalAkhir);
-    }//GEN-LAST:event_TanggalAwalKeyPressed
+    private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TanggalKeyPressed
+//        Valid.pindah(evt,NoSurat,TanggalAkhir);
+    }//GEN-LAST:event_TanggalKeyPressed
 
     private void MnCetakSuratCovidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratCovidActionPerformed
         if(TPasien.getText().trim().equals("")){
@@ -1046,8 +965,8 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
                 Valid.MyReportqry("rptSuratKeteranganCovid.jasper","report","::[ Surat Keterangan Covid ]::",
                             "select surat_keterangan_covid.no_surat,surat_keterangan_covid.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,spesialis.nm_sps,"+
                             "surat_keterangan_covid.kd_dokter,dokter.nm_dokter,surat_keterangan_covid.nip,petugas.nama,surat_keterangan_covid.igm,pasien.tgl_lahir,"+
-                            "surat_keterangan_covid.igg,surat_keterangan_covid.sehat,surat_keterangan_covid.tidaksehat,surat_keterangan_covid.berlakumulai,pasien.jk,"+
-                            "surat_keterangan_covid.berlakuselsai,pasien.pekerjaan,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat "+
+                            "surat_keterangan_covid.igg,sf_formatTanggal(now()) as tgl_now,dokter.no_ijn_praktek,surat_keterangan_covid.tanggal,pasien.jk,"+
+                            "pasien.pekerjaan,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat "+
                             "from surat_keterangan_covid inner join reg_periksa on surat_keterangan_covid.no_rawat=reg_periksa.no_rawat "+
                             "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join dokter on surat_keterangan_covid.kd_dokter=dokter.kd_dokter "+
@@ -1069,7 +988,7 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDokterActionPerformed
 
     private void btnDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDokterKeyPressed
-        Valid.pindah(evt,TanggalAkhir,btnPetugas);
+//        Valid.pindah(evt, Tanggal,btnPetugas);
     }//GEN-LAST:event_btnDokterKeyPressed
 
     private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugasActionPerformed
@@ -1091,17 +1010,9 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         Valid.pindah(evt,IgM,BtnSimpan);
     }//GEN-LAST:event_IgGKeyPressed
 
-    private void TidakSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TidakSehatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TidakSehatActionPerformed
-
     private void NoSurat1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoSurat1KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_NoSurat1KeyPressed
-
-    private void SehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SehatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SehatActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1142,22 +1053,18 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
     private widget.TextBox NoSurat1;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
-    private widget.RadioButton Sehat;
     private widget.TextBox TCari;
     private widget.TextBox TDokter;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
     private widget.TextBox TPetugas;
-    private widget.Tanggal TanggalAkhir;
-    private widget.Tanggal TanggalAwal;
-    private widget.RadioButton TidakSehat;
+    private widget.Tanggal Tanggal;
     private widget.Button btnDokter;
     private widget.Button btnPetugas;
     private javax.swing.ButtonGroup buttonGroup1;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel13;
-    private widget.Label jLabel16;
     private widget.Label jLabel19;
     private widget.Label jLabel21;
     private widget.Label jLabel24;
@@ -1168,7 +1075,6 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
-    private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass8;
@@ -1182,12 +1088,12 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
             ps=koneksi.prepareStatement(
                  "select surat_keterangan_covid.no_surat,surat_keterangan_covid.kode_surat,surat_keterangan_covid.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,"+
                  "surat_keterangan_covid.kd_dokter,dokter.nm_dokter,surat_keterangan_covid.nip,petugas.nama,surat_keterangan_covid.igm,"+
-                 "surat_keterangan_covid.igg,surat_keterangan_covid.sehat,surat_keterangan_covid.tidaksehat,surat_keterangan_covid.berlakumulai,"+
-                 "surat_keterangan_covid.berlakuselsai from surat_keterangan_covid inner join reg_periksa on surat_keterangan_covid.no_rawat=reg_periksa.no_rawat "+
+                 "surat_keterangan_covid.igg,surat_keterangan_covid.tanggal "+
+                 "from surat_keterangan_covid inner join reg_periksa on surat_keterangan_covid.no_rawat=reg_periksa.no_rawat "+
                  "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                  "inner join dokter on surat_keterangan_covid.kd_dokter=dokter.kd_dokter "+
                  "inner join petugas on surat_keterangan_covid.nip=petugas.nip "+
-                 "where surat_keterangan_covid.berlakumulai between ? and ? "+
+                 "where surat_keterangan_covid.tanggal between ? and ? "+
                  (TCari.getText().trim().equals("")?"":"and (surat_keterangan_covid.no_surat like ? or dokter.nm_dokter like ? or pasien.no_rkm_medis like ? or "+
                  "pasien.nm_pasien like ? or petugas.nama like ? or surat_keterangan_covid.no_rawat like ?)")+" order by surat_keterangan_covid.no_surat");
             try {
@@ -1207,8 +1113,7 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
                         rs.getString("no_surat"),rs.getString("kode_surat"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),rs.getString("kd_dokter"),rs.getString("nm_dokter"),
                         rs.getString("nip"),rs.getString("nama"),rs.getString("igm"),rs.getString("igg"),
-                        rs.getString("sehat"),rs.getString("tidaksehat"),rs.getString("berlakumulai"),
-                        rs.getString("berlakuselsai")
+                        rs.getString("tanggal")
                     });
                 }
             } catch (Exception e) {
@@ -1236,10 +1141,9 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
 
         IgM.setSelectedIndex(0);
         IgG.setSelectedIndex(0);
-        TanggalAwal.setDate(new Date());
-        TanggalAkhir.setDate(new Date());
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,3),signed)),0) from surat_keterangan_covid where berlakumulai like '"+TanggalAwal.getSelectedItem().toString().substring(6,10)+TanggalAwal.getSelectedItem().toString().substring(2,5)+"%' ",
-                TanggalAwal.getSelectedItem().toString().substring(0,0),3,NoSurat); 
+        Tanggal.setDate(new Date());
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat,3),signed)),0) from surat_keterangan_covid where tanggal like '"+Tanggal.getSelectedItem().toString().substring(6,10)+Tanggal.getSelectedItem().toString().substring(2,5)+"%' ",
+                Tanggal.getSelectedItem().toString().substring(0,0),3,NoSurat); 
         NoSurat.requestFocus();
     }
 
@@ -1257,18 +1161,8 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
             TPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
             IgM.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
             IgG.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
-            if(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString().equals("V")){
-                Sehat.setSelected(true);
-            }else{
-                Sehat.setSelected(false);
-            }
-            if(tbObat.getValueAt(tbObat.getSelectedRow(),12).toString().equals("V")){
-                TidakSehat.setSelected(true);
-            }else{
-                TidakSehat.setSelected(false);
-            }
-            Valid.SetTgl(TanggalAwal,tbObat.getValueAt(tbObat.getSelectedRow(),13).toString());
-            Valid.SetTgl(TanggalAkhir,tbObat.getValueAt(tbObat.getSelectedRow(),14).toString());  
+            
+            Valid.SetTgl(Tanggal,tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
         }
     }
 
@@ -1280,11 +1174,10 @@ public final class SuratKeteranganCovid extends javax.swing.JDialog {
         Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='"+TNoRM.getText()+"' ",TPasien);
     }
     
-    public void setNoRm(String norwt, Date tgl1, Date tgl2) {
+    public void setNoRm(String norwt, Date tgl1) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         DTPCari1.setDate(tgl1);
-        DTPCari2.setDate(tgl2);
         isRawat();
         isPsien(); 
         ChkInput.setSelected(true);

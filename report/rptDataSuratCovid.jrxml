@@ -67,20 +67,8 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 		<property name="com.jaspersoft.studio.field.label" value="igg"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="surat_keterangan_covid"/>
 	</field>
-	<field name="sehat" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="sehat"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="surat_keterangan_covid"/>
-	</field>
-	<field name="tidaksehat" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="tidaksehat"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="surat_keterangan_covid"/>
-	</field>
-	<field name="berlakumulai" class="java.sql.Date">
+	<field name="tanggal" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.label" value="berlakumulai"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="surat_keterangan_covid"/>
-	</field>
-	<field name="berlakuselsai" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.label" value="berlakuselsai"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="surat_keterangan_covid"/>
 	</field>
 	<background>
@@ -146,7 +134,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 	<columnHeader>
 		<band height="17" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="355" y="0" width="84" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="e3fd54e1-dd01-4d98-84a4-2c8b8d8e172d"/>
+				<reportElement mode="Opaque" x="355" y="0" width="138" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="e3fd54e1-dd01-4d98-84a4-2c8b8d8e172d"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -154,7 +142,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<text><![CDATA[Nama Dokter]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="485" y="0" width="84" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="6adbfaf1-dcb7-47e5-a5d7-dbaf0a4e53ff"/>
+				<reportElement mode="Opaque" x="539" y="0" width="84" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="6adbfaf1-dcb7-47e5-a5d7-dbaf0a4e53ff"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -162,7 +150,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<text><![CDATA[Nama Petugas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="439" y="0" width="46" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="abb74dc6-8d31-4979-8d98-58f15f278266"/>
+				<reportElement mode="Opaque" x="493" y="0" width="46" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="abb74dc6-8d31-4979-8d98-58f15f278266"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -170,7 +158,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<text><![CDATA[NIP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="569" y="0" width="57" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="1aedd913-f546-4949-a3a4-367b2379aa78"/>
+				<reportElement mode="Opaque" x="623" y="0" width="57" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="1aedd913-f546-4949-a3a4-367b2379aa78"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -178,28 +166,12 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<text><![CDATA[Rapid Test IgM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="626" y="0" width="57" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="efacdb00-2725-4e34-a9d6-6f581999d2d9"/>
+				<reportElement mode="Opaque" x="680" y="0" width="57" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="efacdb00-2725-4e34-a9d6-6f581999d2d9"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Rapid Test IgG]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="683" y="0" width="13" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="0e4e9c41-70e4-4f91-ba47-4afa3fa43dda"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[S]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="696" y="0" width="14" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="d1e0cf2a-e645-42bb-b49d-89ef47feef13"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[TS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="309" y="0" width="46" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="5ff337c0-3f36-41c9-9551-e4485ed17b6c"/>
@@ -242,7 +214,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="710" y="0" width="45" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="1ae3d156-18a9-4c56-8378-e9cf63572867">
+				<reportElement mode="Opaque" x="737" y="0" width="59" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="1ae3d156-18a9-4c56-8378-e9cf63572867">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -250,16 +222,6 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Berlaku]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="755" y="0" width="45" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="378886cd-215d-49bd-9a88-a518b42f770f">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Sampai]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="16" width="800" height="1" uuid="43861b23-1114-4037-8d95-f1e7d0eaaa0a"/>
@@ -310,24 +272,14 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<textFieldExpression><![CDATA[$F{nm_pasien}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
-				<reportElement positionType="Float" x="710" y="0" width="45" height="10" uuid="6c75f93a-dc70-461d-9b6a-9f4f338ef602">
+				<reportElement positionType="Float" x="737" y="0" width="59" height="10" uuid="6c75f93a-dc70-461d-9b6a-9f4f338ef602">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{berlakumulai}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
-				<reportElement positionType="Float" x="755" y="0" width="45" height="10" uuid="c11e0179-8e8a-4c71-9976-f86103d9ba05">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{berlakuselsai}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="309" y="0" width="46" height="10" uuid="e37a10ea-f5b9-41dd-b3c0-35bf38d5ea07"/>
@@ -338,7 +290,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<textFieldExpression><![CDATA[$F{kd_dokter}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="355" y="0" width="84" height="10" uuid="de95bfb0-af22-44d7-89b3-698ba4a61b01"/>
+				<reportElement positionType="Float" x="355" y="0" width="138" height="10" uuid="de95bfb0-af22-44d7-89b3-698ba4a61b01"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -346,7 +298,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="439" y="0" width="46" height="10" uuid="40351b2d-2bf9-48dc-9cd0-19161282a1c2"/>
+				<reportElement positionType="Float" x="493" y="0" width="46" height="10" uuid="40351b2d-2bf9-48dc-9cd0-19161282a1c2"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -354,7 +306,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<textFieldExpression><![CDATA[$F{nip}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="485" y="0" width="84" height="10" uuid="fb11e9b9-e6ca-44ec-95ee-51717230ac17"/>
+				<reportElement positionType="Float" x="539" y="0" width="84" height="10" uuid="fb11e9b9-e6ca-44ec-95ee-51717230ac17"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -362,7 +314,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="569" y="0" width="57" height="10" uuid="fd70549c-19dd-495d-b280-dbcbae65eae3">
+				<reportElement positionType="Float" x="623" y="0" width="57" height="10" uuid="fd70549c-19dd-495d-b280-dbcbae65eae3">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement>
@@ -372,7 +324,7 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 				<textFieldExpression><![CDATA[$F{igm}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="626" y="0" width="57" height="10" uuid="891efa71-0874-489c-a058-8958d425c497">
+				<reportElement positionType="Float" x="680" y="0" width="57" height="10" uuid="891efa71-0874-489c-a058-8958d425c497">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement>
@@ -380,26 +332,6 @@ inner join petugas on surat_keterangan_covid.nip=petugas.nip]]>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{igg}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="683" y="0" width="13" height="10" uuid="3ea87ecf-1bf3-4044-b833-3aa806e5c23b">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{sehat}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="696" y="0" width="14" height="10" uuid="3148839e-3833-4ea4-8830-efb2ffbf6d5c">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tidaksehat}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" x="0" y="11" width="800" height="1" uuid="e42e608c-b28a-47b8-9827-d136c6e29939">

@@ -837,8 +837,8 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());   
             param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReportqry("rptDataSuratAntigen.jasper","report","::[ Data Surat Keterangan Antigen ]::",
-                "select surat_keterangan_antigen.no_surat,surat_keterangan_antigen.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.alamat,pasien.umur,"+
+            Valid.MyReportqry("rptDataSuratKeteranganAntigen.jasper","report","::[ Data Surat Keterangan Antigen ]::",
+                "select concat (surat_keterangan_antigen.no_surat,surat_keterangan_antigen.kode_surat) as no_surat,surat_keterangan_antigen.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.alamat,pasien.umur,"+
                 "surat_keterangan_antigen.kd_dokter,dokter.nm_dokter,dokter.no_ijn_praktek,surat_keterangan_antigen.nip,petugas.nama,"+
                 "surat_keterangan_antigen.hasil_rapid,surat_keterangan_antigen.tanggal_hasil from surat_keterangan_antigen inner join reg_periksa on surat_keterangan_antigen.no_rawat=reg_periksa.no_rawat "+
                 "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
@@ -951,7 +951,7 @@ public final class SuratKeteranganAntigen extends javax.swing.JDialog {
                 Valid.MyReportqry("rptSuratKeteranganAntigen.jasper","report","::[ Surat Keterangan Antigen ]::",
                             "select concat(surat_keterangan_antigen.no_surat,surat_keterangan_antigen.kode_surat) as no_surat,surat_keterangan_antigen.no_rawat,pasien.no_rkm_medis,pasien.jk,pasien.nm_pasien,pasien.alamat,pasien.no_ktp,pasien.tgl_lahir,pasien.umur,"+
                             "surat_keterangan_antigen.kd_dokter,dokter.nm_dokter,dokter.no_ijn_praktek,surat_keterangan_antigen.nip,petugas.nama,"+
-                            "surat_keterangan_antigen.hasil_rapid,spesialis.nm_sps, sf_formatTanggal(NOW()) as tgl_now,surat_keterangan_antigen.tanggal_hasil,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat from surat_keterangan_antigen inner join reg_periksa on surat_keterangan_antigen.no_rawat=reg_periksa.no_rawat "+
+                            "surat_keterangan_antigen.hasil_rapid,spesialis.nm_sps, sf_formatTanggal(NOW()) as tgl_now,surat_keterangan_antigen.tanggal_hasil,concat (pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat2 from surat_keterangan_antigen inner join reg_periksa on surat_keterangan_antigen.no_rawat=reg_periksa.no_rawat "+
                             "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join dokter on surat_keterangan_antigen.kd_dokter=dokter.kd_dokter "+
                             "inner join petugas on surat_keterangan_antigen.nip=petugas.nip "+

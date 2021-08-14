@@ -1528,7 +1528,6 @@
                       <Color PropertyName="color" blue="e1" green="eb" red="e6" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
                   <Color PropertyName="color" blue="32" green="46" red="32" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -1939,7 +1938,6 @@
                       <Color PropertyName="color" blue="e1" green="eb" red="e6" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
                   <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -2255,7 +2253,6 @@
                   <Color PropertyName="color" blue="eb" green="f5" red="f0" type="rgb"/>
                 </LineBorder>
               </Border>
-              <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
               <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
             </TitledBorder>
           </Border>
@@ -2588,9 +2585,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="32" green="32" red="32" type="rgb"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="11" style="0"/>
-            </Property>
             <Property name="name" type="java.lang.String" value="TabRawat" noResource="true"/>
           </Properties>
           <Events>
@@ -2791,7 +2785,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="03-07-2021"/>
+                                <StringItem index="0" value="13-08-2021"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3010,7 +3004,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="03-07-2021"/>
+                                <StringItem index="0" value="13-08-2021"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3622,6 +3616,7 @@
                           </Properties>
                           <Events>
                             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ChkRMItemStateChanged"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChkRMActionPerformed"/>
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -4734,7 +4729,6 @@
                           <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                             <EmptyBorder/>
                           </Border>
-                          <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
                           <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
                         </TitledBorder>
                       </Border>
@@ -4853,7 +4847,6 @@
                           <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                             <EmptyBorder/>
                           </Border>
-                          <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
                           <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
                         </TitledBorder>
                       </Border>

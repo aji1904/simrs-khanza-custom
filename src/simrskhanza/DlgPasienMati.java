@@ -933,7 +933,7 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
             param.put("logo",Sequel.cariGambar("select logo from setting")); 
             Valid.MyReportqry("rptAngkutJenazah.jasper","report","::[ Surat Angkut Jenazah ]::",
                           "select tanggal,jam,pasien_mati.no_rkm_medis,pasien.nm_pasien,pasien.pekerjaan, "+
-                          "pasien.umur,pasien.alamat,jk,tmp_lahir,tgl_lahir,gol_darah,stts_nikah, "+
+                          "pasien.umur,pasien.alamat,pasien.jk,pasien.tmp_lahir,pasien.tgl_lahir,gol_darah,stts_nikah, "+
                           "agama,keterangan from pasien_mati,pasien "+
                           "where pasien_mati.no_rkm_medis=pasien.no_rkm_medis "+
                           "and pasien_mati.no_rkm_medis='"+TNoRM.getText()+"' ",param);

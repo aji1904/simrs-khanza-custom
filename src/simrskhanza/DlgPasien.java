@@ -3090,7 +3090,6 @@ public class DlgPasien extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3176,7 +3175,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(4, 102, 95, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2021" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-08-2021" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -3308,7 +3307,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(TKtp);
         TKtp.setBounds(743, 132, 130, 23);
 
-        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2021" }));
+        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-08-2021" }));
         DTPDaftar.setDisplayFormat("dd-MM-yyyy");
         DTPDaftar.setName("DTPDaftar"); // NOI18N
         DTPDaftar.setOpaque(false);
@@ -3719,6 +3718,11 @@ public class DlgPasien extends javax.swing.JDialog {
         ChkRM.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 ChkRMItemStateChanged(evt);
+            }
+        });
+        ChkRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkRMActionPerformed(evt);
             }
         });
         FormInput.add(ChkRM);
@@ -8248,6 +8252,10 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
             
         LCount.setText(""+tabMode.getRowCount());
     }//GEN-LAST:event_ppRegistrasi2BtnPrintActionPerformed
+
+    private void ChkRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkRMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChkRMActionPerformed
 
     /**
      * @data args the command line arguments

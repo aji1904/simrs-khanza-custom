@@ -927,22 +927,22 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
             tgl=" surat_keterangan_sehat.tanggalsurat between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' ";
             if(TCari.getText().trim().equals("")){
                 Valid.MyReportqry("rptDataSuratKeteranganSehat.jasper","report","::[ Data Surat Keterangan Sehat ]::",
-                     "select concat ('surat_keterangan_sehat.no_surat','surat_keterangan_sehat.kode_surat') as no_surat,surat_keterangan_sehat.no_rawat,surat_keterangan_sehat.nadi,surat_keterangan_sehat.nafas,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
-                     "surat_keterangan_sehat.tanggalsurat,surat_keterangan_sehat.berat,surat_keterangan_sehat.tinggi,surat_keterangan_sehat.tensi,surat_keterangan_sehat.suhu,surat_keterangan_sehat.butawarna, "+                  
+                     "select concat (surat_keterangan_sehat.no_surat,surat_keterangan_sehat.kode_surat) as no_surat,surat_keterangan_sehat.no_rawat,surat_keterangan_sehat.nadi,surat_keterangan_sehat.nafas,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
+                     "surat_keterangan_sehat.tanggalsurat,surat_keterangan_sehat.nafas,surat_keterangan_sehat.nadi,surat_keterangan_sehat.berat,surat_keterangan_sehat.tinggi,surat_keterangan_sehat.tensi,surat_keterangan_sehat.suhu,surat_keterangan_sehat.butawarna, "+                  
                      "surat_keterangan_sehat.keperluan,surat_keterangan_sehat.kesimpulan from surat_keterangan_sehat inner join reg_periksa on surat_keterangan_sehat.no_rawat=reg_periksa.no_rawat "+
                      "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                      "where "+tgl+"order by surat_keterangan_sehat.no_surat",param);
             }else{
                 Valid.MyReportqry("rptDataSuratKeteranganSehat.jasper","report","::[ Data Surat Keterangan Sehat ]::",
-                     "select concat ('surat_keterangan_sehat.no_surat','surat_keterangan_sehat.kode_surat') as no_surat,surat_keterangan_sehat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
-                     "surat_keterangan_sehat.tanggalawal,surat_keterangan_sehat.tanggalakhir "+                  
-                     "from surat_keterangan_sehat inner join reg_periksa on surat_keterangan_sehat.no_rawat=reg_periksa.no_rawat "+
+                     "select concat (surat_keterangan_sehat.no_surat,surat_keterangan_sehat.kode_surat) as no_surat,surat_keterangan_sehat.no_rawat,surat_keterangan_sehat.nadi,surat_keterangan_sehat.nafas,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
+                     "surat_keterangan_sehat.tanggalsurat,surat_keterangan_sehat.berat,surat_keterangan_sehat.tinggi,surat_keterangan_sehat.tensi,surat_keterangan_sehat.suhu,surat_keterangan_sehat.butawarna, "+                  
+                     "surat_keterangan_sehat.keperluan,surat_keterangan_sehat.nafas,surat_keterangan_sehat.nadi,surat_keterangan_sehat.kesimpulan from surat_keterangan_sehat inner join reg_periksa on surat_keterangan_sehat.no_rawat=reg_periksa.no_rawat "+
                      "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                      "where "+tgl+"and no_surat like '%"+TCari.getText().trim()+"%' or "+
                      tgl+"and surat_keterangan_sehat.no_rawat like '%"+TCari.getText().trim()+"%' or "+
                      tgl+"and reg_periksa.no_rkm_medis like '%"+TCari.getText().trim()+"%' or "+
                      tgl+"and pasien.nm_pasien like '%"+TCari.getText().trim()+"%' or "+
-                     tgl+"and surat_keterangan_sehat.tanggalakhir like '%"+TCari.getText().trim()+"%' "+
+                     tgl+"and surat_keterangan_sehat.tanggalsurat like '%"+TCari.getText().trim()+"%' "+
                      "order by surat_keterangan_sehat.no_surat",param);
             }
             
@@ -1035,7 +1035,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
                 Valid.MyReportqry("rptSuratKeteranganSehat.jasper","report","::[ Surat Keterangan Sehat ]::",
                               " select concat(surat_keterangan_sehat.no_surat,surat_keterangan_sehat.kode_surat) as no_surat, spesialis.nm_sps,DATE_FORMAT(surat_keterangan_sehat.tanggalsurat,'%d-%m-%Y')as tanggalsurat,surat_keterangan_sehat.berat,surat_keterangan_sehat.tinggi,surat_keterangan_sehat.tensi,surat_keterangan_sehat.suhu, "+
                               " surat_keterangan_sehat.butawarna,surat_keterangan_sehat.keperluan,surat_keterangan_sehat.kesimpulan,surat_keterangan_sehat.nadi,surat_keterangan_sehat.nafas,dokter.nm_dokter,dokter.no_ijn_praktek,pasien.jk," +
-                              " pasien.nm_pasien,pasien.tgl_lahir,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat" +
+                              " pasien.nm_pasien,pasien.tgl_lahir,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,pasien.alamat,kelurahan.nm_kel,kecamatan.nm_kec,kabupaten.nm_kab" +
                               " from surat_keterangan_sehat inner join reg_periksa inner join pasien inner join dokter inner join kelurahan inner join kecamatan inner join kabupaten" +
                               " on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_dokter=dokter.kd_dokter join spesialis on dokter.kd_sps=spesialis.kd_sps and pasien.kd_kel=kelurahan.kd_kel and "+
                               " pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab and reg_periksa.no_rawat=surat_keterangan_sehat.no_rawat "+

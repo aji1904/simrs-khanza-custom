@@ -22,7 +22,7 @@
 	<field name="nm_dokter" class="java.lang.String"/>
 	<field name="tgl_lahir" class="java.lang.String"/>
 	<field name="no_ktp" class="java.lang.String"/>
-	<field name="alamat" class="java.lang.String"/>
+	<field name="alamat2" class="java.lang.String"/>
 	<field name="nm_sps" class="java.lang.String"/>
 	<field name="no_surat" class="java.lang.String"/>
 	<field name="hasil_rapid" class="java.lang.String"/>
@@ -194,7 +194,7 @@ Telp : 0711 3037000 / 0821 81096318]]></text>
 				<textElement>
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[": "+$F{alamat}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$F{alamat2}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="313" y="341" width="215" height="18" uuid="44d54580-d8a7-4b1a-8de1-96570ed6a2d7"/>
@@ -208,7 +208,7 @@ Telp : 0711 3037000 / 0821 81096318]]></text>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[": "+$F{tgl_now}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$F{tanggal_hasil}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="300" y="598" width="232" height="18" uuid="8bb1685e-3cb6-4c38-a9cb-57f21e197026"/>
