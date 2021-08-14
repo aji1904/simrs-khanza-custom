@@ -1984,13 +1984,18 @@ public class DlgIKBBayi extends javax.swing.JDialog {
 
         NmBayi.setName("NmBayi"); // NOI18N
         NmBayi.setPreferredSize(new java.awt.Dimension(207, 23));
+        NmBayi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NmBayiActionPerformed(evt);
+            }
+        });
         NmBayi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 NmBayiKeyPressed(evt);
             }
         });
         FormInput.add(NmBayi);
-        NmBayi.setBounds(180, 10, 210, 23);
+        NmBayi.setBounds(200, 10, 210, 23);
 
         label35.setText("Umur Ayah :");
         label35.setName("label35"); // NOI18N
@@ -2217,8 +2222,18 @@ public class DlgIKBBayi extends javax.swing.JDialog {
                 ChkRMItemStateChanged(evt);
             }
         });
+        ChkRM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChkRMMouseClicked(evt);
+            }
+        });
+        ChkRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkRMActionPerformed(evt);
+            }
+        });
         FormInput.add(ChkRM);
-        ChkRM.setBounds(390, 10, 23, 23);
+        ChkRM.setBounds(170, 10, 23, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -3668,6 +3683,34 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }//GEN-LAST:event_nama_bayiActionPerformed
 
     private void ChkRMItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ChkRMItemStateChanged
+//        if(ChkRM.isSelected()==true){
+//            NoRm.setEditable(false);
+//            NoRm.setBackground(new Color(245,250,240));
+//            autoNomor();
+//        }else if(ChkRM.isSelected()==false){
+//            NoRm.setEditable(true);
+//            NoRm.setBackground(new Color(250,255,245));
+//        }
+    }//GEN-LAST:event_ChkRMItemStateChanged
+
+    private void ChkRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkRMActionPerformed
+        // TODO add your handling code here:
+//        if(ChkRM.isSelected()==true){
+//            NoRm.setEditable(false);
+//            NoRm.setBackground(new Color(245,250,240));
+//            autoNomor();
+//        }else if(ChkRM.isSelected()==false){
+//            NoRm.setEditable(true);
+//            NoRm.setBackground(new Color(250,255,245));
+//        }
+    }//GEN-LAST:event_ChkRMActionPerformed
+
+    private void NmBayiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NmBayiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NmBayiActionPerformed
+
+    private void ChkRMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkRMMouseClicked
+        // TODO add your handling code here:
         if(ChkRM.isSelected()==true){
             NoRm.setEditable(false);
             NoRm.setBackground(new Color(245,250,240));
@@ -3676,62 +3719,9 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             NoRm.setEditable(true);
             NoRm.setBackground(new Color(250,255,245));
         }
-    }//GEN-LAST:event_ChkRMItemStateChanged
+    }//GEN-LAST:event_ChkRMMouseClicked
     
     private void autoNomor() {  
-//        if(Kd2.getText().equals("")){
-//            if(ChkRM.isSelected()==true){
-//                if(tahun.equals("Yes")){
-//                    awalantahun=Daftar.getSelectedItem().toString().substring(8,10);
-//                }else{
-//                    awalantahun="";
-//                }
-//
-//                if(bulan.equals("Yes")){
-//                    awalanbulan=Daftar.getSelectedItem().toString().substring(3,5);
-//                }else{
-//                    awalanbulan="";
-//                }
-//
-//                if(posisitahun.equals("Depan")){
-//                    switch (pengurutan) {
-//                        case "Straight":
-//                            Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                            break;
-//                        case "Terminal":
-//                            Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),5,2),SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                            break;
-//                        case "Middle":
-//                            Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2),SUBSTRING(RIGHT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                            break;
-//                    }
-//                }else if(posisitahun.equals("Belakang")){
-//                    switch (pengurutan) {
-//                        case "Straight":
-//                            Valid.autoNomer3("select ifnull(MAX(CONVERT(LEFT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                            break;
-//                        case "Terminal":
-//                            Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),5,2),SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                            break;
-//                        case "Middle":
-//                            Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2),SUBSTRING(LEFT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                            break;
-//                    }            
-//                }
-//
-//                if(posisitahun.equals("Depan")){
-//                    NoRm.setText(awalantahun+awalanbulan+NoRm.getText());
-//                }else if(posisitahun.equals("Belakang")){
-//                    if(!(awalanbulan+awalantahun).equals("")){
-//                        NoRm.setText(NoRm.getText()+"-"+awalanbulan+awalantahun);
-//                    }else{
-//                        NoRm.setText(NoRm.getText());
-//                    }            
-//                }
-//            }
-//        }
-        if(Kd2.getText().equals("")){
-            if(ChkRM.isSelected()==true){
                 if(tahun.equals("Yes")){
                     awalantahun=Daftar.getSelectedItem().toString().substring(8,10);
                 }else{
@@ -3779,8 +3769,6 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                         NoRm.setText(NoRm.getText());
                     }            
                 }
-            }
-        }
     }
     /**
     * @param args the command line arguments
@@ -4139,6 +4127,7 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             PanelInput.setPreferredSize(new Dimension(WIDTH,279));
             FormInput.setVisible(true);      
             ChkInput.setVisible(true);
+            NoRm.setEditable(false);
         }else if(ChkInput.isSelected()==false){           
             ChkInput.setVisible(false);            
             PanelInput.setPreferredSize(new Dimension(WIDTH,20));
@@ -4173,59 +4162,7 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         BtnEdit.setEnabled(akses.getkelahiran_bayi());
         BtnPrint.setEnabled(akses.getkelahiran_bayi());
     }
-    
-//    private void autoNomor() {  
-//        if(Kd2.getText().equals("")){            
-//            if(tahun.equals("Yes")){
-//                awalantahun=Daftar.getSelectedItem().toString().substring(8,10);
-//            }else{
-//                awalantahun="";
-//            }
-//
-//            if(bulan.equals("Yes")){
-//                awalanbulan=Daftar.getSelectedItem().toString().substring(3,5);
-//            }else{
-//                awalanbulan="";
-//            }
-//
-//            if(posisitahun.equals("Depan")){
-//                switch (pengurutan) {
-//                    case "Straight":
-//                        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                        break;
-//                    case "Terminal":
-//                        Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),5,2),SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                        break;
-//                    case "Middle":
-//                        Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(RIGHT(no_rkm_medis,6),3,2),SUBSTRING(RIGHT(no_rkm_medis,6),1,2),SUBSTRING(RIGHT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                        break;
-//                }
-//            }else if(posisitahun.equals("Belakang")){
-//                switch (pengurutan) {
-//                    case "Straight":
-//                        Valid.autoNomer3("select ifnull(MAX(CONVERT(LEFT(no_rkm_medis,6),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                        break;
-//                    case "Terminal":
-//                        Valid.autoNomer4("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),5,2),SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                        break;
-//                    case "Middle":
-//                        Valid.autoNomer5("select ifnull(MAX(CONVERT(CONCAT(SUBSTRING(LEFT(no_rkm_medis,6),3,2),SUBSTRING(LEFT(no_rkm_medis,6),1,2),SUBSTRING(LEFT(no_rkm_medis,6),5,2)),signed)),0) from set_no_rkm_medis","",6,NoRm);
-//                        break;
-//                }            
-//            }
-//
-//            if(posisitahun.equals("Depan")){
-//                NoRm.setText(awalantahun+awalanbulan+NoRm.getText());
-//            }else if(posisitahun.equals("Belakang")){
-//                if(!(awalanbulan+awalantahun).equals("")){
-//                    NoRm.setText(NoRm.getText()+"-"+awalanbulan+awalantahun);
-//                }else{
-//                    NoRm.setText(NoRm.getText());
-//                }            
-//            }
-//        }        
-//    }
-//    
+       
     public JTable getTable(){
         return tbDokter;
     }
