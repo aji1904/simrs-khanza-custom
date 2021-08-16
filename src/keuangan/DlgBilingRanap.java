@@ -4969,12 +4969,12 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             
 //          ---------------------------------- obat ---------------------
             pscari_obat1=koneksi.prepareStatement("select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
-                        "detail_pemberian_obat.no_rawat=? and databarang.letak_barang!='ALKES' "); 
+                        "detail_pemberian_obat.no_rawat=? and and jenis.nama not like '%alkes%' or jenis.nama not like '%alat kesehatan%' "); 
             
 //          ---------------------------------- alkes ---------------------
 
             pscari_alkes1=koneksi.prepareStatement("select sum(total) as total from detail_pemberian_obat inner join databarang inner join jenis on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where " +
-                        "detail_pemberian_obat.no_rawat=? and databarang.letak_barang='ALKES' "); 
+                        "detail_pemberian_obat.no_rawat=? and jenis.nama like '%alkes%' or jenis.nama like '%alat kesehatan%' "); 
            
             
 //            ---------------------- total resep ---------------------------
