@@ -1,15 +1,15 @@
 <?php
 
 //user untuk bpjs
-$username = "fauzan";
-$password = "123";
+$username = "BPJS";
+$password = "Bmj2020##";
 
 date_default_timezone_set('Asia/Jakarta');
 //koneksi database
 $db_hostname = "localhost";
 $db_username = "root";
 $db_password = "";
-$db_name = "sik";
+$db_name = "rsbu_sik_2021";
 
 //version php
 $version_php = "7";

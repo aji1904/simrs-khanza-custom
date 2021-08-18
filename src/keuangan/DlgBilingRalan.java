@@ -136,11 +136,11 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             sqlpscari_alkes="select sum(total) as subtotal_alkes "+
                           "from detail_pemberian_obat inner join databarang inner join jenis "+
                           "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
-                          "detail_pemberian_obat.no_rawat=? and jenis.nama like '%ALKES%' OR jenis.nama like '%ALAT KESEHATAN%' ",
+                          "detail_pemberian_obat.no_rawat=? and (jenis.nama like '%alkes%' OR jenis.nama like '%alat kesehatan%') ",
             sqlpscari_obat="select sum(total) as subtotal_obat "+
                           "from detail_pemberian_obat inner join databarang inner join jenis "+
                           "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
-                          "detail_pemberian_obat.no_rawat=? and jenis.nama like != '%ALKES%' OR jenis.nama like != '%ALAT KESEHATAN%' ",
+                          "detail_pemberian_obat.no_rawat=? and (jenis.nama not like '%alkes%' and jenis.nama not like '%alat kesehatan%') ",
             sqlpsdetaillab="select sum(detail_periksa_lab.biaya_item) as total,sum(detail_periksa_lab.bagian_perujuk+detail_periksa_lab.bagian_dokter) as totaldokter, "+
                            "sum(detail_periksa_lab.bagian_laborat) as totalpetugas,sum(detail_periksa_lab.kso) as totalkso,sum(detail_periksa_lab.bhp) as totalbhp "+
                            "from detail_periksa_lab where detail_periksa_lab.no_rawat=? "+

@@ -860,18 +860,17 @@ public final class SuratKeteranganIsolasi extends javax.swing.JDialog {
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());   
             param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReportqry("rptDataSuratIsolasi1.jasper","report","::[ Data Surat Keterangan Isolasi ]::",
-                "select surat_keterangan_covid.no_surat,surat_keterangan_covid.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,"+
-                "surat_keterangan_covid.kd_dokter,dokter.nm_dokter,surat_keterangan_covid.nip,petugas.nama,surat_keterangan_covid.igm,"+
-                "surat_keterangan_covid.igg,surat_keterangan_covid.sehat,surat_keterangan_covid.tidaksehat,surat_keterangan_covid.berlakumulai,"+
-                "surat_keterangan_covid.berlakuselsai from surat_keterangan_covid inner join reg_periksa on surat_keterangan_covid.no_rawat=reg_periksa.no_rawat "+
+            Valid.MyReportqry("rptDataSuratIsolasi.jasper","report","::[ Data Surat Keterangan Isolasi ]::",
+                "select surat_keterangan_isolasi.no_surat,surat_keterangan_isolasi.kode_surat,surat_keterangan_isolasi.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,"+
+                "surat_keterangan_isolasi.kd_dokter,dokter.nm_dokter,surat_keterangan_isolasi.nip,petugas.nama,surat_keterangan_isolasi.status,"+
+                "surat_keterangan_isolasi.telepon,surat_keterangan_isolasi.tanggal_surat as tanggal,surat_keterangan_isolasi.ket from surat_keterangan_isolasi inner join reg_periksa on surat_keterangan_isolasi.no_rawat=reg_periksa.no_rawat "+
                 "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                "inner join dokter on surat_keterangan_covid.kd_dokter=dokter.kd_dokter "+
-                "inner join petugas on surat_keterangan_covid.nip=petugas.nip "+
-                "where surat_keterangan_covid.berlakumulai between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' "+
-                (TCari.getText().trim().equals("")?"":"and (surat_keterangan_covid.no_surat like '%"+TCari.getText().trim()+"%' or dokter.nm_dokter like '%"+TCari.getText().trim()+"%' "+
+                "inner join dokter on surat_keterangan_isolasi.kd_dokter=dokter.kd_dokter "+
+                "inner join petugas on surat_keterangan_isolasi.nip=petugas.nip "+
+                "where surat_keterangan_isolasi.tanggal_surat between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' "+
+                (TCari.getText().trim().equals("")?"":"and (surat_keterangan_isolasi.no_surat like '%"+TCari.getText().trim()+"%' or surat_keterangan_isolasi.kode_surat like '%"+TCari.getText().trim()+"%' or dokter.nm_dokter like '%"+TCari.getText().trim()+"%' "+
                 "or pasien.no_rkm_medis like '%"+TCari.getText().trim()+"%' or pasien.nm_pasien like '%"+TCari.getText().trim()+"%' or petugas.nama like '%"+TCari.getText().trim()+"%' "+
-                "or surat_keterangan_covid.no_rawat like '%"+TCari.getText().trim()+"%')")+" order by surat_keterangan_covid.no_surat",param);
+                "or surat_keterangan_isolasi.no_rawat like '%"+TCari.getText().trim()+"%')")+" order by surat_keterangan_isolasi.no_surat and surat_keterangan_isolasi.kode_surat",param);
         }
         this.setCursor(Cursor.getDefaultCursor());        
 }//GEN-LAST:event_BtnPrintActionPerformed

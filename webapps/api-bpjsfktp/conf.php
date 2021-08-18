@@ -3,7 +3,7 @@
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
     define('DB_PASS', '');
-    define('DB_NAME', 'sik');
+    define('DB_NAME', 'rsbu_sik_2021');
     $akunbpjs=fetch_array(bukaquery("select kd_pj,aes_decrypt(usere,'nur') as user,aes_decrypt(passworde,'windi') as pass FROM password_asuransi"));
     @define('USERNAME', $akunbpjs['user']);
     @define('PASSWORD', $akunbpjs['pass']);
