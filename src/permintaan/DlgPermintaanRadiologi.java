@@ -22,6 +22,8 @@ import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
+import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -243,6 +245,7 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
         jLabel5 = new widget.Label();
         DiagnosisKlinis = new widget.TextBox();
         jLabel6 = new widget.Label();
+        Btnrefresh1 = new widget.Button();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         panelisi5 = new widget.panelisi();
@@ -446,7 +449,7 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
         PanelInput.add(jLabel9);
         jLabel9.setBounds(0, 42, 92, 23);
 
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2020" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2021" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -563,6 +566,19 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
         jLabel6.setName("jLabel6"); // NOI18N
         PanelInput.add(jLabel6);
         jLabel6.setBounds(0, 132, 209, 23);
+
+        Btnrefresh1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png"))); // NOI18N
+        Btnrefresh1.setMnemonic('4');
+        Btnrefresh1.setToolTipText("Alt+4");
+        Btnrefresh1.setName("Btnrefresh1"); // NOI18N
+        Btnrefresh1.setPreferredSize(new java.awt.Dimension(28, 23));
+        Btnrefresh1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btnrefresh1MouseClicked(evt);
+            }
+        });
+        PanelInput.add(Btnrefresh1);
+        Btnrefresh1.setBounds(635, 72, 28, 23);
 
         FormInput.add(PanelInput, java.awt.BorderLayout.CENTER);
 
@@ -944,6 +960,13 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         Valid.pindah(evt,InformasiTambahan,BtnSimpan);
     }//GEN-LAST:event_DiagnosisKlinisKeyPressed
 
+    private void Btnrefresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btnrefresh1MouseClicked
+        // TODO add your handling code here:
+        TNoPermintaan.setEditable(false);
+        TNoPermintaan.setBackground(new Color(245,250,240));
+        autoNomor();
+    }//GEN-LAST:event_Btnrefresh1MouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -968,6 +991,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
+    private widget.Button Btnrefresh1;
     private widget.CekBox ChkInput;
     private widget.CekBox ChkJln;
     private widget.ComboBox CmbDetik;

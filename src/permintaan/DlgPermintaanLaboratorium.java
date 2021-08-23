@@ -18,6 +18,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -350,6 +351,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         BtnCari1 = new widget.Button();
         jLabel4 = new widget.Label();
         TNoPermintaan = new widget.TextBox();
+        Btnrefresh = new widget.Button();
         PanelCariUtama1 = new javax.swing.JPanel();
         panelGlass12 = new widget.panelisi();
         jLabel8 = new widget.Label();
@@ -373,6 +375,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel20 = new widget.Label();
         NomorPA = new widget.TextBox();
         jLabel21 = new widget.Label();
+        Btnrefresh1 = new widget.Button();
         Scroll2 = new widget.ScrollPane();
         tbTarif2 = new widget.Table();
         panelGlass8 = new widget.panelisi();
@@ -516,7 +519,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel9.setBounds(0, 40, 92, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-01-2021" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2021" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -631,7 +634,6 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         TabRawat.setBackground(new java.awt.Color(255, 255, 253));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -692,7 +694,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
             }
         });
         panelGlass11.add(BtnCari2);
-        BtnCari2.setBounds(744, 130, 28, 23);
+        BtnCari2.setBounds(740, 130, 28, 23);
 
         jLabel11.setText("Pemeriksaan :");
         jLabel11.setName("jLabel11"); // NOI18N
@@ -741,6 +743,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         panelGlass11.add(jLabel4);
         jLabel4.setBounds(541, 10, 98, 23);
 
+        TNoPermintaan.setEditable(false);
         TNoPermintaan.setHighlighter(null);
         TNoPermintaan.setName("TNoPermintaan"); // NOI18N
         TNoPermintaan.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -750,6 +753,19 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         });
         panelGlass11.add(TNoPermintaan);
         TNoPermintaan.setBounds(642, 10, 130, 23);
+
+        Btnrefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png"))); // NOI18N
+        Btnrefresh.setMnemonic('4');
+        Btnrefresh.setToolTipText("Alt+4");
+        Btnrefresh.setName("Btnrefresh"); // NOI18N
+        Btnrefresh.setPreferredSize(new java.awt.Dimension(28, 23));
+        Btnrefresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnrefreshMouseClicked(evt);
+            }
+        });
+        panelGlass11.add(Btnrefresh);
+        Btnrefresh.setBounds(780, 10, 28, 23);
 
         PanelCariUtama.add(panelGlass11, java.awt.BorderLayout.PAGE_START);
 
@@ -804,6 +820,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         panelGlass12.add(jLabel13);
         jLabel13.setBounds(309, 100, 120, 23);
 
+        TNoPermintaan2.setEditable(false);
         TNoPermintaan2.setHighlighter(null);
         TNoPermintaan2.setName("TNoPermintaan2"); // NOI18N
         TNoPermintaan2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -862,10 +879,10 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel17.setText("Pengambilan Bahan :");
         jLabel17.setName("jLabel17"); // NOI18N
         panelGlass12.add(jLabel17);
-        jLabel17.setBounds(235, 10, 120, 23);
+        jLabel17.setBounds(250, 10, 120, 23);
 
         TanggalPA.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-01-2021" }));
+        TanggalPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2021" }));
         TanggalPA.setDisplayFormat("dd-MM-yyyy");
         TanggalPA.setName("TanggalPA"); // NOI18N
         TanggalPA.setOpaque(false);
@@ -908,7 +925,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         DiagnosaPA.setBounds(432, 100, 340, 23);
 
         TanggalBahan.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalBahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-01-2021" }));
+        TanggalBahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2021" }));
         TanggalBahan.setDisplayFormat("dd-MM-yyyy");
         TanggalBahan.setName("TanggalBahan"); // NOI18N
         TanggalBahan.setOpaque(false);
@@ -918,7 +935,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(TanggalBahan);
-        TanggalBahan.setBounds(358, 10, 90, 23);
+        TanggalBahan.setBounds(370, 10, 90, 23);
 
         jLabel20.setText("No.Permintaan :");
         jLabel20.setName("jLabel20"); // NOI18N
@@ -939,6 +956,19 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel21.setName("jLabel21"); // NOI18N
         panelGlass12.add(jLabel21);
         jLabel21.setBounds(25, 100, 140, 23);
+
+        Btnrefresh1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png"))); // NOI18N
+        Btnrefresh1.setMnemonic('4');
+        Btnrefresh1.setToolTipText("Alt+4");
+        Btnrefresh1.setName("Btnrefresh1"); // NOI18N
+        Btnrefresh1.setPreferredSize(new java.awt.Dimension(28, 23));
+        Btnrefresh1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btnrefresh1MouseClicked(evt);
+            }
+        });
+        panelGlass12.add(Btnrefresh1);
+        Btnrefresh1.setBounds(230, 10, 28, 23);
 
         PanelCariUtama1.add(panelGlass12, java.awt.BorderLayout.PAGE_START);
 
@@ -1503,6 +1533,18 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_TanggalItemStateChanged
 
+    private void BtnrefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnrefreshMouseClicked
+        // TODO add your handling code here:
+        TNoPermintaan.setBackground(new Color(245,250,240));
+        autoNomor();
+    }//GEN-LAST:event_BtnrefreshMouseClicked
+
+    private void Btnrefresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btnrefresh1MouseClicked
+        // TODO add your handling code here:
+        TNoPermintaan2.setBackground(new Color(245,250,240));
+        autoNomor2();
+    }//GEN-LAST:event_Btnrefresh1MouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -1530,6 +1572,8 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
+    private widget.Button Btnrefresh;
+    private widget.Button Btnrefresh1;
     private widget.CekBox ChkInput;
     private widget.CekBox ChkJln;
     private widget.ComboBox CmbDetik;

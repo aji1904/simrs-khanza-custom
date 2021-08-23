@@ -419,12 +419,12 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         cmbJam = new widget.ComboBox();
         cmbMnt = new widget.ComboBox();
         cmbDtk = new widget.ComboBox();
-        ChkRM = new widget.CekBox();
         ChkJln = new widget.CekBox();
         jLabel5 = new widget.Label();
         LTotal = new widget.Label();
         jLabel7 = new widget.Label();
         LTotalTagihan = new widget.Label();
+        Btnrefresh1 = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
         tbResep = new widget.Table();
@@ -661,13 +661,13 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(TNoRw);
-        TNoRw.setBounds(75, 12, 120, 23);
+        TNoRw.setBounds(80, 10, 120, 23);
 
         TPasien.setEditable(false);
         TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
         FormInput.add(TPasien);
-        TPasien.setBounds(196, 12, 487, 23);
+        TPasien.setBounds(200, 10, 487, 23);
 
         KdDokter.setHighlighter(null);
         KdDokter.setName("KdDokter"); // NOI18N
@@ -733,7 +733,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 72, 23);
 
         DTPBeri.setForeground(new java.awt.Color(50, 70, 50));
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-10-2019" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2021" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -781,20 +781,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         FormInput.add(cmbDtk);
         cmbDtk.setBounds(298, 42, 62, 23);
 
-        ChkRM.setBorder(null);
-        ChkRM.setSelected(true);
-        ChkRM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ChkRM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChkRM.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChkRM.setName("ChkRM"); // NOI18N
-        ChkRM.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ChkRMItemStateChanged(evt);
-            }
-        });
-        FormInput.add(ChkRM);
-        ChkRM.setBounds(660, 72, 23, 23);
-
         ChkJln.setBorder(null);
         ChkJln.setSelected(true);
         ChkJln.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -838,12 +824,24 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         FormInput.add(LTotalTagihan);
         LTotalTagihan.setBounds(588, 42, 95, 23);
 
+        Btnrefresh1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png"))); // NOI18N
+        Btnrefresh1.setMnemonic('4');
+        Btnrefresh1.setToolTipText("Alt+4");
+        Btnrefresh1.setName("Btnrefresh1"); // NOI18N
+        Btnrefresh1.setPreferredSize(new java.awt.Dimension(28, 23));
+        Btnrefresh1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btnrefresh1MouseClicked(evt);
+            }
+        });
+        FormInput.add(Btnrefresh1);
+        Btnrefresh1.setBounds(660, 72, 28, 23);
+
         internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 253));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1218,18 +1216,6 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         Valid.pindah(evt,cmbMnt,NoResep);
     }//GEN-LAST:event_cmbDtkKeyPressed
 
-    private void ChkRMItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ChkRMItemStateChanged
-        if(ChkRM.isSelected()==true){
-            NoResep.setEditable(false);
-            NoResep.setBackground(new Color(245,250,240));
-            emptTeksobat();
-        }else if(ChkRM.isSelected()==false){
-            NoResep.setEditable(true);
-            NoResep.setBackground(new Color(250,255,245));
-            NoResep.setText("");
-        }
-    }//GEN-LAST:event_ChkRMItemStateChanged
-
     private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkJlnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ChkJlnActionPerformed
@@ -1378,6 +1364,13 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             
     }//GEN-LAST:event_DTPBeriItemStateChanged
 
+    private void Btnrefresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btnrefresh1MouseClicked
+        // TODO add your handling code here:
+        NoResep.setEditable(false);
+        NoResep.setBackground(new Color(245,250,240));
+        emptTeksobat();
+    }//GEN-LAST:event_Btnrefresh1MouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -1403,8 +1396,8 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private widget.Button BtnSimpan;
     private widget.Button BtnTambah;
     private widget.Button BtnTambah1;
+    private widget.Button Btnrefresh1;
     private widget.CekBox ChkJln;
-    private widget.CekBox ChkRM;
     private widget.Tanggal DTPBeri;
     private widget.PanelBiasa FormInput;
     private widget.ComboBox Jeniskelas;
@@ -1705,10 +1698,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     }
 
     public void emptTeksobat() {
-        if(ChkRM.isSelected()==true){
             Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_resep,4),signed)),0) from resep_obat where tgl_perawatan='"+Valid.SetTgl(DTPBeri.getSelectedItem()+"")+"' ",
                 DTPBeri.getSelectedItem().toString().substring(6,10)+DTPBeri.getSelectedItem().toString().substring(3,5)+DTPBeri.getSelectedItem().toString().substring(0,2),4,NoResep);        
-        } 
+            
     }
 
     public JTable getTable(){

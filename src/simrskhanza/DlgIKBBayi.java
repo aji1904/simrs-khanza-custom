@@ -424,7 +424,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label68 = new widget.Label();
         nama_bayi = new widget.TextBox();
         label69 = new widget.Label();
-        ChkRM = new widget.CekBox();
+        Btnrefresh1 = new widget.Button();
 
         Popup.setName("Popup"); // NOI18N
 
@@ -1995,7 +1995,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(NmBayi);
-        NmBayi.setBounds(200, 10, 210, 23);
+        NmBayi.setBounds(210, 10, 220, 23);
 
         label35.setText("Umur Ayah :");
         label35.setName("label35"); // NOI18N
@@ -2211,29 +2211,18 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         FormInput.add(label69);
         label69.setBounds(860, 60, 100, 23);
 
-        ChkRM.setBorder(null);
-        ChkRM.setSelected(true);
-        ChkRM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ChkRM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChkRM.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChkRM.setName("ChkRM"); // NOI18N
-        ChkRM.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ChkRMItemStateChanged(evt);
-            }
-        });
-        ChkRM.addMouseListener(new java.awt.event.MouseAdapter() {
+        Btnrefresh1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png"))); // NOI18N
+        Btnrefresh1.setMnemonic('4');
+        Btnrefresh1.setToolTipText("Alt+4");
+        Btnrefresh1.setName("Btnrefresh1"); // NOI18N
+        Btnrefresh1.setPreferredSize(new java.awt.Dimension(28, 23));
+        Btnrefresh1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ChkRMMouseClicked(evt);
+                Btnrefresh1MouseClicked(evt);
             }
         });
-        ChkRM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkRMActionPerformed(evt);
-            }
-        });
-        FormInput.add(ChkRM);
-        ChkRM.setBounds(170, 10, 23, 23);
+        FormInput.add(Btnrefresh1);
+        Btnrefresh1.setBounds(170, 10, 28, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -3682,44 +3671,16 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         // TODO add your handling code here:
     }//GEN-LAST:event_nama_bayiActionPerformed
 
-    private void ChkRMItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ChkRMItemStateChanged
-//        if(ChkRM.isSelected()==true){
-//            NoRm.setEditable(false);
-//            NoRm.setBackground(new Color(245,250,240));
-//            autoNomor();
-//        }else if(ChkRM.isSelected()==false){
-//            NoRm.setEditable(true);
-//            NoRm.setBackground(new Color(250,255,245));
-//        }
-    }//GEN-LAST:event_ChkRMItemStateChanged
-
-    private void ChkRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkRMActionPerformed
-        // TODO add your handling code here:
-//        if(ChkRM.isSelected()==true){
-//            NoRm.setEditable(false);
-//            NoRm.setBackground(new Color(245,250,240));
-//            autoNomor();
-//        }else if(ChkRM.isSelected()==false){
-//            NoRm.setEditable(true);
-//            NoRm.setBackground(new Color(250,255,245));
-//        }
-    }//GEN-LAST:event_ChkRMActionPerformed
-
     private void NmBayiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NmBayiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NmBayiActionPerformed
 
-    private void ChkRMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkRMMouseClicked
+    private void Btnrefresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btnrefresh1MouseClicked
         // TODO add your handling code here:
-        if(ChkRM.isSelected()==true){
-            NoRm.setEditable(false);
-            NoRm.setBackground(new Color(245,250,240));
-            autoNomor();
-        }else if(ChkRM.isSelected()==false){
-            NoRm.setEditable(true);
-            NoRm.setBackground(new Color(250,255,245));
-        }
-    }//GEN-LAST:event_ChkRMMouseClicked
+        NoRm.setEditable(false);
+        NoRm.setBackground(new Color(245,250,240));
+        autoNomor();
+    }//GEN-LAST:event_Btnrefresh1MouseClicked
     
     private void autoNomor() {  
                 if(tahun.equals("Yes")){
@@ -3813,9 +3774,9 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.Button BtnSimpan1;
+    private widget.Button Btnrefresh1;
     private widget.ComboBox CaraLahir;
     private widget.CekBox ChkInput;
-    private widget.CekBox ChkRM;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Tanggal Daftar;
