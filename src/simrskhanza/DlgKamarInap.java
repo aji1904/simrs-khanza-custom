@@ -10668,7 +10668,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     try {
                         ps.setString(1,TNoRw1.getText());
                         rs=ps.executeQuery();
-                        if(rs.next()){
+                        if(!rs.isBeforeFirst() && rs.getRow() == 0){
+                            JOptionPane.showMessageDialog(null,"Maaf, Dokter DPJP Ranap Belum di Input...!!!");
+                        }else if(rs.next()){
                             if(tbKamIn.getSelectedRow()!= -1){
                                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                                 SuratKeteranganIsolasi surat=new SuratKeteranganIsolasi(null,false);
