@@ -679,6 +679,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppRujukan = new javax.swing.JMenuItem();
         ppSuratKontrol = new javax.swing.JMenuItem();
         ppRiwayatPerawatan = new javax.swing.JMenuItem();
+        SuratJaminanRalan = new javax.swing.JMenuItem();
+        SuratJaminanRanap = new javax.swing.JMenuItem();
         WindowUpdatePulang = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
         BtnCloseIn4 = new widget.Button();
@@ -1045,6 +1047,38 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         });
         Popup.add(ppRiwayatPerawatan);
 
+        SuratJaminanRalan.setBackground(new java.awt.Color(255, 255, 254));
+        SuratJaminanRalan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        SuratJaminanRalan.setForeground(new java.awt.Color(50, 50, 50));
+        SuratJaminanRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        SuratJaminanRalan.setText("SJP Ralan");
+        SuratJaminanRalan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        SuratJaminanRalan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        SuratJaminanRalan.setName("SuratJaminanRalan"); // NOI18N
+        SuratJaminanRalan.setPreferredSize(new java.awt.Dimension(200, 25));
+        SuratJaminanRalan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SuratJaminanRalanBtnPrintActionPerformed(evt);
+            }
+        });
+        Popup.add(SuratJaminanRalan);
+
+        SuratJaminanRanap.setBackground(new java.awt.Color(255, 255, 254));
+        SuratJaminanRanap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        SuratJaminanRanap.setForeground(new java.awt.Color(50, 50, 50));
+        SuratJaminanRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        SuratJaminanRanap.setText("SJP Ranap");
+        SuratJaminanRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        SuratJaminanRanap.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        SuratJaminanRanap.setName("SuratJaminanRanap"); // NOI18N
+        SuratJaminanRanap.setPreferredSize(new java.awt.Dimension(200, 25));
+        SuratJaminanRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SuratJaminanRanapBtnPrintActionPerformed(evt);
+            }
+        });
+        Popup.add(SuratJaminanRanap);
+
         WindowUpdatePulang.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowUpdatePulang.setName("WindowUpdatePulang"); // NOI18N
         WindowUpdatePulang.setUndecorated(true);
@@ -1085,7 +1119,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame5.add(jLabel26);
         jLabel26.setBounds(6, 32, 100, 23);
 
-        TanggalPulang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2021 12:33:53" }));
+        TanggalPulang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2021 13:32:59" }));
         TanggalPulang.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalPulang.setName("TanggalPulang"); // NOI18N
         TanggalPulang.setOpaque(false);
@@ -1457,7 +1491,6 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2956,7 +2989,11 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             param.put("kotars",akses.getkabupatenrs());
             param.put("propinsirs",akses.getpropinsirs());
             param.put("kontakrs",akses.getkontakrs());
+            param.put("norawat",TNoRw.getText());
             param.put("prb",Sequel.cariIsi("select prb from bpjs_prb where no_sep=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            param.put("dokter",Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",kddokter));
+            param.put("dpjp",NmDPJP.getText());
+            param.put("noreg",Sequel.cariIsi("select no_reg from reg_periksa where no_rawat=?",TNoRw.getText()));
             param.put("logo",Sequel.cariGambar("select bpjs from gambar")); 
             param.put("parameter",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
             if(JenisPelayanan.getSelectedIndex()==0){
@@ -3406,8 +3443,11 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             param.put("kotars",akses.getkabupatenrs());
             param.put("propinsirs",akses.getpropinsirs());
             param.put("kontakrs",akses.getkontakrs());
-            param.put("logo",Sequel.cariGambar("select bpjs from gambar")); 
+            param.put("norawat",TNoRw.getText());
             param.put("prb",Sequel.cariIsi("select prb from bpjs_prb where no_sep=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            param.put("dokter",Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",kddokter));
+            param.put("noreg",Sequel.cariIsi("select no_reg from reg_periksa where no_rawat=?",TNoRw.getText()));
+            param.put("logo",Sequel.cariGambar("select bpjs from gambar")); 
             param.put("parameter",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
             if(JenisPelayanan.getSelectedIndex()==0){
                 Valid.MyReport("rptBridgingSEP3.jasper","report","::[ Cetak SEP ]::",param);
@@ -3432,6 +3472,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             param.put("kontakrs",akses.getkontakrs());
             param.put("norawat",TNoRw.getText());
             param.put("prb",Sequel.cariIsi("select prb from bpjs_prb where no_sep=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            param.put("dokter",Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",kddokter));
             param.put("noreg",Sequel.cariIsi("select no_reg from reg_periksa where no_rawat=?",TNoRw.getText()));
             param.put("logo",Sequel.cariGambar("select bpjs from gambar")); 
             param.put("parameter",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
@@ -3908,6 +3949,56 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         skdp.setVisible(true);
     }//GEN-LAST:event_btnSKDPActionPerformed
 
+    private void SuratJaminanRalanBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuratJaminanRalanBtnPrintActionPerformed
+        // TODO add your handling code here:
+        if(tbObat.getSelectedRow()!= -1){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("prb",Sequel.cariIsi("select prb from bpjs_prb where no_sep=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            param.put("logo",Sequel.cariGambar("select bpjs from gambar")); 
+            param.put("parameter",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
+            if(JenisPelayanan.getSelectedIndex()==0){
+                Valid.MyReport("rptBuktiPelayananRalan.jasper","report","::[ Cetak SEP ]::",param);
+            }else{
+                Valid.MyReport("rptBridgingSEP2.jasper","report","::[ Cetak SEP ]::",param);
+            }                
+            this.setCursor(Cursor.getDefaultCursor());
+        }else{
+            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data SEP yang mau dicetak...!!!!");
+            BtnBatal.requestFocus();
+        }  
+    }//GEN-LAST:event_SuratJaminanRalanBtnPrintActionPerformed
+
+    private void SuratJaminanRanapBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuratJaminanRanapBtnPrintActionPerformed
+        // TODO add your handling code here:
+        if(tbObat.getSelectedRow()!= -1){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("prb",Sequel.cariIsi("select prb from bpjs_prb where no_sep=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            param.put("logo",Sequel.cariGambar("select bpjs from gambar")); 
+            param.put("parameter",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
+            if(JenisPelayanan.getSelectedIndex()==0){
+                Valid.MyReport("rptBridgingSEP.jasper","report","::[ Cetak SEP ]::",param);
+            }else{
+                Valid.MyReport("rptBridgingSEP2.jasper","report","::[ Cetak SEP ]::",param);
+            }                
+            this.setCursor(Cursor.getDefaultCursor());
+        }else{
+            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data SEP yang mau dicetak...!!!!");
+            BtnBatal.requestFocus();
+        }  
+    }//GEN-LAST:event_SuratJaminanRanapBtnPrintActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4004,6 +4095,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     private widget.ScrollPane Scroll1;
     private widget.TextBox Status;
     private widget.ComboBox Suplesi;
+    private javax.swing.JMenuItem SuratJaminanRalan;
+    private javax.swing.JMenuItem SuratJaminanRanap;
     private widget.TextBox TCari;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
