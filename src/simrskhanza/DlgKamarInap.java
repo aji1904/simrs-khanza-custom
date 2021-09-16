@@ -9656,8 +9656,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                         "select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg, "+
                                         "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.umur,poliklinik.nm_poli," +
                                         "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,"+
-                                        "pasien.no_peserta,pasien.tgl_lahir from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab " +
-                                        "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj "+
+                                        "pasien.no_peserta,pasien.tgl_lahir, bridging_sep.no_sep, bridging_sep.nmppkrujukan as faskes from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab " +
+                                        "on reg_periksa.kd_dokter=dokter.kd_dokter join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj "+
                                         "and reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.no_rawat='"+rs2.getString("no_rawat2")+"'",param); 
                                 this.setCursor(Cursor.getDefaultCursor());
                             }else{
@@ -9694,8 +9694,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             "select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg, "+
                             "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.umur,poliklinik.nm_poli," +
                             "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,"+
-                            "pasien.no_peserta,pasien.tgl_lahir from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab " +
-                            "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj "+
+                            "pasien.no_peserta,pasien.tgl_lahir, bridging_sep.no_sep, bridging_sep.nmppkrujukan as faskes from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab " +
+                            "on reg_periksa.kd_dokter=dokter.kd_dokter join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj "+
                             "and reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.no_rawat='"+tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString()+"'",param); 
                     this.setCursor(Cursor.getDefaultCursor());
                 }

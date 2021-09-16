@@ -26,9 +26,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="tanggalkeluar" class="java.lang.String"/>
-	<parameter name="sep" class="java.lang.String"/>
 	<parameter name="bpjs" class="java.lang.String"/>
-	<parameter name="faskes" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg, reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.umur,poliklinik.nm_poli,
 reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,
@@ -90,6 +88,8 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 	<field name="tgl_lahir" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="no_sep" class="java.lang.String"/>
+	<field name="faskes" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -97,7 +97,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 		<band height="822">
 			<property name="com.jaspersoft.studio.layout"/>
 			<staticText>
-				<reportElement x="40" y="17" width="510" height="20" uuid="74af7fc8-9abe-4772-b786-d3d56c2f0327"/>
+				<reportElement x="40" y="37" width="510" height="20" uuid="74af7fc8-9abe-4772-b786-d3d56c2f0327"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="14"/>
 					<paragraph lineSpacing="Single"/>
@@ -105,7 +105,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[SURAT JAMINAN PELAYANAN (SJP) BPJS RAWAT INAP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="40" y="0" width="510" height="20" uuid="f9162683-1d73-4d33-88d4-f31aaf54ae3d"/>
+				<reportElement x="40" y="20" width="510" height="20" uuid="f9162683-1d73-4d33-88d4-f31aaf54ae3d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="14"/>
 					<paragraph lineSpacing="Single"/>
@@ -113,33 +113,23 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[RS BUNDA MEDIKA JAKABARING]]></text>
 			</staticText>
 			<line>
-				<reportElement x="41" y="40" width="510" height="1" uuid="d5054c5d-caff-4990-9192-11bdc2eda70a"/>
+				<reportElement x="41" y="60" width="510" height="1" uuid="d5054c5d-caff-4990-9192-11bdc2eda70a"/>
 				<graphicElement>
 					<pen lineWidth="4.0" lineStyle="Double"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="44" y="50" width="84" height="14" uuid="828dfd36-2463-4c31-9c29-edb034a376c4">
+				<reportElement x="43" y="70" width="84" height="14" uuid="9096fa82-42b1-4f2d-89c4-d66306d57bcc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[TGL.SJP]]></text>
+				<text><![CDATA[No. REG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="44" y="64" width="84" height="14" uuid="9096fa82-42b1-4f2d-89c4-d66306d57bcc">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[NO.SJP]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="44" y="78" width="84" height="14" uuid="7ccd5b49-5462-49f7-8fd6-69825ddd50c7">
+				<reportElement x="43" y="84" width="84" height="14" uuid="7ccd5b49-5462-49f7-8fd6-69825ddd50c7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -149,7 +139,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[NAMA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="44" y="92" width="84" height="14" uuid="8cc262a6-7d9a-49fc-9963-c93f69ea8b8a">
+				<reportElement x="43" y="98" width="84" height="14" uuid="8cc262a6-7d9a-49fc-9963-c93f69ea8b8a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -159,17 +149,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[RM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="44" y="108" width="84" height="14" uuid="c9c9a131-2d17-4792-912d-8c2bd18e0004">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[ALAMAT]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="88" y="50" width="3" height="14" uuid="e5f7f1d1-5b96-4ace-b53b-60dc627cb6c3">
+				<reportElement x="87" y="70" width="3" height="14" uuid="81f674b4-2641-4ea7-a08a-a24ac3d8d137">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -179,7 +159,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="88" y="64" width="3" height="14" uuid="81f674b4-2641-4ea7-a08a-a24ac3d8d137">
+				<reportElement x="87" y="84" width="3" height="14" uuid="086d39da-1a8a-4441-b629-552f49c53066">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -189,7 +169,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="88" y="78" width="3" height="14" uuid="086d39da-1a8a-4441-b629-552f49c53066">
+				<reportElement x="87" y="98" width="3" height="14" uuid="08e572a9-5746-48e0-a4fb-30db926dfd47">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -198,38 +178,8 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="88" y="92" width="3" height="14" uuid="08e572a9-5746-48e0-a4fb-30db926dfd47">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="88" y="108" width="3" height="14" uuid="f8b63cb8-686c-47c0-81f5-aa7d2c99cf38">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="95" y="50" width="116" height="14" uuid="3c5412e8-6142-4e9d-bcbb-b522c2ad3006">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tgl_registrasi}]]></textFieldExpression>
-			</textField>
 			<textField pattern="">
-				<reportElement x="95" y="64" width="116" height="14" uuid="8040b9e8-0f91-4c79-b1c9-eda7c211eab2">
+				<reportElement x="94" y="70" width="116" height="14" uuid="8040b9e8-0f91-4c79-b1c9-eda7c211eab2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -239,7 +189,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<textFieldExpression><![CDATA[$F{no_rawat}]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement x="95" y="78" width="205" height="14" uuid="c7e736d4-d613-4c2d-a2c1-159d891a7ff3">
+				<reportElement x="94" y="84" width="205" height="14" uuid="c7e736d4-d613-4c2d-a2c1-159d891a7ff3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -249,7 +199,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<textFieldExpression><![CDATA[$F{nm_pasien}+" ( "+$F{jk}+" )"]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement x="95" y="92" width="116" height="14" uuid="2937b671-424d-435f-8696-710d83d0b4b5">
+				<reportElement x="94" y="98" width="116" height="14" uuid="2937b671-424d-435f-8696-710d83d0b4b5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -258,18 +208,8 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				</textElement>
 				<textFieldExpression><![CDATA[$F{no_rkm_medis}]]></textFieldExpression>
 			</textField>
-			<textField pattern="">
-				<reportElement x="95" y="108" width="465" height="14" uuid="e45eb94c-9fb7-4a3e-99ee-f20d688d8bb1">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{almt_pj}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="378" y="50" width="3" height="14" uuid="f70e8f71-8fda-4b60-84bf-01dc1d3d420c">
+				<reportElement x="378" y="70" width="3" height="14" uuid="f70e8f71-8fda-4b60-84bf-01dc1d3d420c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -279,7 +219,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement x="386" y="50" width="174" height="14" uuid="f1a2da90-ffde-4525-8fc6-a5f97440b103">
+				<reportElement x="386" y="70" width="174" height="14" uuid="f1a2da90-ffde-4525-8fc6-a5f97440b103">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -289,7 +229,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<textFieldExpression><![CDATA[$F{no_peserta}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="321" y="50" width="53" height="14" uuid="182f17f5-1554-472e-a711-f864bc00f807">
+				<reportElement x="321" y="70" width="53" height="14" uuid="182f17f5-1554-472e-a711-f864bc00f807">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -299,7 +239,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[NO. KARTU]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="386" y="78" width="66" height="14" uuid="86572da1-ea60-4eda-866c-9e236257a793">
+				<reportElement x="94" y="112" width="66" height="14" uuid="86572da1-ea60-4eda-866c-9e236257a793">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -309,7 +249,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<textFieldExpression><![CDATA[$F{tgl_lahir}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="321" y="78" width="53" height="14" uuid="6d2ef964-e303-42af-97b5-a8dcc821a025">
+				<reportElement x="42" y="112" width="53" height="14" uuid="6d2ef964-e303-42af-97b5-a8dcc821a025">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -319,7 +259,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[LAHIR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="378" y="78" width="3" height="14" uuid="f3940b6c-0615-48dc-820f-41b46f3ea8b6">
+				<reportElement x="87" y="112" width="3" height="14" uuid="f3940b6c-0615-48dc-820f-41b46f3ea8b6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -329,7 +269,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement x="386" y="92" width="174" height="14" uuid="052dd6f4-da54-41af-9699-b2890f5724eb">
+				<reportElement x="386" y="99" width="174" height="27" uuid="052dd6f4-da54-41af-9699-b2890f5724eb">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -339,7 +279,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<textFieldExpression><![CDATA[$P{kamar}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="321" y="92" width="53" height="14" uuid="a9b6033f-47c3-41cd-a0ca-77be04d2604f">
+				<reportElement x="321" y="99" width="53" height="14" uuid="a9b6033f-47c3-41cd-a0ca-77be04d2604f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -349,7 +289,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[KAMAR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="378" y="92" width="3" height="14" uuid="48598c66-fea5-4a54-adf2-0fd8898ae544">
+				<reportElement x="378" y="99" width="3" height="14" uuid="48598c66-fea5-4a54-adf2-0fd8898ae544">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -359,7 +299,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="321" y="64" width="53" height="14" uuid="07a7459b-b678-469c-8fec-e0157c682f1a">
+				<reportElement x="321" y="84" width="53" height="14" uuid="07a7459b-b678-469c-8fec-e0157c682f1a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -369,7 +309,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[NO. SEP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="378" y="64" width="3" height="14" uuid="01bf8472-4316-40b9-87ad-cebb80b57ed4">
+				<reportElement x="378" y="84" width="3" height="14" uuid="01bf8472-4316-40b9-87ad-cebb80b57ed4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -379,14 +319,14 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement x="386" y="64" width="174" height="14" uuid="56a18b42-2dc4-4e1b-aca4-373b268c4214">
+				<reportElement x="386" y="84" width="174" height="14" uuid="56a18b42-2dc4-4e1b-aca4-373b268c4214">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{sep}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{no_sep}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="44" y="143" width="155" height="30" uuid="4914d472-75b9-44ea-a5bc-0cc58d669bb2"/>
@@ -496,7 +436,7 @@ on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no
 				<reportElement x="42" y="700" width="522" height="1" uuid="40d01fab-7b3d-4e03-ac1d-fd38ff108622"/>
 			</line>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="452" y="78" width="104" height="14" uuid="4dc95ae6-b4af-439f-9591-bdcd182b4531">
+				<reportElement x="160" y="112" width="104" height="14" uuid="4dc95ae6-b4af-439f-9591-bdcd182b4531">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>

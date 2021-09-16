@@ -119,8 +119,8 @@ on pasien.no_rkm_medis=pasien_bayi.no_rkm_medis and pasien_bayi.penolong=pegawai
 				<imageExpression><![CDATA["http://rsbundamedika.com/webapps_update/logobmj.png"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="313" y="569" width="205" height="188" uuid="985ac0c4-2719-403e-b980-0a5b7b2041b4"/>
-				<imageExpression><![CDATA["http://rsbundamedika.com/webapps_update/ttd_drdesi.png"]]></imageExpression>
+				<reportElement x="337" y="600" width="153" height="127" uuid="985ac0c4-2719-403e-b980-0a5b7b2041b4"/>
+				<imageExpression><![CDATA["http://rsbundamedika.com/webapps2/ttd_drandini.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="8" y="58" width="595" height="30" uuid="ebc4e026-3d93-4e77-95db-727c3309cfe2"/>
@@ -376,11 +376,11 @@ bahwa telah lahir seorang anak : ]]></text>
 Direktur]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="341" y="713" width="140" height="19" uuid="e85c500e-fe5e-4fb7-8d67-ccce842e23c2"/>
+				<reportElement x="341" y="713" width="199" height="19" uuid="e85c500e-fe5e-4fb7-8d67-ccce842e23c2"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[dr. Desi Kurniasih]]></text>
+				<text><![CDATA[dr. Andini Zuwitasari, Sp.OG]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="390" y="234" width="7" height="19" uuid="d93df3d7-8270-4680-b02f-7cef19ecda68"/>
